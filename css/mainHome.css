@@ -1,9 +1,246 @@
-.navbar {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
+button, a{
+  cursor: pointer;
+}
+
+a, a:visited{
+  text-decoration: none;
+  color: inherit;
+}
+
+/*=================Header Styling=================*/
+
+header{
+  display: flex;
+  flex-direction: column;
+  background-color: #FF4A4A;
+  height: 370px;
+  color:white;
+}
+
+#header-top {
+  display: flex;
+  height: 70px;
+}
+
+#logo {
+  margin:20px;
+  margin-left: 30px;
+  font-size: 25px;
+}
+
+#login-or-signup {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  padding: 22px;
+}
+
+#login-or-signup div {
+  padding-left:10px;
+  padding-right: 10px;
+  font-size: 13px;
+}
+
+#header-content {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  
+}
+
+#header-left-side{
+  flex-basis: 50%;
+}
+
+#header-right-side{
+  margin:auto;
+  margin-right: 20px;
+}
+
+#header-right-side .temp {
+  background-color: rgb(220,220,220);
+  width: 420px;
+  height: 230px;
+  text-align: center;
+  line-height : 230px;
+}
+
+#slogan{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#slogan div{
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#btn-register-restaurant{
+  /* display: flex;
+  justify-content: center; */
+  margin-top: 20px;
+  position: relative;
+}
+
+.btn-slide{
+  background: 0;
+  position: relative;
+}
+
+.btn-slide .slide-top {
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  top: 0px;
+  left: 110px;
+  width: 250px;
+  height: 40px;
+  background: #ffffff;
+  z-index: 10;
+  transition: all 0.2s ;
+  border: 4px inset #ffffff;
+  border-radius: 5px;
+  color:#FF4A4A;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.btn-slide .slide-bottom {
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  top: 0;
+  left: 110px;
+  width: 250px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  z-index: 5;
+  border-radius: 5px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.btn-slide:hover .slide-top {
+  top: 35px;
+}
+
+
+/* 
+#btn-register-restaurant button{
+  width:250px;
+  height: 40px;
+  border: 2px inset white;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: #ff4a4a;
+  font-size: 17px;
+} */
+
+
+/* #btn-register-restaurant button:hover{
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+  border: none;
+} */
+
+
+/*=================Main Content(가게 목록) Styling=================*/
+
+main {
+  margin:auto;
+  width:75%;
+}
+
+main nav{
+  display: flex;
+  margin-top: 45px;
+  margin-bottom: 10px;
+}
+
+
+#btn-select-sort{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+#btn-select-category button, #btn-select-sort button{
+  border:none;
+  background-color: transparent;
+  color:rgb(134, 132, 132);
+  font-size: 15px;
+}
+
+#btn-select-category button:hover, #btn-select-sort button:hover{
+  color:#FF4A4A;
+}
+
+section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.restaurant-item-box{
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+.restaurant-item-box:hover{
+  transform: scale(1.04,1.04);
+  -ms-transform: scale(1.04,1.04);
+  -webkit-transform: scale(1.04,1.04);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+}
+.restaurant-item-box .temp:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+figure{
+  margin:0;
+}
+
+figure .temp{
+  width:290px;
+  height:150px;
+  background-color: rgb(220,220,220);
+  text-align: center;
+  line-height : 150px;
+}
+
+figcaption{
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.restaurant-name{
+  margin-right: 15px;
+  font-size: 20px;
+  white-space : nowrap;
+}
+
+.restaurant-category{
+  font-size: 13px;
+  white-space : nowrap;
+}
+
+.restaurant-point{
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  text-align: end;
+}
