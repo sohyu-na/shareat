@@ -178,9 +178,9 @@ main nav{
   display: flex;
   padding: 8px;
   padding-right: 20px;
-  background-color: #ff4a4a17;
-  border: 2px ridge #ff4a4a17;
-  border-radius: 5px;
+  background-color: #ff4a4a10;
+  border: 2px ridge #ff4a4a10;
+  border-radius: 20px;
 }
 
 #btn-select-sort{
