@@ -1,0 +1,117 @@
+section{
+    margin : 50px 220px 0px 220px;
+}
+.menu-title{
+   height: 70px;
+}
+.restaurant-name{
+   display:inline-block;
+   max-width:400px;
+   font-size:30px;
+   color:#FF4A4A;
+   line-height:1.462;
+}
+.menu-title-subMessage{
+   font-size:15px;
+   width:270px;
+   margin-left:10px;
+   line-height:1.45;
+   letter-spacing:-1px;
+}
+.menu-upload{
+   height:380px;
+   width: 700px;
+}
+#pic{
+   font-size:20px;
+   font-style:bold;
+   letter-spacing:-0.5px;
+}
+.menu-upload label {
+   display: inline-block;
+   vertical-align: middle;
+   border: 1px solid #857F7F;
+   cursor: pointer;
+   width:700px;
+   height: 330px;
+   margin-top:20px;
+   margin-bottom:20px;
+   background-color:rgba(255, 74, 74,0.1);
+   color:#857F7F;
+   padding: 15px;
+}
+.menu-upload input[type="file"] {
+   position: absolute;
+   width: 0;
+   height: 0;
+   padding: 0;
+   overflow: hidden;
+   border: 0;
+}
+.menu-textbox{
+   margin-top:20px;
+   width: 700px;
+}
+.menu-text{
+   width:100px;
+   font-size:20px;
+   font-style:bold;
+   letter-spacing:-1px;
+}
+.text{
+   border: 1px solid #857F7F;
+   margin-top: 20px;
+   height:35px;
+   width:550px;
+   font-size:15px;
+}
+.extra-checkbox{
+   margin-top:20px;
+}
+input[type="checkbox"]{
+   padding-top:10px;
+   margin-right:40px;
+   width: 17px; 
+   height: 17px;
+   accent-color:#FF4A4A;
+}
+.extra-checkbox label{
+   margin-top:20px;
+   font-size:20;
+   position: relative;
+   bottom:5px;
+}
+.menu-buttons{
+   margin-top:30px;
+   display:flex;
+   float:right;
+   margin-bottom:50px;
+}
+.menu-cancelbutton{
+   min-width:120px;
+   min-height:50px;
+   margin-right:16px;
+   padding-left:14px;
+   padding-right:14px;
+   border:none;
+   border-radius:5px;
+   font-size:16px;
+   color:black;
+   text-align:center;
+   background-color:#F1F1F1;
+   box-shadow: 0px 5px 5px lightgray;
+}
+.menu-submitbutton{
+   min-width:120px;
+   min-height:50px;
+   margin-right:16px;
+   padding-left:14px;
+   padding-right:14px;
+   border:none;
+   border-radius:5px;
+   font-size:16px;
+   color:white;
+   text-align:center;
+   background-color:#FF4A4A;
+   box-shadow: 0px 5px 5px lightgray;
+}
