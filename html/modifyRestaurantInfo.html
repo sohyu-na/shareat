@@ -1,13 +1,165 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Heroic Features - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+
         <title>가게정보 수정</title>
         <meta charset="utf-8" />
-        <link href="css/commonStyles.css" rel="stylesheet" />
-        <link href="css/modifyRestaurant.css" rel="stylesheet" />
+        <link href="../css/commonStyles.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/modifyRestaurantInfo.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="mainHome.html">Shareat</a>
+            </div>
+        </nav>
 
+        <h4>수정하고 싶은 맛집의 정보를 입력해 주세요</h4>
+        <table width="100%" align="center">
+            <form>
+                <table>
+                <tr>
+                    <td class="td1">상호명 *</td>
+                    <td><input type="text" class="text-area" name="store-name" size="80" required placeholder="&nbsp;가게의 이름을 입력해 주세요"  /></td>
+                </tr>           
+                <tr>
+                    <td class="td1">전화번호</td>
+                    <td><input type="text" class="text-area" name="store-phoneNum" size="80" placeholder="&nbsp;가게의 전화번호를 입력해 주세요" /></td>
+                </tr>           
+                <tr>
+                    <td class="td1">주소 *</td>
+                    <td><input type="text" class="text-area" name="store-addr" size="80" required placeholder="&nbsp;가게의 주소를 입력해 주세요" /></td>
+                </tr>
+                <tr>
+                    <td class="td1">사이트</td>
+                    <td><input type="text" class="text-area" name="store-site" size="80" placeholder="&nbsp;가게의 가게의 웹사이트 주소 혹은 인스타그램 아이디를 입력해 주세요" /></td>
+                </tr>
+                <tr>
+                    <td class="td1">영업시간</td>
+                    <td><input type="text" class="text-area" name="store-hours" size="80" placeholder="&nbsp;가게의 영업시간을 입력해 주세요" /></td>
+                </tr>
+                <tr>
+                    <td class="td1">주차가능 여부</td>
+                    <td>
+                        <input type="radio" name="store-parking" size="80" value="yes" checked/>&nbsp;가능
+                        <input type="radio" name="store-parking" size="60" value="no"/>&nbsp;불가능
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">에약가능 여부</td>
+                    <td>
+                        <input type="radio" name="store-reservation" size="80" value="yes" checked/>&nbsp;가능
+                        <input type="radio" name="store-reservation" size="80" value="no"/>&nbsp;불가능 &nbsp;&nbsp;
+                        <input type="text" class="text-area" name="store-reservation" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">카테고리 *</td>
+                    <td>
+                        <input type="radio" name="store-category" size="80" value="kor" checked/>&nbsp;한식
+                        <input type="radio" name="store-category" size="80" value="chi"/>&nbsp;중식
+                        <input type="radio" name="store-category" size="80" value="jap"/>&nbsp;일식
+                        <input type="radio" name="store-category" size="80" value="west"/>&nbsp;양식
+                        <input type="radio" name="store-category" size="80" value="other"/>&nbsp;기타
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">가격대</td>
+                    <td>
+                        <input type="text" class="text-area" name="store-cost" size="33" />&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" class="text-area" name="store-cost" size="33" />&nbsp;이하
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="td1" valign="top">식당의 사진</td>
+                    <td >
+                        <input type="file" class="real-upload" accept="image/*" required multiple />
+                        <div class="upload">
+                            <p>가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
+                            <ul class="image-preview"></ul>
+                        </div>
+                        <script>
+                            const realUpload = document.querySelector('.real-upload');
+                            const upload = document.querySelector('.upload');
+
+                            upload.addEventListener('click', () => realUpload.click());
+
+                            realUpload.addEventListener('change', getImageFiles);
+
+                            function getImageFiles(e) {
+                            const uploadFiles = [];
+                            const files = e.currentTarget.files;
+                            const imagePreview = document.querySelector('.image-preview');
+                            const docFrag = new DocumentFragment();
+
+                            if ([...files].length >= 7) {
+                                alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
+                                return;
+                            }
+
+                            // 파일 타입 검사
+                            [...files].forEach(file => {
+                                if (!file.type.match("image/.*")) {
+                                    alert('이미지 파일만 업로드가 가능합니다.');
+                                    return
+                                }
+
+                                // 파일 갯수 검사
+                                if ([...files].length < 7) {
+                                    uploadFiles.push(file);
+                                    const reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        const preview = createElement(e, file);
+                                        imagePreview.appendChild(preview);
+                                    };
+                                    reader.readAsDataURL(file);
+                                    }
+                            });
+                            }
+
+                            function createElement(e, file) {
+                                const li = document.createElement('li');
+                                const img = document.createElement('img');
+                                img.setAttribute('src', e.target.result);
+                                img.setAttribute('data-file', file.name);
+                                li.appendChild(img);
+
+                                return li;
+                            }
+                        </script>
+                    </td>
+                </tr>
+
+                <tr> <td></td> </tr><tr> <td></td> </tr><tr> <td></td> </tr>
+                <tr> 
+                    <!--취소, 수정 버튼-->
+                    <td></td>
+                    <td colspan="2" align="right">
+                        <input class="cancelbutton" type="button" value="취소"  />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="modifybutton" type="submit" value="등록" onclick="memberinsertCheck()"/>
+                    </td>
+                </tr>
+
+            </form>
+        </table>
+
+        <footer>
+            <div id="footer-content">
+                Team 어서오소    
+            </div>
+        </footer>
     </body>
 </html>
