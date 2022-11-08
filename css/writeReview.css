@@ -1,3 +1,6 @@
+body{
+   margin:0px;
+}
 section{
     margin : 50px 220px 0px 220px;
 }
@@ -96,7 +99,6 @@ input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
    float: right;
    font-size:20px;
    padding-top:5px;
-   margin-right:20px;
 }
 input[type="checkbox"]{
    margin-top:5px;
@@ -107,7 +109,7 @@ input[type="checkbox"]{
 }
 .text-boxes{
    margin-top:20px;
-   height:200px;
+   height:250px;
    font-size:15px;
 }
 .text{
@@ -118,14 +120,20 @@ input[type="checkbox"]{
    margin-top:10px;
    padding:10px;
    display:block;
-   width:100%;
+   width:98%;
    height:150px;
    border:0;
    border: 1px solid #ddd;
 }
+textarea {
+   resize: vertical;
+   font-family: inherit;
+ }
+ 
 .length{
+   width: 100%;
    color: #5F6368;
-   float:right;
+   text-align: right;
 }
 .picture-upload input[type="file"] {
    position: absolute;
@@ -142,7 +150,6 @@ input[type="checkbox"]{
    cursor: pointer;
    width:100px;
    height: 100px;
-   margin-top: 20px;
 }
 #plus{
    font-size:70px;
@@ -153,37 +160,9 @@ input[type="checkbox"]{
    left:25px;
 }
 .review-buttons{
+   width: 100%;
    margin-top:30px;
-   display:flex;
-   float:right;
-   margin-bottom:50px;
-   
-}
-.review-cancelbutton{
-   min-width:120px;
-   min-height:50px;
-   margin-right:16px;
-   padding-left:14px;
-   padding-right:14px;
-   border:none;
-   border-radius:5px;
-   font-size:16px;
-   color:black;
-   text-align:center;
-   background-color:#F1F1F1;
-   box-shadow: 0px 5px 5px lightgray;
-}
-.review-submitbutton{
-   min-width:120px;
-   min-height:50px;
-   margin-right:16px;
-   padding-left:14px;
-   padding-right:14px;
-   border:none;
-   border-radius:5px;
-   font-size:16px;
-   color:white;
-   text-align:center;
-   background-color:#FF4A4A;
-   box-shadow: 0px 5px 5px lightgray;
+   margin-bottom: 30px;
+   text-align: right;
+
 }

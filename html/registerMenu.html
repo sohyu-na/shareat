@@ -3,25 +3,24 @@
     <head>
         <title>대표메뉴 등록</title>
         <meta charset="utf-8" />
-          <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../css/commonStyles.css" rel="stylesheet" />
         <link href="../css/registerMenu.css" rel="stylesheet" />
+		<!--상단바 아이콘-->
+        <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
-		<!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Shareat</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">회원가입</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-		
+		 <!-- 회원 상단바-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
+			<div class="container px-lg-5">
+				<a class="navbar-brand" href="mainHome.html">Shareat</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<i class="fas fa-light fa-circle-user fa-2x"></i>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<section>
 			<div class="menu-title">
 				<span class="restaurant-name">연어초밥</span> <span class="menu-title-subMessage">의 대표메뉴를 등록해주세요.</span>
@@ -46,14 +45,17 @@
 					<input type="checkbox" id="extra-al" name="extra">
 					<label for="extra-al"> allergy </label><br>
 				</div>
-				
 				<div class="menu-buttons">
-					<input type="button" class="menu-cancelbutton" value="취소" onclick=menucancelBox()>
-					<input type="submit" class="menu-submitbutton" value="등록" onclick=menusubmitBox()>
+					<input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
+					<input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
 				</div>
-				
 			</form>
 		</section>
+		<footer>
+            <div id="footer-content">
+                Team 어서오소    
+            </div>
+        </footer>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="../js/scripts.js"></script>
     </body>
