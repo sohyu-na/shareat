@@ -3,24 +3,24 @@
     <head>
         <title>리뷰 작성</title>
         <meta charset="utf-8" />
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../css/commonStyles.css" rel="stylesheet" />
         <link href="../css/writeReview.css" rel="stylesheet" />
+		<!--상단바 아이콘-->
+        <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
     </head>
 	
 	<body>
-		<!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Shareat</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">회원가입</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+		<!-- 회원 상단바-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
+			<div class="container px-lg-5">
+				<a class="navbar-brand" href="mainHome.html">Shareat</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<i class="fas fa-light fa-circle-user fa-2x"></i>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<section>
 			<div class="review-title">
 				<span class="restaurant-name">타이패밀리 </span> 	<span class="review-title-subMessage"> 에 대한 솔직한 리뷰를 써주세요.</span>
@@ -45,18 +45,24 @@
 			<div class="text-boxes">
 				<input type="text" class="text" placeholder="닉네임"><br>
 				<textarea class="textarea-box" onkeyup="counter(this)" maxlength="2000" placeholder="상세 리뷰를 입력해주세요."></textarea>
-				<p class="length"><span id="lengthtext">0</span>/2000</p>
+				<div class="length"><span id="lengthtext">0</span>/2000</div>
 			</div>	
 			<div class="picture-upload">
 				<input type="file" id="file" >
 				<label for="file"> <span id="plus">+</span></label>
 			</div>	
 			<div class="review-buttons">
-				<input type="button" class="review-cancelbutton" value="취소" onclick=reviewcancelBox()>
-				<input type="submit" class="review-submitbutton" value="등록" onclick=reviewsubmitBox()>
+				<input type="button" class="cancelbutton" value="취소" onclick=reviewcancelBox()>
+				<input type="submit" class="submitbutton" value="등록" onclick=reviewsubmitBox()>
 			</div>
 			</form>
 		</section>
+
+		<footer>
+            <div id="footer-content">
+                Team 어서오소    
+            </div>
+        </footer>
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="../js/scripts.js"></script>
