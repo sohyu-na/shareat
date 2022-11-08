@@ -1,27 +1,19 @@
 /* < 공통 css > */
-<<<<<<< HEAD
-/*글씨체*/
 
+/*글씨체*/
 body{
+  margin:0;
   font-family: 'Noto Sans KR', sans-serif;
 }
-
 .main_image_text {
   font-family: 'Noto Serif KR', serif;
 }
+  
+/* 상단바 */
+button, a{
+  cursor: pointer;
+}
 
-/* 상단바 */
-=======
-body{
-    margin:0;
-  }
-  
-/* 상단바 */
-/*코드*/
-  button, a{
-    cursor: pointer;
-  }
-  
  #logo a, #logo a:visited,
  #login-or-signup a, #login-or-signup a:visited{
     text-decoration: none;
@@ -60,7 +52,7 @@ body{
     padding-left: 5px;
     padding-right: 5px;
 }
->>>>>>> fec9782e7a174c398a49e77c2a15b0d84fb20564
+
 
 
 

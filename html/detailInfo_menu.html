@@ -5,24 +5,23 @@
         <meta charset="utf-8" />
         <link href="../css/commonStyles.css" rel="stylesheet" />
         <link href="../css/detailInfo_menu.css" rel="stylesheet" />
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
+        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
     </head>
 
     <body>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="mainHome.html">Shareat</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" href="login.html">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="signup.html">회원가입</a></li>
-                    </ul>
-                </div>
+        <!--비회원 상단바-->
+        <div id="navbar">
+            <div id="logo"><a href="#">Shareat</a></div>
+            <div id="login-or-signup">
+                <div><a href="#">로그인</a></div>
+                <div>|</div>
+                <div><a href="#">회원가입</a></div>
             </div>
-        </nav>
-
+        </div>
         <header>
             <div class="main_image">
                 <img src="../assets/img/tokyo.jpg" alt=Tokyo style = "width:100%;">
