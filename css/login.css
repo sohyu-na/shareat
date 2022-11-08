@@ -5,7 +5,8 @@
     
 }
 .login-input-section-wrap{
-	width: 1000px;
+	width: 600px;
+	height: 700px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,8 +14,8 @@
 }
 
 .login-input-wrap{
-	width: 465px;
-	height :48px;
+	width: 300px;
+	height :50px;
 	border: solid 1px var(	--border-gray-color );
 	background: white;
 }
@@ -23,7 +24,7 @@
 }
 .login-input-wrap input{
 	border: none;
-	width:430px;
+	width:250px;
 	margin-top: 10px;
 	font-size: 14px;
 	margin-left: 10px;
