@@ -57,34 +57,35 @@ img {
     gap: 10px;
 }
 
-.button1 {
+.cancelbutton{
     color: #696969;
     background-color: #f4f4f4;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
     border: none;
     padding: 10px 35px;
     border-radius: 7px;
-    text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     transition: 0.25s;
-}
-.button1:hover {
+    margin-right:16px;
+    font-size:16px;
+ }
+ .cancelbutton:hover {
     color: #ffffff;
-    background: #979797;
-}
-
-.button2 {
+    background: #c0bfbf;
+ }
+ .submitbutton{
     color: #ffffff;
-    background-color: #FF4A4A;
+    background-color: rgba(255, 74, 74,0.8);
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
     border: none;
     padding: 10px 35px;
     border-radius: 7px;
-    text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     transition: 0.25s;
-}
-.button2:hover {
+    margin-right:16px;
+    font-size:16px;
+ }
+ .modifybutton:hover {
     color: #ffffff;
-    background: #892424;
-}
+    background: #FF4A4A;
+ }
