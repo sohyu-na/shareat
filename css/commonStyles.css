@@ -1,4 +1,8 @@
 /* < 공통 css > */
+<<<<<<< HEAD
+=======
+/*글씨체*/
+>>>>>>> 9c59457fb4f8eb7edf876aeaadc9f124b271789e
 
 /*글씨체*/
 body{
@@ -8,6 +12,7 @@ body{
 .main_image_text {
   font-family: 'Noto Serif KR', serif;
 }
+<<<<<<< HEAD
   
 /* 상단바 */
 button, a{
@@ -75,6 +80,15 @@ button, a{
     color: #ffffff;
     background: #FF4A4A;
  }
+=======
+
+/* 상단바 */
+/*코드*/
+
+
+/* 버튼 */
+/*코드*/
+>>>>>>> 9c59457fb4f8eb7edf876aeaadc9f124b271789e
 
 /*제출 버튼 */
 /*코드*/
@@ -161,5 +175,9 @@ footer{
 #footer-content{
   /* color:#4c4c4c; */
   color:#9e9e9e;
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 9c59457fb4f8eb7edf876aeaadc9f124b271789e
