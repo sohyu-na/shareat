@@ -1,8 +1,12 @@
+.main-wrap{
+    margin: 0px 220px 0px 220px;
+    align-items: center;
+}
 .main_image {
 	position: relative;
-  }
+}
 
-  .main_image_text {
+.main_image_text {
     font-family: 'Noto Serif KR', serif;
 	position: absolute;
 	top: 50%;
@@ -59,9 +63,7 @@ img {
 	max-width: 100%;
 	vertical-align: bottom;
 }
-html {
-	font-size: 62.5%;
-}
+
 
 .rader-chart {
 	width: 55%;
@@ -74,6 +76,10 @@ html {
     margin: 10px 100px;
     align-items: center;
     text-align : center;
+  }
+
+  .food-images{
+
   }
 
 .stars {
