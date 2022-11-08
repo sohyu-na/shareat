@@ -3,8 +3,8 @@
     <head>
         <title>가게정보 수정</title>
         <meta charset="utf-8" />
-        <link href="../css/commonStyles.css" rel="stylesheet" />
-        <link href="../css/modifyRestaurantInfo.css" rel="stylesheet" />
+        <link href="../css/commonStyles.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/modifyRestaurantInfo.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -36,14 +36,14 @@
                 <tr>
                     <td class="td1">주차가능 여부</td>
                     <td>
-                        <input type="radio" name="store-parking" size="80" value="yes" checked/>&nbsp;가능
+                        <input type="radio" name="store-parking" size="80" value="yes"/>&nbsp;가능
                         <input type="radio" name="store-parking" size="60" value="no"/>&nbsp;불가능
                     </td>
                 </tr>
                 <tr>
                     <td class="td1">에약가능 여부</td>
                     <td>
-                        <input type="radio" name="store-reservation" size="80" value="yes" checked/>&nbsp;가능
+                        <input type="radio" name="store-reservation" size="80" value="yes"/>&nbsp;가능
                         <input type="radio" name="store-reservation" size="80" value="no"/>&nbsp;불가능 &nbsp;&nbsp;
                         <input type="text" class="text-area" name="store-reservation" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
                     </td>
@@ -51,7 +51,7 @@
                 <tr>
                     <td class="td1">카테고리 *</td>
                     <td>
-                        <input type="radio" name="store-category" size="80" value="kor" checked/>&nbsp;한식
+                        <input type="radio" name="store-category" size="80" value="kor"/>&nbsp;한식
                         <input type="radio" name="store-category" size="80" value="chi"/>&nbsp;중식
                         <input type="radio" name="store-category" size="80" value="jap"/>&nbsp;일식
                         <input type="radio" name="store-category" size="80" value="west"/>&nbsp;양식
@@ -124,27 +124,25 @@
                         </script>
                     </td>
                 </tr>
-                
-                <tr> <td></td> </tr>
-                <tr> <td></td> </tr>
 
+                <tr> <td></td> </tr><tr> <td></td> </tr><tr> <td></td> </tr>
                 <tr> 
                     <!--취소, 수정 버튼-->
                     <td></td>
                     <td colspan="2" align="right">
                         <input class="cancelbutton" type="button" value="취소"  />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input class="modifybutton" type="submit" value="수정" onclick="memberinsertCheck()"/>
+                        <input class="modifybutton" type="submit" value="등록" onclick="memberinsertCheck()"/>
                     </td>
                 </tr>
 
             </form>
         </table>
-    </body>
 
-    <footer>
-        <div id="footer-content">
-            Team 어서오소    
-        </div>
-    </footer>
+        <footer>
+            <div id="footer-content">
+                Team 어서오소    
+            </div>
+        </footer>
+    </body>
 </html>
