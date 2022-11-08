@@ -1,8 +1,4 @@
 /* < 공통 css > */
-<<<<<<< HEAD
-=======
-/*글씨체*/
->>>>>>> 9c59457fb4f8eb7edf876aeaadc9f124b271789e
 
 /*글씨체*/
 body{
@@ -12,8 +8,7 @@ body{
 .main_image_text {
   font-family: 'Noto Serif KR', serif;
 }
-<<<<<<< HEAD
-  
+
 /* 상단바 */
 button, a{
   cursor: pointer;
@@ -58,40 +53,8 @@ button, a{
     padding-right: 5px;
 }
 
-
-
-
 /* 버튼 */
-.submitbutton{
-    color: #ffffff;
-    background-color: rgba(255, 74, 74,0.8);
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
-    border: none;
-    padding: 10px 35px;
-    border-radius: 7px;
-    font-weight: 500;
-    transition: 0.25s;
-    margin-right:16px;
-    min-width:120px;
-    min-height:50px;
-    font-size:16px;
- }
- .submitbutton:hover {
-    color: #ffffff;
-    background: #FF4A4A;
- }
-=======
-
-/* 상단바 */
-/*코드*/
-
-
-/* 버튼 */
-/*코드*/
->>>>>>> 9c59457fb4f8eb7edf876aeaadc9f124b271789e
-
 /*제출 버튼 */
-/*코드*/
 .submitbutton{
   color: #ffffff;
   background-color: rgba(255, 74, 74,0.8);
