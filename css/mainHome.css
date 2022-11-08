@@ -110,7 +110,7 @@ header{
   background: #ffffff;
   z-index: 10;
   transition: all 0.2s ;
-  border: 4px inset #ffffff;
+  border: 3px inset #ffffff;
   border-radius: 5px;
   color:#FF4A4A;
   font-size: 17px;
@@ -163,6 +163,7 @@ header{
 main {
   position:relative;
   margin:auto;
+  margin-top: 60px;
   margin-bottom: 60px;
   width:75%;
 }
