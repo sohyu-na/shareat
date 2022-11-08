@@ -3,11 +3,92 @@
     <head>
         <title>대표메뉴 수정</title>
         <meta charset="utf-8" />
-        <link href="css/commonStyles.css" rel="stylesheet" />
-        <link href="css/modifyMenu.css" rel="stylesheet" />
+        <link href="../css/commonStyles.css" rel="stylesheet" />
+        <link href="../css/modifyMenu.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
+        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
     </head>
 
     <body>
+        
+        <!-- 회원 상단바-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="mainHome.html">Shareat</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <i class="fas fa-light fa-circle-user fa-2x"></i>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
+        <main>
+            <section>
+                <div id="guide-phrase">
+                    <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
+                </div>  
+
+                <div id="menu-box">
+                    <div class="menu-item">
+                        <div class="menu-img">
+                            <div class>이미지</div>
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-name">음식명 : _____________</div>
+                            <div class="menu-price">가격 : __________</div>
+
+                            <div class="menu-info-signicant">
+                                <div>
+                                    ■ vegetarian                               
+                                </div>
+                                <div>
+                                    ■ allergy                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-img">
+                            <div class>이미지</div>
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-name">음식명 : _____________</div>
+                            <div class="menu-price">가격 : __________</div>
+
+                            <div class="menu-info-signicant">
+                                <div>
+                                    ■ vegetarian                               
+                                </div>
+                                <div>
+                                    ■ allergy                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="btn-add-menu">
+                    <i class="icon-add-menu fa-regular fa-square-plus"></i>
+                </div>
+
+                <div class="menu-buttons">
+                    <input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
+                    <input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div id="footer-content">
+                Team 어서오소    
+            </div>
+        </footer>
     </body>
+
 </html>
