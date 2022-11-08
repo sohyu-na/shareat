@@ -1,10 +1,9 @@
-
-
 .main_image {
 	position: relative;
   }
 
   .main_image_text {
+    font-family: 'Noto Serif KR', serif;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -47,6 +46,7 @@ html,body,h1,h2,p,dl,dt,dd {
 	padding: 30;
 	line-height: 1.0;
 	box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 ul,li {
 	list-style: none;
@@ -69,8 +69,11 @@ html {
 }
 
 .part {
-float:left;
-margin: 5px 5px;
+    width:auto;
+    float:left;
+    margin: 10px 100px;
+    align-items: center;
+    text-align : center;
   }
 
 .stars {
@@ -107,36 +110,36 @@ margin: 5px 5px;
 }
 
 .stars:NOT([data-percent]):BEFORE,
-  .stars[data-percent="0"]:BEFORE {
-	display:none;
+.stars[data-percent="0"]:BEFORE {
+    display:none;
 }
 .stars[data-percent="10"]:BEFORE {
-	width:10%;
+    width:10%;
 }
 .stars[data-percent="20"]:BEFORE {
-	width:20%;
+    width:20%;
 }
 .stars[data-percent="30"]:BEFORE {
-	width:30%;
+    width:30%;
 }
 .stars[data-percent="40"]:BEFORE {
-	width:40%;
+    width:40%;
 }
 .stars[data-percent="50"]:BEFORE {
-	width:50%;
+    width:50%;
 }
 .stars[data-percent="60"]:BEFORE {
-	width:60%;
+    width:60%;
 }
 .stars[data-percent="70"]:BEFORE {
-	width:70%;
+    width:70%;
 }
 .stars[data-percent="80"]:BEFORE {
-	width:80%;
+    width:80%;
 }
 .stars[data-percent="90"]:BEFORE {
-	width:90%;
+    width:90%;
 }
 .stars[data-percent="100"]:BEFORE {
-	width:100%;
+    width:100%;
 }

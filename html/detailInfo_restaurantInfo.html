@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
     <head>
         <title>맛집 상세정보-가게정보</title>
         <meta charset="utf-8" />
-        <link href="../css/commonStyles.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/commonStyles.css" />
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+        <!--상단바 아이콘-->
+        <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
         <link href="../css/detailInfo_restaurantInfo.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     </head>
 
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="mainHome.html">Shareat</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="login.html">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="signup.html">회원가입</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="main_image">
             <img src="../assets/img/tokyo.jpg" alt=Tokyo style = "width:100%;">
-             <h1 class="main_image_text" style="font-size:40px">유 야 케  도 쿄</h1>
+             <h1 class="main_image_text" style="font-size:50px">유&nbsp;&nbsp;야&nbsp;&nbsp;케&nbsp;&nbsp;도&nbsp;&nbsp;쿄</h1>
         </div>
         
-        <div style= "margin: 0px 300px 0px 300px;">	
-        <ul class = "midnav" style = "width : 100%;">
-            <a href="teamproject.html"><p style="color:#FF4A4A;"><U><b>가게정보</b></U></p></a>
-            <a href="aaaaa">대표메뉴</a>
-            <a href="aaaaa">리뷰조회</a>
-        </ul>
+        <div style= "margin: 0px 300px 0px 300px">	
+            <ul class = "midnav" style = "width : 100%;">
+                <a href="detailInfo_restaurantInfo.html"><p style="color:#FF4A4A;"><U><b>가게정보</b></U></p></a>
+                <a href="detailInfo_menu.html">대표메뉴</a>
+                <a href="detailInfo_review.html">리뷰조회</a>
+            </ul>
             
         <div class="rader-chart" style="float : left; width : 55%; margin-bottom:20px;">
         <canvas id="myRaderChart"></canvas>
@@ -56,26 +76,24 @@
             
         <br>
         <br>
-            <a href="12345" style="float : right;  width : 15%;"><h2><i class="fa-solid fa-pencil"></i>&nbsp;가게 정보 수정하기</h2></a>
+            <a href="modifyRestaurantInfo.html" style="float : right;  width : 20%;"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
         <br>
         <br>
         <br>
         <br>
         <br>
-        <div class="part" style="float : right; width : 35%;">
-            <p>	<span style="font-size : 500%; color:#FF4A4A;">&nbsp;4.0</span>
+        <div class="part">
+            <p>	<span style="font-size : 500%; color:#FF4A4A;"><b>4.5</b></span>
                 <span style="font-size : 300%"> / 5.0</span>	
             </p>
-            <div class="part" style="width : 55%;">
-                <div class="stars" data-percent="80"></div>
-            </div>
+            <div class="stars" data-percent="90"></div>
             <br>
-            
-            <h1 style="color:#b5b5b5;  width : 50%;">재방문 의사 70%</h1>
+        
+            <h3 style="color:#b5b5b5; padding-top:5px;"><b>재방문 의사 92%</b></h3>
             
         </div>
         <br>
-        <hr style = "width : 100%;">	
+        <hr style = "width : 100%">	
         <table style = "text-align : left; width : 70%; font-size : 180%; line-height : 200%;">
             <br>
             <tr>
@@ -92,7 +110,7 @@
             </tr>
             <tr>
                 <th>사이트</th>
-                <td>@yuyake_tokyo</td>
+                <td>@youyake_tokyo</td>
             </tr>
             <tr>
                 <th>음식 카테고리</th>
@@ -111,22 +129,22 @@
         <hr>
         <br>
             <br>
-        <h1>사진</h1>
-        <a href="12345" style="float : right; width : 10%;"><h2>더보기</h2></a>
+        <p style = "font-size : 250%"><b>사진</b></p>
+        <a href="12345" style="float : right; width : 10%;"><h2><b>더보기</b></h2></a>
         <br>
         <br>
-                <img src="../assets/img/tokyo1.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
-                <img src="../assets/img/tokyo2.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
-                <img src="../assets/img/tokyo3.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
-                <img src="../assets/img/tokyo4.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
-                <img src="../assets/img/tokyo5.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
-                <img src="../assets/img/tokyo6.jpg" alt=tokyo style="width : 160px; height : 160px; margin : 7px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo1.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 7px 20px 0px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo2.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 7px 20px 0px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo3.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 7px 20px 0px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo4.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 7px 20px 0px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo5.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 7px 20px 0px" onclick= "window.open(this.src)">
+                <img src="../assets/img/tokyo6.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 20px 7px 20px 0px" onclick= "window.open(this.src)">
             </div>
-        </body>
 
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
-            </div>
-        </footer>
+            <footer>
+                <div id="footer-content">
+                    Team 어서오소    
+                </div>
+            </footer>
+        </body>
 </html>
