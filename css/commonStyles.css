@@ -10,15 +10,10 @@ body{
 }
 
 /* 상단바 */
-/*코드*/
 
-<<<<<<< HEAD
-/*제출 버튼 */
-=======
+
 
 /* 버튼 */
->>>>>>> 3bd7e0bd894677a168d20a16b01bfe53a18f6c3f
-/*코드*/
 .submitbutton{
     color: #ffffff;
     background-color: rgba(255, 74, 74,0.8);
@@ -38,28 +33,6 @@ body{
     background: #FF4A4A;
  }
 
-<<<<<<< HEAD
-/*취소 버튼 */
-/*코드*/
-.cancelbutton{
-    color: #696969;
-    background-color: #f4f4f4;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
-    border: none;
-    padding: 10px 35px;
-    border-radius: 7px;
-    font-weight: 500;
-    transition: 0.25s;
-    margin-right:16px;
-    min-width:120px;
-    min-height:50px;
-    font-size:16px;
- }
- .cancelbutton:hover {
-    color: #ffffff;
-    background: #c0bfbf;
- }
-=======
 /*제출 버튼 */
 /*코드*/
 .submitbutton{
@@ -101,7 +74,6 @@ body{
   color: #ffffff;
   background: #c0bfbf;
 }
->>>>>>> 3bd7e0bd894677a168d20a16b01bfe53a18f6c3f
 
 /* -----맛집 상세정보 페이지----- */
 /* 맛집 베너 */
@@ -131,10 +103,8 @@ body{
 	color : #FF4A4A;
 }
 
-<<<<<<< HEAD
+
 /*footer*/
-=======
->>>>>>> ad0ce2f805b6b25aeaa8f46cd3c8e04e482b66b9
 footer{
   display: flex;
   justify-content: center;
@@ -149,3 +119,4 @@ footer{
   /* color:#4c4c4c; */
   color:#9e9e9e;
 }
+
