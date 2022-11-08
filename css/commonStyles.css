@@ -1,7 +1,52 @@
 /* < 공통 css > */
-
+body{
+    margin:0;
+  }
+  
 /* 상단바 */
 /*코드*/
+  button, a{
+    cursor: pointer;
+  }
+  
+ #logo a, #logo a:visited,
+ #login-or-signup a, #login-or-signup a:visited{
+    text-decoration: none;
+    color: #FF4A4A;
+}
+#navbar {
+    background-color: white;
+    display: flex;
+    height: 70px;
+    box-shadow: 0px 1px 2.5px lightgray;
+}
+#logo {
+    margin:20px;
+    margin-left: 30px;
+    font-size: 30px;
+    color: #FF4A4A;
+} 
+#login-or-signup {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 27px;
+}  
+#login-or-signup div {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 16px;
+}
+#profile-logo {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 19px;
+}
+#profile-logo div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
 /*제출 버튼 */
 /*코드*/
