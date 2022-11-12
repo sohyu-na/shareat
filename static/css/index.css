@@ -1,0 +1,381 @@
+body{
+    margin:0;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  button, a{
+    cursor: pointer;
+  }
+  
+  a, a:visited{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /*=================Header Styling=================*/
+
+  #logo {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 60px;
+  }
+
+  .navbar{
+    width: 97%;
+    height: 80px;
+  }
+
+  .navbar>a {
+    float: left;
+    font-size: 30px;
+    padding: 0 50px;
+  }
+
+  .navbar>ul {
+    list-style: none;
+    float: right;
+  }
+
+  .navbar>ul li {
+    float: left;
+    padding: 0 15px;
+    line-height: 30px;
+  }
+
+  #login-or-signup {
+    font-size: 13px;
+  }
+
+  
+
+  header{
+    display: flex;
+    flex-direction: column;
+    background-color: #FF4A4A;
+    height: 370px;
+    color:white;
+  }
+  
+  #header-top {
+    display: flex;
+    height: 70px;
+  }
+  
+  #header-content {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    
+  }
+  
+  #header-left-side{
+    margin-top: -30px;
+    flex-basis: 50%;
+  }
+  
+  #header-right-side{
+    margin:auto;
+    margin-right: 20px;
+  }
+  
+  #header-right-side .temp {
+    background-color: rgb(220,220,220);
+    width: 420px;
+    height: 230px;
+    text-align: center;
+    line-height : 230px;
+  }
+  
+  #slogan{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  #slogan div{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  #btn-register-restaurant{
+    /* display: flex;
+    justify-content: center; */
+    margin-top: 30px;
+    position: relative;
+  }
+  
+  .btn-slide{
+    background: 0;
+    position: relative;
+  }
+  
+  .btn-slide .slide-top {
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 110px;
+    width: 250px;
+    height: 40px;
+    background: #ffffff;
+    z-index: 10;
+    transition: all 0.2s ;
+    border: 3px inset #ffffff;
+    border-radius: 5px;
+    color:#FF4A4A;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+  .btn-slide .slide-bottom {
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    left: 110px;
+    width: 250px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    z-index: 5;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+  .btn-slide:hover .slide-top {
+    top: 35px;
+  }
+  
+  
+  /* 
+  #btn-register-restaurant button{
+    width:250px;
+    height: 40px;
+    border: 2px inset white;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: #ff4a4a;
+    font-size: 17px;
+  } */
+  
+  
+  /* #btn-register-restaurant button:hover{
+    transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+    border: none;
+  } */
+  
+  
+  /*=================Main Content(가게 목록) Styling=================*/
+  
+  main {
+    position:relative;
+    margin:auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width:75%;
+  }
+  
+  main nav{
+    display: flex;
+    position: relative;
+    margin-top: 45px;
+    margin-bottom: 15px;
+  }
+  
+  #btn-select-category{
+    display: flex;
+    padding: 8px;
+    padding-right: 20px;
+    background-color: #ff4a4a10;
+    border: 2px ridge #ff4a4a10;
+    border-radius: 20px;
+  }
+  
+  #btn-select-sort{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    color:rgb(134, 132, 132);
+  }
+  
+  #btn-select-category button, #btn-select-sort button{
+    border:none;
+    background-color: transparent;
+    color:rgb(134, 132, 132);
+    font-size: 15px;
+  }
+  
+  #btn-select-category button{
+    color:#2c2c33;
+    font-weight: bold;
+  }
+  
+  #chb-select-category{
+    position: relative;
+    top: -1px;
+    margin-left: 10px;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  
+  #chb-select-category label{
+    color: rgb(32, 32, 32);
+  }
+  
+  #select-all{
+    margin-left: 20px;
+  }
+  
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 5px;
+    background: rgb(255, 255, 255);
+    border:1px solid rgba(134, 132, 132, 0.155);
+    border-radius: 3px;
+    height: 14px;
+    width: 14px;
+    outline: 0;
+  }
+  input[type="checkbox"]::after {
+    position: relative;
+    top: 5px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    content: '';
+    display: none;
+    height: 40%;
+    left: 40%;
+    top: 20%;
+    transform: rotate(45deg);
+    width: 15%;
+  }
+  input[type="checkbox"]:checked {
+    background: #FF4A4A;
+  }
+  input[type="checkbox"]:checked::after {
+    display: block;
+  }
+  
+  #btn-select-sort button:hover{
+    color:#FF4A4A;
+  }
+  
+  section{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .restaurant-item-box{
+    overflow: hidden;
+    margin-bottom: 25px;
+  }
+  .restaurant-item-box:hover{
+    transform: scale(1.04,1.04);
+    -ms-transform: scale(1.04,1.04);
+    -webkit-transform: scale(1.04,1.04);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+  }
+  .restaurant-item-box .temp:hover{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  figure{
+    margin:0;
+  }
+  
+  figure .temp{
+    width:290px;
+    height:150px;
+    background-color: rgb(220,220,220);
+    text-align: center;
+    line-height : 150px;
+  }
+  
+  figcaption{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .restaurant-name{
+    margin-right: 15px;
+    font-size: 20px;
+    white-space : nowrap;
+  }
+  
+  .restaurant-category{
+    font-size: 13px;
+    white-space : nowrap;
+  }
+  
+  .restaurant-point{
+    margin-right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    text-align: end;
+  }
+  
+  /*아이콘 - 다음 맛집 리스트 페이지로 넘어가기*/
+  .icon-pre-list, .icon-next-list{
+    position: absolute;
+    font-size: 60px;
+    color: rgb(220,220,220);
+  }
+  
+  .icon-pre-list{
+    left:-10%;
+    top:40%;
+  }
+  
+  .icon-next-list{
+    right:-10%;
+    top:40%;
+  }
+  
+  .icon-pre-list:hover, .icon-next-list:hover{
+    color:#FF4A4A;
+  }
+  
+  .icon-pre-list button, .icon-next-list button{
+    width:0;
+    height:0;
+    border:none;
+    background-color: transparent;
+  }
+  
+  /*=================Footer Styling=================*/
+  
+  footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:70px;
+    /* background-color: #fafafa99; */
+    background-color: #2c2c33;
+    border-top: 0.5px solid #c4c4c4;
+  }
+  
+  #footer-content{
+    /* color:#4c4c4c; */
+    color:#9e9e9e;
+  }
