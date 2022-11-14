@@ -1,0 +1,151 @@
+.main-wrap{
+    margin: 0px 220px 0px 220px;
+    align-items: center;
+}
+.main_image {
+	position: relative;
+}
+
+.main_image_text {
+    font-family: 'Noto Serif KR', serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	color: #000000;
+	  }
+
+.midnav{
+	list-style-type : none;
+	text-align : center;
+	margin : 0;
+	padding : 0;
+	overflow : hidden;
+}
+
+.midnav a{
+	display : inline-block;
+	font-size: 20px;
+	padding : 30px 100px 50px 100px;
+	text-decoration : none;
+	color : #6B6B6E;
+	text-decoration-line: underline;
+	text-decoration-color: currentColor;
+}
+
+.midnav a:hover{
+	color : #FF4A4A;
+}
+
+a:link {
+	  color : #b5b5b5;
+}
+
+a:hover{
+	  color : #FF4A4A;
+}
+
+html,body,h1,h2,p,dl,dt,dd {
+	margin: 0;
+	padding: 30;
+	line-height: 1.0;
+	box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+ul,li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+
+.rader-chart {
+	width: 55%;
+	margin: 0 auto;
+}
+
+.part {
+    width:auto;
+    float:left;
+    margin: 10px 100px;
+    align-items: center;
+    text-align : center;
+  }
+
+  .food-images{
+
+  }
+
+.stars {
+	display:inline-block;
+	width:auto;
+	position:relative;
+	font-size:28px;
+	border-radius:5px;
+	margin:5px;
+}
+
+.stars:BEFORE {
+	content:"★★★★★";
+	position:absolute;
+	overflow:hidden;
+	z-index:1;
+	left:0px;
+	top:0px;
+	color:#FF4A4A;
+	text-shadow:0px 0px 0 #000, 0 -1px 0 #fff;
+}
+
+.stars:AFTER {
+	content:"★★★★★";
+	position:relative;
+	color:#b5b5b5;
+}
+
+.stars.rate > A {
+	color:transparent;
+	text-decoration:none;
+	position:relative;
+	z-index:2;
+}
+
+.stars:NOT([data-percent]):BEFORE,
+.stars[data-percent="0"]:BEFORE {
+    display:none;
+}
+.stars[data-percent="10"]:BEFORE {
+    width:10%;
+}
+.stars[data-percent="20"]:BEFORE {
+    width:20%;
+}
+.stars[data-percent="30"]:BEFORE {
+    width:30%;
+}
+.stars[data-percent="40"]:BEFORE {
+    width:40%;
+}
+.stars[data-percent="50"]:BEFORE {
+    width:50%;
+}
+.stars[data-percent="60"]:BEFORE {
+    width:60%;
+}
+.stars[data-percent="70"]:BEFORE {
+    width:70%;
+}
+.stars[data-percent="80"]:BEFORE {
+    width:80%;
+}
+.stars[data-percent="90"]:BEFORE {
+    width:90%;
+}
+.stars[data-percent="100"]:BEFORE {
+    width:100%;
+}
