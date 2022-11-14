@@ -2,8 +2,8 @@
     <h3>회원가입</h3>
     <p>
         {{data.memberInfo-email}}
-        {{data.memberInfo-password}} {{memberInfo-rePassword}}
-        {{data.memberInfo-birthDate}} {{memberInfo-sex}}
+        {{data.memberInfo-password}} {{data.memberInfo-rePassword}}
+        {{data.memberInfo-birthDate}} {{data.memberInfo-sex}}
     </p>
 
     <h3>로그인</h3>
@@ -13,11 +13,13 @@
 
     <h3>가게정보 등록</h3>
     <p>
-        {{data.store-name}} {{data.store-phoneNum}} 
+        {% for key, value in data.items() %}
+            <span>{{value}}&nbsp&nbsp</span>
+        <!-- {{data.store-name}} {{data.store-phoneNum}} 
         {{data.store-addr}} {{data.store-site}}
         {{data.store-hours}} {{data.store-parking}}
         {{data.store-reservation}} {{store-category}}
-        {{store-cost}} {{store}}
+        {{data.store-cost-min}} {{data.store-cost-max}} -->
     </p>
 
     <h3>가게정보 수정</h3>
@@ -26,7 +28,7 @@
         {{data.store-addr}} {{data.store-site}}
         {{data.store-hours}} {{data.store-parking}}
         {{data.store-reservation}} {{store-category}}
-        {{store-cost}} {{store}}
+        {{data.store-cost-min}} {{data.store-cost-max}}
     </p>
 
     <h3>메뉴 등록/수정</h3>
