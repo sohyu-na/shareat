@@ -1,9 +1,14 @@
+.hr{
+	width : 100%;
+}
+
 .main-wrap{
     margin: 0px 220px 0px 220px;
     align-items: center;
 }
 .main_image {
 	position: relative;
+	width : 100%;
 }
 
 .main_image_text {
@@ -13,6 +18,7 @@
 	left: 50%;
 	transform: translate( -50%, -50% );
 	color: #000000;
+	font-size : 50px;
 	  }
 
 .midnav{
@@ -21,6 +27,7 @@
 	margin : 0;
 	padding : 0;
 	overflow : hidden;
+	width : 100%;
 }
 
 .midnav a{
@@ -34,6 +41,10 @@
 }
 
 .midnav a:hover{
+	color : #FF4A4A;
+}
+
+.now{
 	color : #FF4A4A;
 }
 
@@ -64,10 +75,12 @@ img {
 	vertical-align: bottom;
 }
 
-
 .rader-chart {
 	width: 55%;
 	margin: 0 auto;
+	float : left;
+	width : 55%;
+	margin-bottom:20px;
 }
 
 .part {
@@ -78,9 +91,20 @@ img {
     text-align : center;
   }
 
-  .food-images{
+.modifylink{
+	float : right;
+	width : 20%;
+}
 
-  }
+.redstar{
+	font-size : 300%;
+	color:#FF4A4A;
+}
+
+.graystar{
+	font-size : 175%;
+	color:#b5b5b5;
+}
 
 .stars {
 	display:inline-block;
@@ -148,4 +172,39 @@ img {
 }
 .stars[data-percent="100"]:BEFORE {
     width:100%;
+}
+
+.revisit{
+	color:#b5b5b5;
+	padding-top:5px;
+}
+
+.table{
+	text-align : left;
+	width : 100%;
+	font-size : 120%;
+	line-height : 200%;
+}
+
+.tableh{
+	width : 30%;
+}
+
+.tabled{
+	width : 70%;
+}
+
+.image{
+	font-size : 150%;
+}
+
+.more{
+	float : right;
+	width : 10%;
+}
+
+.foodimages{
+	width : 160px;
+	height : 160px;
+	margin: 10px 10px 20px 0px;
 }
