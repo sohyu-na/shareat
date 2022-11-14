@@ -112,11 +112,11 @@ input[type="checkbox"]{
    height:250px;
    font-size:15px;
 }
-.text{
+.nickname{
    border: 1px solid #ddd;
    padding:5px 10px 5px 10px;
 }
-.textarea-box{
+.detail-review{
    margin-top:10px;
    padding:10px;
    display:block;

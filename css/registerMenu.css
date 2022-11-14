@@ -55,14 +55,14 @@ section{
    margin-top:20px;
    width: 700px;
 }
-.menu-text{
+.menu-textbox label{
    width:100px;
    display: inline-block;
    font-size:20px;
    font-style:bold;
    letter-spacing:-1px;
 }
-.text{
+.menu-text{
    border: 1px solid #857F7F;
    margin-top: 20px;
    height:35px;
