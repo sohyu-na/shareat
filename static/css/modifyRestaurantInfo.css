@@ -1,0 +1,91 @@
+body {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    margin: 0;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #FF4A4A;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 55%;
+    border-collapse: separate;
+    border-spacing: 25px 25px;
+    margin-left: auto;;
+    margin-right: auto;
+}
+
+.td1 {
+    width: 150px;
+}
+
+.text-area {
+    border: 1px solid #a7a7a7;
+}
+
+::placeholder,p {
+    color: #a7a7a7;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+.real-upload {
+    display: none;
+}
+
+.upload {
+    border: 1px solid #a7a7a7;
+    color: #a7a7a7;
+    font-size: 13px;
+    text-align: center;
+}
+
+.image-preview {
+    gap: 10px;
+}
+
+.cancelbutton{
+    color: #696969;
+    background-color: #f4f4f4;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 10px 35px;
+    border-radius: 7px;
+    font-weight: 500;
+    transition: 0.25s;
+    margin-right:16px;
+    font-size:14px;
+ }
+ .cancelbutton:hover {
+    color: #ffffff;
+    background: #c0bfbf;
+ }
+ .modifybutton{
+    color: #ffffff;
+    background-color: rgba(255, 74, 74,0.8);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+    border: none;
+    padding: 10px 35px;
+    border-radius: 7px;
+    font-weight: 500;
+    transition: 0.25s;
+    margin-right:16px;
+    font-size:14px;
+ }
+ .modifybutton:hover {
+    color: #ffffff;
+    background: #FF4A4A;
+ }

@@ -1,0 +1,74 @@
+main{
+	display: flex;
+	justify-content: center;
+    margin-top:20px;
+}
+
+section{
+    margin-bottom: 80px;
+	width: 60%;
+}
+
+#guide-phrase{
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#restaurant-info{
+    font-size: 25px;
+    color: #ff4a4a;
+}
+
+#menu-box{
+	margin-bottom: 20px;
+}
+
+.menu-item{
+	display: flex;
+	align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1.5px solid #a5a5a5;
+	width:100%;
+}
+
+.menu-img{
+	width: 500px;
+	height: 150px;
+	background-color: #cccccc;
+}
+
+.menu-info{
+	width: 100%;
+	margin-left: 30px;
+	font-size: 13px;
+}
+
+.menu-name, .menu-price, .menu-info-signicant div{
+	padding:5px;
+}
+
+.menu-info-signicant{
+	margin-top: 10px;
+	color:#828282;
+}
+
+#btn-add-menu{
+    display: flex;
+    justify-content: center;
+}
+
+.icon-add-menu {
+    font-size: 80px;
+    color:#cccccc;
+}
+
+.icon-add-menu:hover{
+    color:#ff4a4a;
+}
+
+.menu-buttons{
+    margin-top: 20px;
+    float: right;
+}
