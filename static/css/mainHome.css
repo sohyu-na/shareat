@@ -14,6 +14,40 @@ a, a:visited{
 
 /*=================Header Styling=================*/
 
+#logo {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 60px;
+}
+
+.navbar{
+  width: 97%;
+  height: 80px;
+}
+
+.navbar>a {
+  float: left;
+  font-size: 30px;
+  padding: 0 50px;
+}
+
+.navbar>ul {
+  list-style: none;
+  float: right;
+}
+
+.navbar>ul li {
+  float: left;
+  padding: 0 15px;
+  line-height: 30px;
+}
+
+#login-or-signup {
+  font-size: 13px;
+}
+
+
+
 header{
   display: flex;
   flex-direction: column;
@@ -25,25 +59,6 @@ header{
 #header-top {
   display: flex;
   height: 70px;
-}
-
-#logo {
-  margin:20px;
-  margin-left: 30px;
-  font-size: 25px;
-}
-
-#login-or-signup {
-  display: flex;
-  justify-content: end;
-  width: 100%;
-  padding: 22px;
-}
-
-#login-or-signup div {
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 13px;
 }
 
 #header-content {
