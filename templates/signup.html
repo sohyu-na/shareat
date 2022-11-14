@@ -22,35 +22,35 @@
         <!-- Page Content-->
         <section>
             <div class="main-container">
-                <form action="" name="signup" method="get">
+                <form action="/submit_restaurant_post" method="post">
                 <div class="login-input-section-wrap">
                     <h1><br>회원가입<br><br></h1>
                     <table>
                         <tr>
                             <td class="td1">이메일 *</td>
-                            <td><input name="email" class="text-area" required placeholder="abcde1234@gmail.com" type="email"></input></td>
+                            <td><input name="memberInfo-email" class="text-area" required placeholder="abcde1234@gmail.com" type="email"></input></td>
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">비밀번호 *</td>
-                            <td><input name="password" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
+                            <td><input name="memberInfo-password" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
                         </tr> 
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">비밀번호 재확인 *</td>
-                            <td><input name="re-password" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
+                            <td><input name="memberInfo-rePassword" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
                         </tr> 
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">생년월일</td>
-                            <td><input name="birth-date" class="text-area" type="date"></input>
+                            <td><input name="memberInfo-birthDate" class="text-area" type="date"></input>
                         </tr> 
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">성별</td>
                             <td>
-                                <input type="radio" id="male" name="sex" value="male"/>&nbsp;남 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="female" name="sex" value="female"/>&nbsp;여
+                                <input type="radio" id="male" name="memberInfo-sex" value="male"/>&nbsp;남 &nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="female" name="memberInfo-sex" value="female"/>&nbsp;여
                             </td>
                         </tr> 
                     </table>
