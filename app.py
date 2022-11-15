@@ -13,8 +13,8 @@ def goTo_mainHome():
 
 
 @app.route("/detail-info")   # 맛집 상세 정보 페이지
-def goTo_mainHome():
-    return render_template("index.html")
+def goTo_detailInfo():
+    return render_template("detailInfo_restaurantInfo.html")
 
 
 @app.route("/registration-restaurant")   # 맛집 등록 페이지
@@ -23,22 +23,22 @@ def goTo_registerRestaurant():
 
 
 @app.route("/registration-menu")   # 메뉴 등록 페이지
-def goTo_registerRestaurant():
+def goTo_registerMenu():
     return render_template("registerMenu.html")
 
 
 @app.route("/modification-restaurant")   # 맛집 수정 페이지
-def goTo_registerRestaurant():
+def goTo_modifyRestaurantInfo():
     return render_template("modifyRestaurantInfo.html")
 
 
 @app.route("/registration-menu")   # 메뉴 수정 페이지
-def goTo_registerRestaurant():
-    return render_template("writeReview.html")
+def goTo_modifyMenu():
+    return render_template("modifyMenu.html")
 
 
-@app.route("/review")   # 메뉴 등록 페이지
-def goTo_registerRestaurant():
+@app.route("/review")   # 리뷰 등록 페이지
+def goTo_writeReview():
     return render_template("writeReview.html")
 
 
