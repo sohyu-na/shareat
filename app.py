@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import sys
+from urllib import parse
 app = Flask(__name__)
 
 # 메인홈
@@ -43,53 +44,52 @@ def goTo_signup():
 
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
-    restaurantData = request.form
+    data = request.form
 
-    for value in restaurantData.values():
+    for value in data.values():
         print(value, end=' ')
-    return render_template("submit_restaurant_result.html", data=restaurantData)
+
+    return render_template("result_맛집등록.html", data=data)
 
 
-# @app.route("/submit_restaurantModificationData_post", methods=['POST'])
-# def reg_restaurantModificationData_submit_post():
-#     restaurantModificationData = request.form
+@app.route("/submit_menuData_post", methods=['POST'])
+def reg_menuData_submit_post():
+    data = request.form
 
-#     return render_template("submit_restaurant_result.html", data=restaurantModificationData)
+    for value in data.values():
+        print(value, end=' ')
 
-
-# @app.route("/submit_menuData_post", methods=['POST'])
-# def reg_menuData_submit_post():
-#     menuData = request.form
-
-#     return render_template("submit_restaurant_result.html", data=menuData)
+    return render_template("result_메뉴등록.html", data=data)
 
 
-# @app.route("/submit_menuModificationData_post", methods=['POST'])
-# def reg_menuModificationData_submit_post():
-#     menuModificationData = request.form
+@app.route("/submit_signupData_post", methods=['POST'])
+def reg_signupData_submit_post():
+    data = request.form
 
-#     return render_template("submit_restaurant_result.html", data=menuModificationData)
+    for value in data.values():
+        print(value, end=' ')
 
-
-# @app.route("/submit_signupData_post", methods=['POST'])
-# def reg_signupData_submit_post():
-#     signupData = request.form
-
-#     return render_template("submit_restaurant_result.html", data=signupData)
+    return render_template("result_회원가입.html", data=data)
 
 
-# @app.route("/submit_loginData_post", methods=['POST'])
-# def reg_loginData_submit_post():
-#     loginData = request.form
+@app.route("/submit_loginData_post", methods=['POST'])
+def reg_loginData_submit_post():
+    data = request.form
 
-#     return render_template("submit_restaurant_result.html", data=loginData)
+    for value in data.values():
+        print(value, end=' ')
+
+    return render_template("result_로그인.html", data=data)
 
 
-# @app.route("/submit_reviewData_post", methods=['POST'])
-# def reg_reviewData_submit_post():
-#     reviewData = request.form
+@app.route("/submit_reviewData_post", methods=['POST'])
+def reg_reviewData_submit_post():
+    data = request.form
 
-#     return render_template("submit_restaurant_result.html", data=reviewData)
+    for value in data.values():
+        print(value, end=' ')
+
+    return render_template("result_리뷰등록.html", data=data)
 
 
 if __name__ == '__main__':
