@@ -3,38 +3,56 @@ import sys
 from urllib import parse
 app = Flask(__name__)
 
-# 메인홈
+
+# 페이지 경로 설정
 
 
-@app.route("/")
+@app.route("/")   # 메인홈
 def goTo_mainHome():
     return render_template("index.html")
 
-# 맛집 등록
+
+@app.route("/detail-info")   # 맛집 상세 정보 페이지
+def goTo_mainHome():
+    return render_template("index.html")
 
 
-@app.route("/registration")
+@app.route("/registration-restaurant")   # 맛집 등록 페이지
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
 
-# 내가 찜한 밋집
+
+@app.route("/registration-menu")   # 메뉴 등록 페이지
+def goTo_registerRestaurant():
+    return render_template("registerMenu.html")
 
 
-@app.route("/mylist")
+@app.route("/modification-restaurant")   # 맛집 수정 페이지
+def goTo_registerRestaurant():
+    return render_template("modifyRestaurantInfo.html")
+
+
+@app.route("/registration-menu")   # 메뉴 수정 페이지
+def goTo_registerRestaurant():
+    return render_template("writeReview.html")
+
+
+@app.route("/review")   # 메뉴 등록 페이지
+def goTo_registerRestaurant():
+    return render_template("writeReview.html")
+
+
+@app.route("/mylist")   # 내가 찜한 맛집 페이지
 def goTo_myRestaurantList():
     return render_template("myRestaurantList.html")
 
-# 로그인
 
-
-@app.route("/login")
+@app.route("/login")   # 로그인 페이지
 def goTo_login():
     return render_template("login.html")
 
-# 회원가입
 
-
-@app.route("/signup")
+@app.route("/signup")    # 회원가입 페이지
 def goTo_signup():
     return render_template("signup.html")
 
