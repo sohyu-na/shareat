@@ -82,6 +82,13 @@ def reg_restaurantData_submit_post():
     # return render_template("result_맛집등록.html", data=data)
 
 
+@app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
+def reg_storeName_submit_post():
+    data = request.form['store_name']
+    print(data)
+    return render_template("registerMenu.html", name=data)
+
+
 @app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
     data = request.form
