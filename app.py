@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
+from database import DBhandler
 import sys
 from urllib import parse
+
 app = Flask(__name__)
+
+DB = DBhandler()
 
 
 # 페이지 경로 설정
@@ -62,12 +66,20 @@ def goTo_signup():
 
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
+    global idx
+    image_file=request.files["file"]
+    image_file.save("static/image/{}".format(image_file.filename))
     data = request.form
+    
+    if DB.insert_restaurant(data['store-name'], data, image_file.filename):
+        return render_template("result_맛집등록.html", data=data)
+    else:
+        return "Restaurant name already exist!" 
 
-    for value in data.values():
-        print(value, end=' ')
+    # for value in data.values():
+    #     print(value, end=' ')
 
-    return render_template("result_맛집등록.html", data=data)
+    # return render_template("result_맛집등록.html", data=data)
 
 
 @app.route("/submit_menuData_post", methods=['POST'])
