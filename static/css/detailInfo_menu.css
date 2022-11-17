@@ -44,7 +44,6 @@ html,body,h1,h2,p,dl,dt,dd {
 	margin: 0;
 	padding: 30;
 	line-height: 1.0;
-	box-sizing: border-box;
 }
 ul,li {
 	list-style: none;
@@ -62,10 +61,6 @@ html {
 }
 
 /*===============================================*/
-main{
-	display: flex;
-	justify-content: center;
-}
 
 section{
 	width: 60%;

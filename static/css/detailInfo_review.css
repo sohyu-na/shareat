@@ -44,7 +44,6 @@
     margin: 0;
     padding: 10;
     line-height: 1.0;
-    box-sizing: border-box;
  }
  ul,li {
     list-style: none;
@@ -59,11 +58,6 @@
  }
  html {
     font-size: 62.5%;
- }
- 
- main{
-    display: flex;
-    justify-content: center;
  }
  
  #review-box{

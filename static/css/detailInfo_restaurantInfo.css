@@ -49,7 +49,6 @@ html,body,h1,h2,p,dl,dt,dd {
 	margin: 0;
 	padding: 30;
 	line-height: 1.0;
-	box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
 }
 ul,li {
