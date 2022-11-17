@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" />
 
-        <link href="../static/css/commonStyles.css" rel="stylesheet" />
-        <link href="../static/css/detailInfo_menu.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/detailInfo_menu.css')}}">
         <link rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
         integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
@@ -17,11 +17,11 @@
     <body>
         <!--비회원 상단바-->
         <div id="navbar">
-            <div id="logo"><a href="#">Shareat</a></div>
+            <div id="logo"><a href="/">Shareat</a></div>
             <div id="login-or-signup">
-                <div><a href="#">로그인</a></div>
+                <div><a href="/login">로그인</a></div>
                 <div>|</div>
-                <div><a href="#">회원가입</a></div>
+                <div><a href="/signup">회원가입</a></div>
             </div>
         </div>
         <header>

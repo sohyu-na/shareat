@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" />
 
-        <link href="../static/css/commonStyles.css" rel="stylesheet" />
-        <link href="../static/css/modifyMenu.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/modifyMenu.css')}}">
         <link rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
         integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
@@ -17,7 +17,7 @@
     <body>
         <!--회원 상단바-->
         <div id="navbar">
-            <div id="logo"><a href="#">Shareat</a></div>
+            <div id="logo"><a href="/">Shareat</a></div>
             <div id="profile-logo">
                 <div><i class="fas fa-light fa-circle-user fa-2x"></i></div>
             </div>
@@ -29,46 +29,49 @@
                     <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
                 </div>  
 
-                <div id="menu-box">
-                    <div class="menu-item">
-                        <div class="menu-img">
-                            <div class>이미지</div>
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-name">음식명 : _____________</div>
-                            <div class="menu-price">가격 : __________</div>
-
-                            <div class="menu-info-signicant">
-                                <div>
-                                    ■ vegetarian                               
+                <form action="/submit_menuData_post" method="post" enctype="multipart/form-data">
+                    <div id="menu-box">
+                        <div class="menu-item">
+                            <div class="menu-img">
+                                <div class>이미지</div>
+                            </div>
+                            <div class="menu-info">
+                                <div class="menu-name">음식명 : _____________</div>
+                                <div class="menu-price">가격 : __________</div>
+    
+                                <div class="menu-info-signicant">
+                                    <div>
+                                        ■ vegetarian                               
+                                    </div>
+                                    <div>
+                                        ■ allergy                               
+                                    </div>
                                 </div>
-                                <div>
-                                    ■ allergy                               
+                            </div>
+                        </div>
+    
+                        <div class="menu-item">
+                            <div class="menu-img">
+                                <div class>이미지</div>
+                            </div>
+                            <div class="menu-info">
+                                <div class="menu-name">음식명 : _____________</div>
+                                <div class="menu-price">가격 : __________</div>
+    
+                                <div class="menu-info-signicant">
+                                    <div>
+                                        ■ vegetarian                               
+                                    </div>
+                                    <div>
+                                        ■ allergy                               
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="menu-img">
-                            <div class>이미지</div>
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-name">음식명 : _____________</div>
-                            <div class="menu-price">가격 : __________</div>
-
-                            <div class="menu-info-signicant">
-                                <div>
-                                    ■ vegetarian                               
-                                </div>
-                                <div>
-                                    ■ allergy                               
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+    
+                </form>
+                
                 <div id="btn-add-menu">
                     <i class="icon-add-menu fa-regular fa-square-plus"></i>
                 </div>

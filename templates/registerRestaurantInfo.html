@@ -6,8 +6,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <link href="../static/css/commonStyles.css" rel="stylesheet" type="text/css"/>
-        <link href="../static/css/registerRestaurantInfo.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/registerRestaurantInfo.css')}}">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         
@@ -19,7 +19,7 @@
     <body>
         <!--회원 상단바-->
         <div id="navbar">
-            <div id="logo"><a href="#">Shareat</a></div>
+            <div id="logo"><a href="/">Shareat</a></div>
             <div id="profile-logo">
                 <div><i class="fas fa-light fa-circle-user fa-2x"></i></div>
             </div>
@@ -27,7 +27,7 @@
 
         <h4>공유하고 싶은 맛집의 정보를 입력해 주세요</h4>
         <table width="100%" align="center">
-            <form action="/submit_restaurant_post" method="post">
+            <form action="/submit_restaurantData_post" method="post">
                 <table>
                     <tr>
                         <td class="td1">상호명 *</td>
@@ -77,8 +77,8 @@
                     <tr>
                         <td class="td1">가격대</td>
                         <td>
-                            <input type="text" class="text-area" name="store-cost" size="33" />&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-area" name="store-cost" size="33" />&nbsp;이하
+                            <input type="text" class="text-area" name="store-cost-min" size="33" />&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-area" name="store-cost-max" size="33" />&nbsp;이하
                         </td>
                     </tr>
                     <tr> 
@@ -140,7 +140,7 @@
                             </script>
                         </td>
                     </tr>
-            <form>
+           
                 
                 <tr>
                     <td class="td1">대표메뉴 추가하기</td>
@@ -156,11 +156,11 @@
                     <td colspan="2" align="right">
                         <input class="cancelbutton" type="button" value="취소"  />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input class="submitbutton" type="submit" value="등록" onclick="memberinsertCheck()"/>
+                        <input class="submitbutton" type="submit" value="등록" />
                     </td>
                 </tr>
-
             </form>
+
         </table>
 
         <footer>
