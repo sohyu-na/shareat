@@ -18,5 +18,12 @@
             {% endfor %}
         </p>
 
+        <!--temp (start)-->
+        <form action="/submit_storeName_post" method="post">
+            <input type="hidden" name="store_name" value="{{data.store_name}}">
+            <button type="submit">메뉴 등록하기</button>
+        </form>
+        <!--temp (end)-->
+
     </body>
 </html>
