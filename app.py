@@ -71,7 +71,7 @@ def reg_restaurantData_submit_post():
     image_file.save("static/image/{}".format(image_file.filename))
     data = request.form
     
-    if DB.insert_restaurant(data['store-name'], data, image_file.filename):
+    if DB.insert_restaurant(data['store_name'], data, image_file.filename):
         return render_template("result_맛집등록.html", data=data, image_path="static/image/"+image_file.filename)
     else:
         return "Restaurant name already exist!" 

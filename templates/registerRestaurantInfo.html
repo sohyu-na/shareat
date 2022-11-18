@@ -27,68 +27,77 @@
 
         <h4>공유하고 싶은 맛집의 정보를 입력해 주세요</h4>
         <table width="100%" align="center">
-            <form action="/submit_restaurantData_post" method="post">
+            <form action="/submit_restaurantData_post" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td class="td1">상호명 *</td>
-                        <td><input type="text" class="text-area" name="store-name" size="80" required placeholder="&nbsp;가게의 이름을 입력해 주세요"  /></td>
+                        <td><input type="text" class="text-area" name="store_name" size="80" required placeholder="&nbsp;가게의 이름을 입력해 주세요"  /></td>
                     </tr>           
                     <tr>
                         <td class="td1">전화번호</td>
-                        <td><input type="text" class="text-area" name="store-phoneNum" size="80" placeholder="&nbsp;가게의 전화번호를 입력해 주세요" /></td>
+                        <td><input type="text" class="text-area" name="store_phoneNum" size="80" placeholder="&nbsp;가게의 전화번호를 입력해 주세요" /></td>
                     </tr>           
                     <tr>
                         <td class="td1">주소 *</td>
-                        <td><input type="text" class="text-area" name="store-addr" size="80" required placeholder="&nbsp;가게의 주소를 입력해 주세요" /></td>
+                        <td><input type="text" class="text-area" name="store_addr" size="80" required placeholder="&nbsp;가게의 주소를 입력해 주세요" /></td>
                     </tr>
                     <tr>
                         <td class="td1">사이트</td>
-                        <td><input type="text" class="text-area" name="store-site" size="80" placeholder="&nbsp;가게의 가게의 웹사이트 주소 혹은 인스타그램 아이디를 입력해 주세요" /></td>
+                        <td><input type="text" class="text-area" name="store_site" size="80" placeholder="&nbsp;가게의 가게의 웹사이트 주소 혹은 인스타그램 아이디를 입력해 주세요" /></td>
                     </tr>
                     <tr>
                         <td class="td1">영업시간</td>
-                        <td><input type="text" class="text-area" name="store-hours" size="80" placeholder="&nbsp;가게의 영업시간을 입력해 주세요" /></td>
+                        <td><input type="text" class="text-area" name="store_hours" size="80" placeholder="&nbsp;가게의 영업시간을 입력해 주세요" /></td>
                     </tr>
                     <tr>
                         <td class="td1">주차가능 여부</td>
                         <td>
-                            <input type="radio" name="store-parking" size="80" value="yes"/>&nbsp;가능
-                            <input type="radio" name="store-parking" size="60" value="no"/>&nbsp;불가능
+                            <input type="radio" name="store_parking" size="80" value="yes"/>&nbsp;가능
+                            <input type="radio" name="store_parking" size="60" value="no"/>&nbsp;불가능
+                            <input type="radio" name="store_parking" size="60" value="unknown" checked />&nbsp;기타
                         </td>
                     </tr>
                     <tr>
                         <td class="td1">에약가능 여부</td>
                         <td>
-                            <input type="radio" name="store-reservation" size="80" value="yes"/>&nbsp;가능
-                            <input type="radio" name="store-reservation" size="80" value="no"/>&nbsp;불가능 &nbsp;&nbsp;
-                            <input type="text" class="text-area" name="store-reservation" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
+                            <input type="radio" name="store_reservation" size="80" value="yes"/>&nbsp;가능
+                            <input type="radio" name="store_reservation" size="80" value="no"/>&nbsp;불가능 &nbsp;
+                            <input type="radio" name="store_reservation" size="80" value="unknown" checked />&nbsp;기타
+                            <input type="text" class="text-area" name="store_reservation" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td1">카테고리 *</td>
                         <td>
-                            <input type="radio" name="store-category" size="80" value="kor"/>&nbsp;한식
-                            <input type="radio" name="store-category" size="80" value="chi"/>&nbsp;중식
-                            <input type="radio" name="store-category" size="80" value="jap"/>&nbsp;일식
-                            <input type="radio" name="store-category" size="80" value="west"/>&nbsp;양식
-                            <input type="radio" name="store-category" size="80" value="other"/>&nbsp;기타
+                            <input type="radio" name="store_category" size="80" value="kor"/>&nbsp;한식
+                            <input type="radio" name="store_category" size="80" value="chi"/>&nbsp;중식
+                            <input type="radio" name="store_category" size="80" value="jap"/>&nbsp;일식
+                            <input type="radio" name="store_category" size="80" value="west"/>&nbsp;양식
+                            <input type="radio" name="store_category" size="80" value="other" checked/>&nbsp;기타
                         </td>
                     </tr>
                     <tr>
                         <td class="td1">가격대</td>
                         <td>
-                            <input type="text" class="text-area" name="store-cost-min" size="33" />&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-area" name="store-cost-max" size="33" />&nbsp;이하
+                            <input type="text" class="text-area" name="store_cost_min" size="33" />&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-area" name="store_cost_max" size="33" />&nbsp;이하
                         </td>
                     </tr>
                     <tr> 
                         <td class="td1" valign="top">식당의 사진</td>
                         <td >
-                            <input type="file" class="real-upload" accept="image/*" multiple />
+                            <div>
+                                <label for="img">Representative Image upload : </label>
+                                <input type="file" name="file" /><br><br>
+                            </div>
+                            <!--
+                                <input type="file" class="real-upload" name="store_img" accept="image/*" multiple/>
                             <div class="upload">
                                 <p>가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
                                 <ul class="image-preview"></ul>
                             </div>
+                            -->
+                            
                             <script>
                                 const realUpload = document.querySelector('.real-upload');
                                 const upload = document.querySelector('.upload');
