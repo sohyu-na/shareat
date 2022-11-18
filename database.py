@@ -10,15 +10,15 @@ class DBhandler:
         
     def insert_restaurant(self, name, data, img_path):
         restaurant_info ={
-            "store-phoneNum":data['store-phoneNum'],
-            "store-addr":data['store-addr'],
-            "store-site":data['store-site'],
-            "store-hours":data['store-hours'],
-            "store-parking":data['store-parking'],
-            "store-reservation":data['store-reservation'],
-            "store-category":data['store-category'],
-            "store-cost-min":data['store-cost-min'],
-            "store-cost-max":data['storecost-max'],
+            "store_phoneNum":data['store_phoneNum'],
+            "store_addr":data['store_addr'],
+            "store_site":data['store_site'],
+            "store_hours":data['store_hours'],
+            "store_parking":data['store_parking'],
+            "store_reservation":data['store_reservation'],
+            "store_category":data['store_category'],
+            "store_cost_min":data['store_cost_min'],
+            "store_cost_max":data['storecost_max'],
             "img_path": img_path
         }
         if self.restaurant_duplicate_check(name):
