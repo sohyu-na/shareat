@@ -2,8 +2,8 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8" />
-        <link href="{{url_for('static',filename='commonStyle.css') }}" rel="stylesheet" />
-        <link href="{{url_for('static',filename='registerMenu.css') }}" rel="stylesheet" />
+        <link href="{{url_for('static',filename='css/commonStyle.css') }}" rel="stylesheet" />
+        <link href="{{url_for('static',filename='css/registerMenu.css') }}" rel="stylesheet" />
 		<!--상단바 아이콘-->
         <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
     </head>
@@ -19,7 +19,7 @@
 		
 		<section>
 			<div class="menu-title">
-				<span class="restaurant-name">연어초밥</span> <span class="menu-title-subMessage">의 대표메뉴를 등록해주세요.</span>
+				<span class="restaurant-name">{{name}}</span> <span class="menu-title-subMessage">의 대표메뉴를 등록해주세요.</span>
 			</div>
 			<form action="/submit_menuData_post" method="post" enctype="multipart/form-data">
 				<div class="menu-upload">
