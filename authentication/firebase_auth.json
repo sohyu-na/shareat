@@ -1,10 +1,9 @@
 {
-  "apiKey": "AIzaSyD9bCQMMplxTM8lDn9hKD2O-brOX3a1CKY",
-  "authDomain": "shareat-1ed95.firebaseapp.com",
-  "databaseURL": "https://shareat-1ed95-default-rtdb.firebaseio.com",
-  "projectId": "shareat-1ed95",
-  "storageBucket": "shareat-1ed95.appspot.com",
-  "messagingSenderId": "897981404150",
-  "appId": "1:897981404150:web:ee7c783d8cf508211b2dd7",
-  "measurementId": "G-V4613NGT4Y"
+  "apiKey": "AIzaSyByJaF0mllnnXVQ7iX0M9WeJk2L4fE5f3E",
+  "authDomain": "shareat-76b07.firebaseapp.com",
+  "databaseURL": "https://shareat-76b07-default-rtdb.firebaseio.com",
+  "projectId": "shareat-76b07",
+  "storageBucket": "shareat-76b07.appspot.com",
+  "messagingSenderId": "188568930508",
+  "appId": "1:188568930508:web:401eae0a55d64b9f75da69"
 }

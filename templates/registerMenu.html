@@ -25,27 +25,31 @@
 				<div class="menu-upload">
 					<span id=pic> 사진 </span><br>
 					<label for="menu-pic">  - 대표메뉴의 사진을 등록해주세요. </label>
-					<input type="file" id="menu-pic" name="menu-pic" accept="image/jpeg, image/gif" onchange="addImg()" hidden/>
+					<input type="file" id="menu-pic" name="menu_pic" accept="image/jpeg, image/gif" onchange="addImg()" hidden/>
 					<span id="img-name" hidden></span>
 				</div>	
 				<div class="menu-textbox">
 					<label for="menu-name"> 음식명</label>
-					<input type="text" class="menu-text" name="menu-name" placeholder="  대표메뉴명을 입력 해주세요."><br>
+					<input type="text" class="menu-text" name="menu_name" placeholder="  대표메뉴명을 입력 해주세요."><br>
 					<label for="menu-price"> 가격</label>
-					<input type="text" class="menu-text" name="menu-price" placeholder="  대표메뉴의 가격을 입력 해주세요."><br>
+					<input type="text" class="menu-text" name="menu_price" placeholder="  대표메뉴의 가격을 입력 해주세요."><br>
 				</div>	
 				
 				<div class="extra-checkbox">
-					<input type="checkbox" id="extra-ve" name="extra">
+					<input type="checkbox" id="extra-ve" name="extra_ve" value="y">
 					<label for="extra-ve"> vegeterian </label><br>
-					<input type="checkbox" id="extra-al" name="extra">
+					<input type="hidden" id="extra-ve" name="extra_ve" value="n">
+					<input type="checkbox" id="extra-al" name="extra_al" value="y">
 					<label for="extra-al"> allergy </label><br>
-				</div>
-				
+					<input type="hidden" id="extra-al" name="extra_al" value="n" >
+				 </div>
+				 
 				<div class="menu-buttons">
 					<input type="button" class="menu-cancelbutton" value="취소" onclick=menucancelBox()>
 					<input type="submit" class="menu-submitbutton" value="등록" onclick=menusubmitBox()>
 				</div>
+
+				<input type="hidden" name="store_name" value="{{name}}">
 				
 			</form>
 		</section>
