@@ -80,6 +80,7 @@ input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
    letter-spacing:-0.5px;
    margin-bottom:15px;
 }
+/*
 .keyword-button{
    background-color:white;
    width:100px;
@@ -91,8 +92,19 @@ input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
    border-radius:30px;
    text-align:center;
    letter-spacing:-1px;
+}*/
+.keyword input[type="checkbox"]{
+   margin:10px ;
+   width: 20px; 
+   height: 20px;
+   box-shadow: inset 1px 1px 5px lightgray;
+   accent-color:#FF4A4A;
 }
-.keyword-recheckbox{
+.keyword label{
+   position: relative;
+   margin-bottom:5px;
+}
+.keyword-revisit{
    float: right;
    font-size:20px;
    padding-top:5px;

@@ -3,7 +3,7 @@
 {% block main %}
 <section>
 	<div class="review-title">
-		<span class="restaurant-name">타이패밀리 </span><span class="review-title-subMessage"> 에 대한 솔직한 리뷰를 써주세요.</span>
+		<span class="restaurant-name">{{name}} </span><span class="review-title-subMessage"> 에 대한 솔직한 리뷰를 써주세요.</span>
 	</div>
 	<form action="/submit_reviewData_post" method="post" enctype="multipart/form-data">
 		<div class="review-grade">
@@ -11,20 +11,39 @@
 		</div>
 		<div class="keyword">
 			<p class="keyword-subMessage">이 가게의 매력 포인트를 선택해주세요.</p>
-			<input type="button" onclick="selectKW1()" class="keyword-button" value="맛" id="맛" name="맛">
-			<input type="button" onclick="selectKW2()" class="keyword-button" value="가성비" id="가성비" name="가성비">
-			<input type="button" onclick="selectKW3()" class="keyword-button" value="서비스" id="서비스" name="서비스">
-			<input type="button" onclick="selectKW4()" class="keyword-button" value= "위생" id="위생" name="위생"> 
-			<input type="button" onclick="selectKW5()" class="keyword-button" value="분위기" id="분위기" name="분위기">
+			<!--
+			<input type="button" onclick="selectKW1()" class="keyword-button" value="맛" id="맛" name="taste">
+			<input type="button" onclick="selectKW2()" class="keyword-button" value="가성비" id="가성비" name="cost">
+			<input type="button" onclick="selectKW3()" class="keyword-button" value="서비스" id="서비스" name="service">
+			<input type="button" onclick="selectKW4()" class="keyword-button" value= "위생" id="위생" name="cleanliness"> 
+			<input type="button" onclick="selectKW5()" class="keyword-button" value="분위기" id="분위기" name="atmosphere">-->
+
+			<input type="checkbox" id="taste" name="taste" value="y">
+			<label for="taste">맛 </label>
+			<input type="hidden" id="taste" name="taste" value="n">
+			<input type="checkbox" id="cost" name="cost" value="y">
+			<label for="cost">가성비 </label>
+			<input type="hidden" id="cost" name="cost" value="n" >
+			<input type="checkbox" id="service" name="service" value="y">
+			<label for="service">서비스 </label>
+			<input type="hidden" id="service" name="service" value="n" >
+			<input type="checkbox" id="cleanliness" name="cleanliness" value="y">
+			<label for="cleanliness">위생 </label>
+			<input type="hidden" id="cleanliness" name="cleanliness" value="n" >
+			<input type="checkbox" id="atmosphere" name="atmosphere" value="y">
+			<label for="atmosphere">분위기 </label> </label>
+			<input type="hidden" id="atmosphere" name="atmosphere" value="n" >
+		
 			
-			<span class="keyword-recheckbox">
-				<input type="checkbox" id="recheckbox" name="recheckbox">
+			<span class="keyword-revisit">
+				<input type="checkbox" id="re" name="revisit" value="y">
 				<label for="re"> 재방문의사 </label>
+				<input type="hidden" id="re" name="revisit" value="n" >
 			</span>
 		</div>
 		<div class="text-boxes">
-			<input type="text" class="nickname" placeholder="닉네임" name="nickname"><br>
-			<textarea class="detail-review" onkeyup="counter(this)" maxlength="2000" placeholder="상세 리뷰를 입력해주세요." name="detail-review"></textarea>
+			<input type="text" class="nickname" placeholder="닉네임" name="nickname" value="익명"><br>
+			<textarea class="detail-review" onkeyup="counter(this)" maxlength="2000" placeholder="상세 리뷰를 입력해주세요." name="detail_review"></textarea>
 			<div class="length"><span id="lengthtext">0</span>/2000</div>
 		</div>	
 		<div class="picture-upload">

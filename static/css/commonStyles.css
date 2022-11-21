@@ -52,6 +52,57 @@ button, a{
     padding-right: 5px;
 }
 
+/* 가게정보-대표매뉴-리뷰조회 네비게이션 바 */
+/*코드*/
+
+.main_image {
+  position: relative;
+}
+.main_image img{
+  width:100%;
+  height:350px;
+}
+.main_image_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  color: #000000;
+  font-size:40px;
+}
+.main-wrap{
+  margin: 0px 220px;
+  align-items: center;
+}
+.midnav{
+  width : 100%;
+	list-style-type : none;
+	text-align : center;
+	margin : 0;
+	padding : 0;
+	overflow : hidden;
+}
+.midnav a{
+	display : inline-block;
+	font-size: 20px;
+	padding : 30px 100px 50px 100px;
+	text-decoration : none;
+	color : #6B6B6E;
+	text-decoration-line: underline;
+	text-decoration-color: currentColor;
+}
+.midnav a:hover{
+	color : #FF4A4A;
+}
+
+a:link {
+	  color : #b5b5b5;
+}
+
+a:hover{
+	  color : #FF4A4A;
+}
+
 /* 버튼 */
 /*제출 버튼 */
 .submitbutton{
@@ -63,7 +114,7 @@ button, a{
   border-radius: 7px;
   font-weight: 500;
   transition: 0.25s;
-  margin-right:16px;
+  margin-left:16px;
   min-width:120px;
   min-height:50px;
   font-size:16px;
@@ -84,7 +135,7 @@ button, a{
   border-radius: 7px;
   font-weight: 500;
   transition: 0.25s;
-  margin-right:16px;
+  margin: 0px 0px 0px 16px;
   min-width:120px;
   min-height:50px;
   font-size:16px;
@@ -97,30 +148,6 @@ button, a{
 /* -----맛집 상세정보 페이지----- */
 /* 맛집 베너 */
 /*코드*/
-
-/* 가게정보-대표매뉴-리뷰조회 네비게이션 바 */
-/*코드*/
-.midnav{
-	list-style-type : none;
-	text-align : center;
-	margin : 0;
-	padding : 0;
-	overflow : hidden;
-}
-
-.midnav a{
-	display : inline-block;
-	font-size: 20px;
-	padding : 30px 100px 50px 100px;
-	text-decoration : none;
-	color : #6B6B6E;
-	text-decoration-line: underline;
-	text-decoration-color: currentColor;
-}
-
-.midnav a:hover{
-	color : #FF4A4A;
-}
 
 
 /*footer*/
