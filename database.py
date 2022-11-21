@@ -81,22 +81,33 @@ class DBhandler:
             "service": data['service'],
             "cleanliness": data['cleanliness'],
             "atmosphere": data['atmosphere'],
-            "recheckbox": data['recheckbox'],
-            "nickname": data['nickname'],
+            "revisit": data['revisit'],
             "detail-review": data['detail_review'],
             "reviewImg_path": reviewImg_path
         }
-        self.db.child("review").child("nickname").set(review_info)
+        self.db.child("review").child(name).set(review_info)
         print(data, reviewImg_path)
 
     # 회원 가입 화면
-    def insert_signup(self, data):
-        menber_info = {
-            "memberInfo_email": data['memberInfo_email'],
-            "memberInfo_passwor": data['memberInfo_passwor'],
+    def insert_member(self, name, data):  # 회원 가입 페이지
+        member_info = {
+            "memberInfo_password": data['memberInfo_password'],
             "memberInfo_rePassword": data['memberInfo_rePassword'],
             "memberInfo_birthDate": data['memberInfo_birthDate'],
             "memberInfo_sex": data['memberInfo_sex']
         }
-        self.db.child("member").child("memberInfo_email").set(menber_info)
-        print(data)
+        if self.id_duplicate_check(name):
+            if data['memberInfo_password'] == data['memberInfo_rePassword']:
+                self.db.child("member").child(name).set(member_info)
+                return True
+            else:
+                return False
+
+    def id_duplicate_check(self, name):
+        members = self.db.child("member").get()
+        if members.each() == None:
+            return True
+        for res in members.each():
+            if res.key() == name:
+                return False
+        return True

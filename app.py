@@ -112,21 +112,11 @@ def reg_menuData_submit_post():
 
 @app.route("/submit_signupData_post", methods=['POST'])
 def reg_signupData_submit_post():
-    global idx
-    image_file = request.files["picture"]
-    if image_file.filename != '':
-        image_file.save("static/image/"+image_file.filename)
-        reviewImg_path = "static/image/"+image_file.filename
-    else:
-        reviewImg_path = "static/image/grey.png"
     data = request.form
-
-    for value in data.values():
-        print(value, end=' ')
-
-    DB.insert_review(name=data['nickname'], data=data,
-                     reviewImg_path=reviewImg_path)
-    return render_template("result_회원가입.html", data=data)
+    if DB.insert_member(name=data['memberInfo_id'], data=data):
+        return render_template("result_회원가입.html", data=data)
+    else:
+        return "이미 가입된 아이디이거나 비밀번호가 일치하지 않습니다."
 
 
 @app.route("/submit_loginData_post", methods=['POST'])
