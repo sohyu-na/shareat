@@ -42,7 +42,8 @@
 			</span>
 		</div>
 		<div class="text-boxes">
-			<input type="text" class="nickname" placeholder="닉네임" name="nickname" value="익명"><br>
+			<input type="hidden" name="nickname" value="익명">
+			<input type="text" class="nickname" placeholder="닉네임" name="nickname"><br>
 			<textarea class="detail-review" onkeyup="counter(this)" maxlength="2000" placeholder="상세 리뷰를 입력해주세요." name="detail_review"></textarea>
 			<div class="length"><span id="lengthtext">0</span>/2000</div>
 		</div>	
