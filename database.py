@@ -16,7 +16,7 @@ class DBhandler:
             "store_addr": data['store_addr'],
             "store_site": data['store_site'],
             "store_open": data['store_open'],
-            "store_closed": data['store_close'],
+            "store_close": data['store_close'],
             "store_parking": data['store_parking'],
             "store_reservation": data['store_reservation'],
             "store_reservation_link": data['store_reservation_link'],
