@@ -21,6 +21,16 @@ def goTo_detailInfo():
     return render_template("detailInfo_restaurantInfo.html")
 
 
+@app.route("/detail-menu")   # 메뉴 상세 정보 페이지
+def goTo_detailMenu():
+    return render_template("detailInfo_menu.html")
+
+
+@app.route("/detail-reiview")   # 리뷰 상세 정보 페이지
+def goTo_detailReiview():
+    return render_template("detailInfo_review.html")
+
+
 @app.route("/registration-restaurant")   # 맛집 등록 페이지
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
