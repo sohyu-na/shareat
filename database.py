@@ -20,9 +20,10 @@ class DBhandler:
             "store_reservation_link": data['store_reservation_link'],
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
-            "store_cost_max": data['storecost_max'],
+            "store_cost_max": data['store_cost_max'],
             "img_path": img_path
         }
+
         if self.restaurant_duplicate_check(name):
             self.db.child("restaurant").child(name).set(restaurant_info)
             print(data, img_path)
