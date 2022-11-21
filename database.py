@@ -9,12 +9,14 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
+    # 가게 등록 화면
     def insert_restaurant(self, name, data, img_path):
         restaurant_info = {
             "store_phoneNum": data['store_phoneNum'],
             "store_addr": data['store_addr'],
             "store_site": data['store_site'],
-            "store_hours": data['store_hours'],
+            "store_open": data['store_open'],
+            "store_closed": data['store_close'],
             "store_parking": data['store_parking'],
             "store_reservation": data['store_reservation'],
             "store_reservation_link": data['store_reservation_link'],
@@ -23,9 +25,11 @@ class DBhandler:
             "store_cost_max": data['store_cost_max'],
             "img_path": img_path
         }
-
+        # self.db.child("restaurant").child(name).set(restaurant_info)
+        # return True
         if self.restaurant_duplicate_check(name):
-            self.db.child("restaurant").child(name).set(restaurant_info)
+            self.db.child("restaurant").child(
+                name).child("info").set(restaurant_info)
             print(data, img_path)
             return True
         else:
@@ -33,7 +37,66 @@ class DBhandler:
 
     def restaurant_duplicate_check(self, name):
         restaurants = self.db.child("restaurant").get()
+        if restaurants.each() == None:
+            return True
         for res in restaurants.each():
             if res.key() == name:
                 return False
         return True
+
+    # 메뉴 등록 화면
+    def insert_menu(self, name, data, menuImg_path):
+        menu_info = {
+            "menuImg_path": menuImg_path,
+            "menu_name": data['menu_name'],
+            "menu_price": data['menu_price'],
+            "extra_ve": data['extra_ve'],
+            "extra_al": data['extra_al']
+        }
+        # self.db.child("restaurant").child(name).child("menu").child('menu_name').set(menu_info)
+        # return True
+        if self.menu_duplicate_check(data['menu_name']):
+            self.db.child("restaurant").child(name).child(
+                "menu").child(data['menu_name']).set(menu_info)
+            print(data, menuImg_path)
+            return True
+        else:
+            return False
+
+    def menu_duplicate_check(self, name):
+        menus = self.db.child("restaurant").child(name).child("menu").get()
+        if menus.each() == None:
+            return True
+        for res in menus.each():
+            if res.key() == name:
+                return False
+        return True
+
+    # 리뷰 등록 화면
+    def insert_review(self, name, data, reviewImg_path):
+        review_info = {
+            "review_grade": data['Range'],
+            "taste": data['taste'],
+            "cost": data['cost'],
+            "service": data['service'],
+            "cleanliness": data['cleanliness'],
+            "atmosphere": data['atmosphere'],
+            "recheckbox": data['recheckbox'],
+            "nickname": data['nickname'],
+            "detail-review": data['detail_review'],
+            "reviewImg_path": reviewImg_path
+        }
+        self.db.child("review").child("nickname").set(review_info)
+        print(data, reviewImg_path)
+
+    # 회원 가입 화면
+    def insert_signup(self, data):
+        menber_info = {
+            "memberInfo_email": data['memberInfo_email'],
+            "memberInfo_passwor": data['memberInfo_passwor'],
+            "memberInfo_rePassword": data['memberInfo_rePassword'],
+            "memberInfo_birthDate": data['memberInfo_birthDate'],
+            "memberInfo_sex": data['memberInfo_sex']
+        }
+        self.db.child("member").child("memberInfo_email").set(menber_info)
+        print(data)

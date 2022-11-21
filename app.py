@@ -68,13 +68,18 @@ def goTo_signup():
 def reg_restaurantData_submit_post():
     global idx
     image_file = request.files["file"]
-    data = request.form
-    image_file.save("static/image/{}".format(image_file.filename))
+    if image_file.filename != '':
+        image_file.save("static/image/"+image_file.filename)
+        image_path = "static/image/"+image_file.filename
+        print(image_path)
+    else:
+        image_path = "./static/image/grey.png"
+        print(image_path)
 
-    # return render_template("result_맛집등록.html", data=data, image_path="static/image/"+image_file.filename)
+    data = request.form
 
     if DB.insert_restaurant(data['store_name'], data, image_file.filename):
-        return render_template("result_맛집등록.html", data=data)
+        return render_template("result_맛집등록.html", data=data, image_path=image_path)
     else:
         return "Restaurant name already exist!"
 
@@ -88,21 +93,39 @@ def reg_storeName_submit_post():
 
 @app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
+    global idx
+    image_file = request.files["menu_pic"]
+    if image_file.filename != '':
+        image_file.save("static/image/"+image_file.filename)
+        menuImg_path = "static/image/"+image_file.filename
+    else:
+        menuImg_path = "./static/image/grey.png"
+
     data = request.form
+    name = data['store_name']
 
-    for value in data.values():
-        print(value, end=' ')
-
-    return render_template("result_메뉴등록.html", data=data)
+    if DB.insert_menu(name, data, image_file.filename):
+        return render_template("result_메뉴등록.html", data=data, menuImg_path=menuImg_path)
+    else:
+        return "menu name already exist!"
 
 
 @app.route("/submit_signupData_post", methods=['POST'])
 def reg_signupData_submit_post():
+    global idx
+    image_file = request.files["picture"]
+    if image_file.filename != '':
+        image_file.save("static/image/"+image_file.filename)
+        reviewImg_path = "static/image/"+image_file.filename
+    else:
+        reviewImg_path = "static/image/grey.png"
     data = request.form
 
     for value in data.values():
         print(value, end=' ')
 
+    DB.insert_review(name=data['nickname'], data=data,
+                     reviewImg_path=reviewImg_path)
     return render_template("result_회원가입.html", data=data)
 
 
@@ -118,12 +141,22 @@ def reg_loginData_submit_post():
 
 @app.route("/submit_reviewData_post", methods=['POST'])
 def reg_reviewData_submit_post():
+    global idx
+    image_file = request.files["picture"]
+    if image_file.filename != '':
+        image_file.save("static/image/"+image_file.filename)
+        reviewImg_path = "static/image/"+image_file.filename
+    else:
+        reviewImg_path = "static/image/grey.png"
     data = request.form
 
     for value in data.values():
         print(value, end=' ')
 
-    return render_template("result_리뷰등록.html", data=data)
+    DB.insert_review(name=data['nickname'], data=data,
+                     reviewImg_path=reviewImg_path)
+
+    return render_template("result_리뷰등록.html", data=data, reviewImg_path=reviewImg_path)
 
 
 if __name__ == '__main__':
