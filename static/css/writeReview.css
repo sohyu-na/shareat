@@ -80,6 +80,7 @@ input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
    letter-spacing:-0.5px;
    margin-bottom:15px;
 }
+/*
 .keyword-button{
    background-color:white;
    width:100px;
@@ -91,8 +92,19 @@ input[type=range].slider.slider-progress::-webkit-slider-runnable-track {
    border-radius:30px;
    text-align:center;
    letter-spacing:-1px;
+}*/
+.keyword input[type="checkbox"]{
+   margin:10px ;
+   width: 20px; 
+   height: 20px;
+   box-shadow: inset 1px 1px 5px lightgray;
+   accent-color:#FF4A4A;
 }
-.keyword-recheckbox{
+.keyword label{
+   position: relative;
+   margin-bottom:5px;
+}
+.keyword-revisit{
    float: right;
    font-size:20px;
    padding-top:5px;
@@ -107,7 +119,7 @@ input[type="checkbox"]{
 }
 .text-boxes{
    margin-top:20px;
-   height:200px;
+   height:250px;
    font-size:15px;
 }
 .nickname{
@@ -118,14 +130,20 @@ input[type="checkbox"]{
    margin-top:10px;
    padding:10px;
    display:block;
-   width:100%;
+   width:98%;
    height:150px;
    border:0;
    border: 1px solid #ddd;
+
+}
+textarea{
+   resize : vertical;
+   font-family:inherit;
 }
 .length{
+   width: 100%;
    color: #5F6368;
-   float:right;
+   text-align:right;
 }
 .picture-upload input[type="file"] {
    position: absolute;
@@ -142,48 +160,19 @@ input[type="checkbox"]{
    cursor: pointer;
    width:100px;
    height: 100px;
-   margin-top: 20px;
 }
 #plus{
    font-size:70px;
    font-weight:10;
    color:#979797;
    position: relative;
-   bottom:10px;
+   top:5px;
    left:25px;
 }
-.review-buttons{
+.review-button{
+   width:100%;
    margin-top:30px;
-   display:flex;
-   float:right;
-   margin-bottom:50px;
-   
+   margin-bottom:30px;
+   text-align: right;
 }
-.review-cancelbutton{
-   min-width:120px;
-   min-height:50px;
-   margin-right:16px;
-   padding-left:14px;
-   padding-right:14px;
-   border:none;
-   border-radius:5px;
-   font-size:16px;
-   color:black;
-   text-align:center;
-   background-color:#F1F1F1;
-   box-shadow: 0px 5px 5px lightgray;
-}
-.review-submitbutton{
-   min-width:120px;
-   min-height:50px;
-   margin-right:16px;
-   padding-left:14px;
-   padding-right:14px;
-   border:none;
-   border-radius:5px;
-   font-size:16px;
-   color:white;
-   text-align:center;
-   background-color:#FF4A4A;
-   box-shadow: 0px 5px 5px lightgray;
-}
+

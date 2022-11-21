@@ -1,55 +1,8 @@
-.main-wrap{
-    margin: 0px 220px 0px 220px;
-    align-items: center;
-}
-.main_image {
-	position: relative;
-}
-
-.main_image_text {
-    font-family: 'Noto Serif KR', serif;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate( -50%, -50% );
-	color: #000000;
-	  }
-
-.midnav{
-	list-style-type : none;
-	text-align : center;
-	margin : 0;
-	padding : 0;
-	overflow : hidden;
-}
-
-.midnav a{
-	display : inline-block;
-	font-size: 20px;
-	padding : 30px 100px 50px 100px;
-	text-decoration : none;
-	color : #6B6B6E;
-	text-decoration-line: underline;
-	text-decoration-color: currentColor;
-}
-
-.midnav a:hover{
-	color : #FF4A4A;
-}
-
-a:link {
-	  color : #b5b5b5;
-}
-
-a:hover{
-	  color : #FF4A4A;
-}
 
 html,body,h1,h2,p,dl,dt,dd {
 	margin: 0;
 	padding: 30;
 	line-height: 1.0;
-	box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
 }
 ul,li {
@@ -78,9 +31,6 @@ img {
     text-align : center;
   }
 
-  .food-images{
-
-  }
 
 .stars {
 	display:inline-block;
