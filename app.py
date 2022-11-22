@@ -21,6 +21,16 @@ def goTo_detailInfo():
     return render_template("detailInfo_restaurantInfo.html")
 
 
+@app.route("/detail-menu")   # 메뉴 상세 정보 페이지
+def goTo_detailMenu():
+    return render_template("detailInfo_menu.html")
+
+
+@app.route("/detail-reiview")   # 리뷰 상세 정보 페이지
+def goTo_detailReiview():
+    return render_template("detailInfo_review.html")
+
+
 @app.route("/registration-restaurant")   # 맛집 등록 페이지
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
@@ -137,13 +147,10 @@ def reg_reviewData_submit_post():
         image_file.save("static/image/"+image_file.filename)
         reviewImg_path = "static/image/"+image_file.filename
     else:
-        reviewImg_path = "static/image/grey.png"
+        reviewImg_path = "./static/image/grey.png"
     data = request.form
 
-    for value in data.values():
-        print(value, end=' ')
-
-    DB.insert_review(name=data['nickname'], data=data,
+    DB.insert_review(data=data,
                      reviewImg_path=reviewImg_path)
 
     return render_template("result_리뷰등록.html", data=data, reviewImg_path=reviewImg_path)

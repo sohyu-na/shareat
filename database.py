@@ -16,7 +16,7 @@ class DBhandler:
             "store_addr": data['store_addr'],
             "store_site": data['store_site'],
             "store_open": data['store_open'],
-            "store_closed": data['store_close'],
+            "store_close": data['store_close'],
             "store_parking": data['store_parking'],
             "store_reservation": data['store_reservation'],
             "store_reservation_link": data['store_reservation_link'],
@@ -73,8 +73,9 @@ class DBhandler:
         return True
 
     # 리뷰 등록 화면
-    def insert_review(self, name, data, reviewImg_path):
+    def insert_review(self, data, reviewImg_path):
         review_info = {
+            "nickname": data['nickname'],
             "review_grade": data['Range'],
             "taste": data['taste'],
             "cost": data['cost'],
@@ -85,8 +86,9 @@ class DBhandler:
             "detail-review": data['detail_review'],
             "reviewImg_path": reviewImg_path
         }
-        self.db.child("review").child(name).set(review_info)
-        print(data, reviewImg_path)
+        if data['nickname'] == "":
+            review_info['nickname'] = "익명"
+        self.db.child("review").push(review_info)
 
     # 회원 가입 화면
     def insert_member(self, name, data):  # 회원 가입 페이지

@@ -1,93 +1,61 @@
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="utf-8" />
+{% extends "common.html" %}
 
-        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/modifyMenu.css')}}">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
-        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer" />
+{% block main %}
+<div class="menus">
+    <div id="guide-phrase">
+        <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
+    </div>  
 
-        <title>대표메뉴 수정</title>
-    </head>
+    <form action="/submit_menuData_post" method="post" enctype="multipart/form-data">
+        <div id="menu-box">
+            <div class="menu-item">
+                <div class="menu-img">
+                    <div class>이미지</div>
+                </div>
+                <div class="menu-info">
+                    <div class="menu-name">음식명 : _____________</div>
+                    <div class="menu-price">가격 : __________</div>
 
-    <body>
-        <!--회원 상단바-->
-        <div id="navbar">
-            <div id="logo"><a href="/">Shareat</a></div>
-            <div id="profile-logo">
-                <div><i class="fas fa-light fa-circle-user fa-2x"></i></div>
+                    <div class="menu-info-signicant">
+                        <div>
+                            ■ vegetarian                               
+                        </div>
+                        <div>
+                            ■ allergy                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-img">
+                    <div class>이미지</div>
+                </div>
+                <div class="menu-info">
+                    <div class="menu-name">음식명 : _____________</div>
+                    <div class="menu-price">가격 : __________</div>
+
+                    <div class="menu-info-signicant">
+                        <div>
+                            ■ vegetarian                               
+                        </div>
+                        <div>
+                            ■ allergy                               
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <main>
-            <section>
-                <div id="guide-phrase">
-                    <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
-                </div>  
-
-                <form action="/submit_menuData_post" method="post" enctype="multipart/form-data">
-                    <div id="menu-box">
-                        <div class="menu-item">
-                            <div class="menu-img">
-                                <div class>이미지</div>
-                            </div>
-                            <div class="menu-info">
-                                <div class="menu-name">음식명 : _____________</div>
-                                <div class="menu-price">가격 : __________</div>
+    </form>
     
-                                <div class="menu-info-signicant">
-                                    <div>
-                                        ■ vegetarian                               
-                                    </div>
-                                    <div>
-                                        ■ allergy                               
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="menu-item">
-                            <div class="menu-img">
-                                <div class>이미지</div>
-                            </div>
-                            <div class="menu-info">
-                                <div class="menu-name">음식명 : _____________</div>
-                                <div class="menu-price">가격 : __________</div>
-    
-                                <div class="menu-info-signicant">
-                                    <div>
-                                        ■ vegetarian                               
-                                    </div>
-                                    <div>
-                                        ■ allergy                               
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </form>
-                
-                <div id="btn-add-menu">
-                    <i class="icon-add-menu fa-regular fa-square-plus"></i>
-                </div>
+    <div id="btn-add-menu">
+        <i class="icon-add-menu fa-regular fa-square-plus"></i>
+    </div>
 
-                <div class="menu-buttons">
-                    <input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
-                    <input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
-            </div>
-        </footer>
-    </body>
-
-</html>
+    <div class="menu-buttons">
+        <input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
+        <input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
+    </div>
+</div>
+{% endblock main %}

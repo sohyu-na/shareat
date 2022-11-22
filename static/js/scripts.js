@@ -6,6 +6,7 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
+/*
 function selectKW1(){
 	var color = document.getElementById("맛");
 	if (color.name === "맛"){
@@ -60,7 +61,8 @@ function selectKW5(){
 		color.style.backgroundColor = "white";
 		color.name = "분위기"
 	}
-}
+}*/
+
 for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
   e.style.setProperty('--value', e.value);
   e.style.setProperty('--min', e.min == '' ? '0' : e.min);
