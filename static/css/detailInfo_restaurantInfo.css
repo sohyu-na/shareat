@@ -56,6 +56,23 @@ a:hover{
 	  color : #FF4A4A;
 }
 
+.like:hover{
+	color : #FF4A4A;
+}
+
+#check-btn { display: none; }
+
+#check-btn:checked ~ .like { 
+   	color : #FF4A4A;
+}
+
+.like{
+	float : right;
+	width : 15%;
+	font-size : 110%;
+	color : #b5b5b5;
+}
+
 html,body,h1,h2,p,dl,dt,dd {
 	margin: 0;
 	padding: 30;
@@ -187,7 +204,7 @@ img {
 	text-align : left;
 	width : 100%;
 	font-size : 120%;
-	line-height : 200%;
+	line-height : 100%;
 }
 
 .tableh{

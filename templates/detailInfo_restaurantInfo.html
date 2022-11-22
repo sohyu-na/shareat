@@ -10,7 +10,9 @@
 </div>
 
 <div class="main-wrap">
-    <div class="rader-chart" style="float : left; width : 55%; margin-bottom:20px;">
+    <input id="check-btn" type="checkbox" />
+    <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
+    <div class="rader-chart">
         <canvas id="myRaderChart"></canvas>
         <script>
             var ctx = document.getElementById("myRaderChart");
@@ -33,16 +35,15 @@
                             suggestedMax: 100,
                             display : false,
                             maxTicksLimit: 3
-                            }
+                        }
                     }
                 },
             });
             myRadarChart.options.legend.display = false;
-        </script>
-    </div>
+            </script>
+        </div>
     <br>
     <br>
-    <a href="modifyRestaurantInfo.html" style="float : right;  width : 20%;"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
     <br>
     <br>
     <br>
@@ -60,6 +61,7 @@
     <br>
     <hr class= "hr">
     <table class="table">
+        <a href="/modification-restaurant" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
         <br>
         <tr>
             <h1><th class="tableh">주소</th>
@@ -99,12 +101,12 @@
     <br>
     <br>
     <div class="food-images">
-        <img src="../../assets/img/tokyo1.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
-        <img src="../../assets/img/tokyo2.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
-        <img src="../../assets/img/tokyo3.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
-        <img src="../../assets/img/tokyo4.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
-        <img src="../../assets/img/tokyo5.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
-        <img src="../../assets/img/tokyo6.jpg" alt=tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo3.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo4.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo5.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
+        <img src="{{ url_for('static', filename='image/tokyo6.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)">
     </div>
 </div>
 {% endblock main %}
