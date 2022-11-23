@@ -45,11 +45,15 @@
             <tr>
                 <td class="td1">카테고리 *</td>
                 <td>
-                    <input type="radio" name="store_category" size="80" value="kor"/>&nbsp;한식
-                    <input type="radio" name="store_category" size="80" value="chi"/>&nbsp;중식
-                    <input type="radio" name="store_category" size="80" value="jap"/>&nbsp;일식
-                    <input type="radio" name="store_category" size="80" value="west"/>&nbsp;양식
-                    <input type="radio" name="store_category" size="80" value="other" checked/>&nbsp;기타
+                    <input type="radio" name="store_category" size="80" value="한식" required/>&nbsp;한식
+                    <input type="radio" name="store_category" size="80" value="중식" required/>&nbsp;중식
+                    <input type="radio" name="store_category" size="80" value="일식" required/>&nbsp;일식
+                    <input type="radio" name="store_category" size="80" value="양식" required/>&nbsp;양식
+                    <input type="radio" name="store_category" size="80" value="아시아" required/>&nbsp;아시아
+                    <input type="radio" name="store_category" size="80" value="남미" required/>&nbsp;남미
+                    <input type="radio" name="store_category" size="80" value="디저트" required/>&nbsp;디저트
+                    <input type="radio" name="store_category" size="80" value="주점" required/>&nbsp;주점
+                    <input type="radio" name="store_category" size="80" value="기타" required/>&nbsp;기타
                 </td>
             </tr>
             <tr>
@@ -62,7 +66,7 @@
             <tr> 
                 <td class="td1" valign="top">식당의 사진</td>
                 <td >
-                    <input type="file" class="real-upload" name="file" accept="image/*" required multiple />
+                    <input type="file" class="real-upload" name="file" accept="image/*" multiple />
                     <div class="upload">
                         <p>가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
                         <ul class="image-preview"></ul>

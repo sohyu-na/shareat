@@ -27,17 +27,17 @@
                     <table>
                         <tr>
                             <td class="td1">아이디 *</td>
-                            <td><input name="memberInfo_id" class="text-area" required placeholder="abcde1234" type="text"></input></td>
+                            <td><input name="memberInfo_id" class="text-area" required placeholder="3자 이상" type="text" minlength="3"></input></td>
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">비밀번호 *</td>
-                            <td><input name="memberInfo_password" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
+                            <td><input name="memberInfo_password" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
                         </tr> 
                         <tr><td><br></td></tr>
                         <tr>
                             <td class="td1">비밀번호 재확인 *</td>
-                            <td><input name="memberInfo_rePassword" class="text-area" required placeholder="Abcdef123$!" type="password"></input></td>
+                            <td><input name="memberInfo_rePassword" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
                         </tr> 
                         <tr><td><br></td></tr>
                         <tr>
@@ -48,6 +48,7 @@
                         <tr>
                             <td class="td1">성별</td>
                             <td>
+                                <input type="hidden" name="memberInfo_sex" size="60" value="unknown" checked  />
                                 <input type="radio" id="male" name="memberInfo_sex" value="male"/>&nbsp;남 &nbsp;&nbsp;&nbsp;
                                 <input type="radio" id="female" name="memberInfo_sex" value="female"/>&nbsp;여
                             </td>
