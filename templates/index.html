@@ -92,145 +92,46 @@
                 </div>
             </nav>
             <section>
-                <div class="restaurant-item">
-                    <a href="/detail-info">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="restaurant-item">
-                    <a href="#">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <div class="temp restaurant-img">이미지</div>
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-name">식당이름</div>
-                                <div class="restaurant-category">카테고리</div>
-                                <div class="restaurant-point">평점</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-
+                <!---->
+                {% if total>0 %}
+                    {% for data in datas %}
+                    <div class="restaurant-item">
+                        <a href="/detail-info/{{data[0]}}">
+                            <div class="restaurant-item-box">
+                                <figure>
+                                    <img class="temp restaurant-img" src="{{data[1].info.img_path}}">
+                                    <!-- <div class="">이미지</div> -->
+                                </figure>
+                                <figcaption>                       
+                                    <div class="restaurant-name">{{data[0]}}</div>
+                                    <div class="restaurant-category">{{data[1].info.store_category}}</div>
+                                    <div class="restaurant-point">평점</div>
+                                </figcaption>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
                 <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
                 <i class="icon-next-list fa-solid fa-chevron-right"><button></button></i>
 
             </section>
+
+            <div class="page=wrap">
+                <div class="page-nation">
+                    <ul>
+                        <li>
+                            {% for i in range(page_count) %}
+                            <a href="{{url_for('list_restaurants',page=i)}}" color="black">{{i}}</a>
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            {% else %}
+            <p>등록된 맛집이 없습니다.</p>
+            {% endif %}
         </main>
       
         <footer>
