@@ -34,9 +34,11 @@
         
         <header>
             <div class="main_image">
-                <img src="{{ url_for('static', filename='image/tokyo.jpg')}}" alt=Tokyo>
-                    <h1 class="main_image_text">유&nbsp;&nbsp;야&nbsp;&nbsp;케&nbsp;&nbsp;도&nbsp;&nbsp;쿄</h1>
-            </div>    
+                <img src="{{data.img_path}}" alt=Tokyo>
+                    <h1 class="main_image_text">{{name}}</h1>
+            </div>   
+            
+            {{data}}
         </header>
 
     <main>
