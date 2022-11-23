@@ -1,58 +1,58 @@
-{% extends "common.html" %}
+{% extends "detailnavbar.html" %}
 
 {% block main %}
-    <header>
-        <div class="main_image">
-            <img src="../assets/img/tokyo.jpg" alt=Tokyo style = "width:100%;">
-                <h1 class="main_image_text" style="font-size:40px">유 야 케  도 쿄</h1>
+<div class="main-wrap">
+    <ul class = "midnav">
+        <a href="/detail-info">가게정보</a>
+        <a href="/detail-menu"><p style="color:#FF4A4A;"><U><b>대표메뉴</b></U></p></a>
+        <a href="/detail-reiview">리뷰조회</a>
+    </ul>
+</div>
+
+<div class="main-wrap">
+    <div id="btn-modify-menu">
+        <a>대표메뉴 수정하기</a>
+    </div>
+
+    <div id="menu-box">
+        <div class="menu-item">
+            <div class="menu-img">
+                <div class>이미지</div>
             </div>
-    </header>
+            <div class="menu-info">
+                <div class="menu-name">음식명 : _____________</div>
+                <div class="menu-price">가격 : __________</div>
 
-    <!--네비게이션 바-->
-    <section>
-        <div id="btn-modify-menu">
-            <a>대표메뉴 수정하기</a>
-        </div>
-
-        <div id="menu-box">
-            <div class="menu-item">
-                <div class="menu-img">
-                    <div class>이미지</div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-name">음식명 : _____________</div>
-                    <div class="menu-price">가격 : __________</div>
-
-                    <div class="menu-info-signicant">
-                        <div>
-                            ■ vegetarian                               
-                        </div>
-                        <div>
-                            ■ allergy                               
-                        </div>
+                <div class="menu-info-signicant">
+                    <div>
+                        ■ vegetarian                               
                     </div>
-                </div>
-            </div>
-
-            <div class="menu-item">
-                <div class="menu-img">
-                    <div class>이미지</div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-name">음식명 : _____________</div>
-                    <div class="menu-price">가격 : __________</div>
-
-                    <div class="menu-info-signicant">
-                        <div>
-                            ■ vegetarian                               
-                        </div>
-                        <div>
-                            ■ allergy                               
-                        </div>
+                    <div>
+                        ■ allergy                               
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="menu-item">
+            <div class="menu-img">
+                <div class>이미지</div>
+            </div>
+            <div class="menu-info">
+                <div class="menu-name">음식명 : _____________</div>
+                <div class="menu-price">가격 : __________</div>
+
+                <div class="menu-info-signicant">
+                    <div>
+                        ■ vegetarian                               
+                    </div>
+                    <div>
+                        ■ allergy                               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock main %}
     

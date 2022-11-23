@@ -1,7 +1,7 @@
 {% extends "common.html" %}
 
 {% block main %}
-<section>
+<div class="menus">
     <div id="guide-phrase">
         <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
     </div>  
@@ -57,5 +57,5 @@
         <input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
         <input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
     </div>
-</section>
+</div>
 {% endblock main %}
