@@ -35,19 +35,19 @@ def list_restaurants():
 @app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
-    return render_template("detailInfo_restaurantInfo.html", data=data)
+    return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
 
 @app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
 def goTo_detailMenu(name):
     data = DB.get_restaurant_byname(str(name))
-    return render_template("detailInfo_menu.html", data=data)
+    return render_template("detailInfo_menu.html", data=data, name=name)
 
 
 @app.route("/detail-reiview/<name>")   # 리뷰 상세 정보 페이지
 def goTo_detailReiview(name):
     data = DB.get_restaurant_byname(str(name))
-    return render_template("detailInfo_review.html", data=data)
+    return render_template("detailInfo_review.html", data=data, name=name)
 
 
 @app.route("/registration-restaurant")   # 맛집 등록 페이지
