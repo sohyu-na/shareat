@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from database import DBhandler
 import sys
 from urllib import parse
@@ -8,27 +8,46 @@ app = Flask(__name__)
 DB = DBhandler()
 
 
-# 페이지 경로 설정
+# [페이지 경로 설정]
 
 
 @app.route("/")   # 메인홈
 def goTo_mainHome():
-    return render_template("index.html")
+    return redirect(url_for("list_restaurants"))
 
 
-@app.route("/detail-info")   # 맛집 상세 정보 페이지
-def goTo_detailInfo():
-    return render_template("detailInfo_restaurantInfo.html")
+@app.route("/list")
+def list_restaurants():
+    page = request.args.get("page", 0, type=int)
+    limit = 9
+
+    start_idx = limit*page
+    end_idx = limit*(page+1)
+
+    data = DB.get_restaurants()  # 맛집 리스트 데이터
+    count = len(data)  # 등록된 맛집 개수
+    data = dict(list(data.items())[start_idx:end_idx])
+
+    print(data, count)
+    return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 
-@app.route("/detail-menu")   # 메뉴 상세 정보 페이지
-def goTo_detailMenu():
-    return render_template("detailInfo_menu.html")
+@app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
+def goTo_detailInfo(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("detailInfo_restaurantInfo.html", data=data)
 
 
-@app.route("/detail-reiview")   # 리뷰 상세 정보 페이지
-def goTo_detailReiview():
-    return render_template("detailInfo_review.html")
+@app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
+def goTo_detailMenu(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("detailInfo_menu.html", data=data)
+
+
+@app.route("/detail-reiview/<name>")   # 리뷰 상세 정보 페이지
+def goTo_detailReiview(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("detailInfo_review.html", data=data)
 
 
 @app.route("/registration-restaurant")   # 맛집 등록 페이지
@@ -71,7 +90,7 @@ def goTo_signup():
     return render_template("signup.html")
 
 
-# 입력 데이터 받아오기
+# [사용자 입력 데이터 받아오기]
 
 
 @app.route("/submit_restaurantData_post", methods=['POST'])

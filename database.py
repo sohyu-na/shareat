@@ -9,7 +9,9 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
-    # 가게 등록 화면
+    # ===== 1) 맛집 data =====
+
+    # DB에 저장
     def insert_restaurant(self, name, data, img_path):
         restaurant_info = {
             "store_phoneNum": data['store_phoneNum'],
@@ -35,6 +37,7 @@ class DBhandler:
         else:
             return False
 
+    # 맛집 등록 시 중복 체크
     def restaurant_duplicate_check(self, name):
         restaurants = self.db.child("restaurant").get()
         if restaurants.each() == None:
@@ -44,7 +47,25 @@ class DBhandler:
                 return False
         return True
 
-    # 메뉴 등록 화면
+    # DB 데이터 읽어오기
+    def get_restaurants(self):
+        restaurants = self.db.child("restaurant").get().val()
+
+        return restaurants
+
+    # 가게 이름으로 특정 가게 정보 가져오기
+    def get_restaurant_byname(self, name):
+        restaurants = self.db.child("restaurant").get()
+        target_value = ""
+        for res in restaurants.each():
+            value = res.val()
+
+            if res == name:
+                target_value = value
+            return target_value
+
+    # ===== 2) 메뉴 data ======
+
     def insert_menu(self, name, data, menuImg_path):
         menu_info = {
             "menuImg_path": menuImg_path,
@@ -72,7 +93,7 @@ class DBhandler:
                 return False
         return True
 
-    # 리뷰 등록 화면
+    # ===== 3) 리뷰 데이터 ======
     def insert_review(self, data, reviewImg_path):
         review_info = {
             "nickname": data['nickname'],
