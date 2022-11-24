@@ -61,8 +61,10 @@
     </div>
     <br>
     <hr class= "hr">
-    <table class="table">
+    <div>
         <a href="/modification-restaurant" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
+    </div>
+    <table class="table">
         <br>
         <tr>
             <h1><th class="tableh">주소</th>
@@ -70,7 +72,11 @@
         </tr>
         <tr>
             <th>영업시간</th>
-            <td>{{data.info.store_open}} ~ {{data.info.store_close}}</td>
+            <td>
+                {% if (data.info.store_open == "")and(data.info.store_close =="") %}  <!--영업시간 미입력 시 공백(등록 정보 없음)-->
+                {% else %}
+                    {{data.info.store_open}}시 ~ {{data.info.store_close}}시</td>
+                {% endif %}
         </tr>
         <tr>
             <th>전화번호</th>
@@ -78,23 +84,38 @@
         </tr>
         <tr>
             <th>사이트</th>
-            <td>{{data.info.store_site}}</td>
+            <td><a href="{{data.info.store_site}}" style="text-decoration:underline; ">{{data.info.store_site}}</a></td>
         </tr>
         <tr>
-            <th>음식 카테고리</th>
+            <th>음식 종류</th>
             <td>{{data.info.store_category}}</td>
         </tr>
-        <tr>
+        <tr> 
             <th>가격대</th>
             <td>{{data.info.store_cost_min}} ~ {{data.info.store_cost_max}}</td>
         </tr>
         <tr>
             <th>주차여부</th>
-            <td>{{data.info.store_parking}}</td>
+            <td>
+                {% if data.info.store_parking == "unknown" %}    <!--주차여부 미입력 시 공백(등록 정보 없음)-->
+                     <span></span>
+                {% else %}
+                    <span>{{data.info.store_parking}}</span>
+                {% endif%}
+            </td>
         </tr>
         <tr>
             <th>예약안내</th>
-            <td><b><a href="https://map.naver.com/v5/entry/place/1635954043?c=14131358.6381226,4517178.2417222,13,0,0,0,dh&placePath=%2Fhome%3Fentry=plt">예약하기</a></b></td>
+            <td>
+                {% if data.info.store_reservation == "unknown" %}    <!--예약여부 미입력 시 공백(등록 정보 없음)-->
+                     <span></span>
+                {% else %}
+                    <span>{{data.info.store_reservation}}</span>
+                {% endif %} 
+                {% if data.info.store_reservation_link != "" %}
+                    <span><a href="{{data.info.store_reservation_link}}"  style="text-decoration:underline;">(예약 페이지로 이동)</a></span>
+                {% endif %}
+            </td>
         </tr>
     </table>
     <br>
