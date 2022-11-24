@@ -37,80 +37,78 @@
                                 maxTicksLimit: 3
                             }
                         }
-                    },
-                });
-                myRadarChart.options.legend.display = false;
-                </script>
-            </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="part">
-            <p>
-                <span class="redstar"><b>4.5</b></span>
-                <span class="graystar"> / 5.0</span>	
-            </p>
-            <div class="stars" data-percent="90"></div>
-            <br>
-            <h3 class="revisit"><b>재방문 의사 92%</b></h3>
+                    }
+                },
+            );
+            myRadarChart.options.legend.display = false;
+            </script>
         </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="part">
+        <p> 
+            <span class="redstar"><b>4.5</b></span>
+            <span class="graystar"> / 5.0</span>	
+        </p>
+        <div class="stars" data-percent="90"></div>
         <br>
-        <hr>
-        <table>
-            <a href="/modification-restaurant" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
-            <br>
-            <tr>
-                <h1><th>주소</th>
-                <td>서울 서대문구 이화여대3길 28 101호</td></h1>
-            </tr>
-            <tr>
-                <th>영업시간</th>
-                <td>11:00 ~ 재료 소진 시까지 / 일요일 휴무</td>
-            </tr>
-            <tr>
-                <th>전화번호</th>
-                <td>02-6401-7991</td>
-            </tr>
-            <tr>
-                <th>사이트</th>
-                <td>@youyake_tokyo</td>
-            </tr>
-            <tr>
-                <th>음식 카테고리</th>
-                <td>일식</td>
-            </tr>
-            <tr>
-                <th>주차여부</th>
-                <td>불가능</td>
-            </tr>
-            <tr>
-                <th>예약안내</th>
-                <td><b><a href="https://map.naver.com/v5/entry/place/1635954043?c=14131358.6381226,4517178.2417222,13,0,0,0,dh&placePath=%2Fhome%3Fentry=plt">예약하기</a></b></td>
-            </tr>
-        </table>
+        <h3 class="revisit"><b>재방문 의사 92%</b></h3>
+    </div>
+    <br>
+    <hr class= "hr">
+    <table class="table">
+        <a href="/modification-restaurant" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
         <br>
-        <hr>
-        <br>
-        <br>
-        <div class="image-wrap">
-            <p class = "image"><b>사진</b></p>
-            <a href="#" class="more"><h3><b>더보기</b></h3></a>       
-            <br>
-            <br>
-    
-            <div class="food-images">
-                <img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-                <img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-                <img src="{{ url_for('static', filename='image/tokyo3.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-                <img src="{{ url_for('static', filename='image/tokyo4.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-                <img src="{{ url_for('static', filename='image/tokyo5.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-                <img src="{{ url_for('static', filename='image/tokyo6.jpg')}}" alt=Tokyo onclick= "window.open(this.src)">
-            </div>
-        </div>
+        <tr>
+            <h1><th class="tableh">주소</th>
+            <td class="tabled">{{data.info.store_addr}}</td></h1>
+        </tr>
+        <tr>
+            <th>영업시간</th>
+            <td>{{data.info.store_open}} ~ {{data.info.store_close}}</td>
+        </tr>
+        <tr>
+            <th>전화번호</th>
+            <td>{{data.info.store_phoneNum}}</td>
+        </tr>
+        <tr>
+            <th>사이트</th>
+            <td>{{data.info.store_site}}</td>
+        </tr>
+        <tr>
+            <th>음식 카테고리</th>
+            <td>{{data.info.store_category}}</td>
+        </tr>
+        <tr>
+            <th>가격대</th>
+            <td>{{data.info.store_cost_min}} ~ {{data.info.store_cost_max}}</td>
+        </tr>
+        <tr>
+            <th>주차여부</th>
+            <td>{{data.info.store_parking}}</td>
+        </tr>
+        <tr>
+            <th>예약안내</th>
+            <td><b><a href="https://map.naver.com/v5/entry/place/1635954043?c=14131358.6381226,4517178.2417222,13,0,0,0,dh&placePath=%2Fhome%3Fentry=plt">예약하기</a></b></td>
+        </tr>
+    </table>
+    <br>
+    <hr class="hr">
+    <br>
+    <br>
+    <p class = "image"><b>사진</b></p>
+            <a href="#" class="more"><h3><b>더보기</b></h3></a>
+    <br>
+    <br>
+    <div class="food-images">
+        <div style="width : 160px; height : 160px; margin: 10px 15px 20px 0px; background-color: rgb(170, 170, 170);">이미지</div>
+        <!-- <img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)"> -->
+
     </div>
     
 </div>

@@ -28,7 +28,7 @@ def list_restaurants():
     count = len(data)  # 등록된 맛집 개수
     data = dict(list(data.items())[start_idx:end_idx])
 
-    print(data, count)
+    #print(data, count)
     return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 
@@ -98,16 +98,17 @@ def reg_restaurantData_submit_post():
     global idx
     image_file = request.files["file"]
     if image_file.filename != '':
-        image_file.save("static/image/"+image_file.filename)
-        image_path = "static/image/"+image_file.filename
+        image_file.save("./static/image/{}".format(image_file.filename))
+        image_path = "./static/image/{}".format(image_file.filename)
         print(image_path)
     else:
         image_path = "./static/image/grey.png"
+        image_file.filename="grey.png"
         print(image_path)
 
     data = request.form
 
-    if DB.insert_restaurant(data['store_name'], data, image_file.filename):
+    if DB.insert_restaurant(data['store_name'], data, image_path):
         return render_template("result_맛집등록.html", data=data, image_path=image_path)
     else:
         return "Restaurant name already exist!"
