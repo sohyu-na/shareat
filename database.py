@@ -13,7 +13,7 @@ class DBhandler:
 
     # DB에 저장
     def insert_restaurant(self, name, data, img_path):
-        restaurant_info = {
+        restaurant_info ={
             "store_phoneNum": data['store_phoneNum'],
             "store_addr": data['store_addr'],
             "store_site": data['store_site'],
@@ -58,11 +58,11 @@ class DBhandler:
         restaurants = self.db.child("restaurant").get()
         target_value = ""
         for res in restaurants.each():
-            value = res.val()
+            value=res.val()
 
-            if res == name:
-                target_value = value
-            return target_value
+            if res.key() == name:
+                target_value=value
+        return target_value
 
     # ===== 2) 메뉴 data ======
 
