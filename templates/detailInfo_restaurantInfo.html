@@ -75,8 +75,9 @@
             <td>
                 {% if (data.info.store_open == "")and(data.info.store_close =="") %}  <!--영업시간 미입력 시 공백(등록 정보 없음)-->
                 {% else %}
-                    {{data.info.store_open}}시 ~ {{data.info.store_close}}시</td>
+                    {{data.info.store_open}}시 ~ {{data.info.store_close}}시
                 {% endif %}
+            </td>
         </tr>
         <tr>
             <th>전화번호</th>
@@ -92,7 +93,12 @@
         </tr>
         <tr> 
             <th>가격대</th>
-            <td>{{data.info.store_cost_min}} ~ {{data.info.store_cost_max}}</td>
+            <td>
+                {% if (data.info.store_cost_min == "")and(data.info.store_cost_max =="") %}  <!--가격대 미입력 시 공백(등록 정보 없음)-->
+                {% else %}
+                    {{data.info.store_cost_min}} ~ {{data.info.store_cost_max}}
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>주차여부</th>
