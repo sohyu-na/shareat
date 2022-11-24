@@ -8,15 +8,17 @@ app = Flask(__name__)
 DB = DBhandler()
 
 
-# [페이지 경로 설정]
+# ===== [페이지 경로 설정] =====
 
 
-@app.route("/")   # 메인홈
+@app.route("/")
 def goTo_mainHome():
     return redirect(url_for("list_restaurants"))
 
+# 메인홈(맛집 리스트)
 
-@app.route("/list")
+
+@app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
     limit = 9
@@ -34,8 +36,10 @@ def list_restaurants():
         data = dict(list(data.items())[start_idx:end_idx])
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
+# 맛집 상세정보 페이지
 
-@app.route("/detail-info/<name>/")   # 맛집 상세 정보 페이지
+
+@app.route("/detail-info/<name>/")   # 가게 상세 정보 페이지
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
@@ -52,48 +56,64 @@ def goTo_detailReiview(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("detailInfo_review.html", data=data, name=name)
 
+# 맛집 등록 페이지
 
-@app.route("/registration-restaurant")   # 맛집 등록 페이지
+
+@app.route("/registration-restaurant")
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
 
+# 메뉴 등록 페이지
 
-@app.route("/registration-menu")   # 메뉴 등록 페이지
+
+@app.route("/registration-menu")
 def goTo_registerMenu():
     return render_template("registerMenu.html")
 
+# 맛집 수정 페이지
 
-@app.route("/modification-restaurant")   # 맛집 수정 페이지
+
+@app.route("/modification-restaurant")
 def goTo_modifyRestaurantInfo():
     return render_template("modifyRestaurantInfo.html")
 
+ # 메뉴 수정 페이지
 
-@app.route("/registration-menu")   # 메뉴 수정 페이지
+
+@app.route("/registration-menu")
 def goTo_modifyMenu():
     return render_template("modifyMenu.html")
 
+# 리뷰 등록 페이지
 
-@app.route("/review")   # 리뷰 등록 페이지
+
+@app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
 
+# 내가 찜한 맛집 페이지
 
-@app.route("/mylist")   # 내가 찜한 맛집 페이지
+
+@app.route("/mylist")
 def goTo_myRestaurantList():
     return render_template("myRestaurantList.html")
 
+# 로그인 페이지
 
-@app.route("/login")   # 로그인 페이지
+
+@app.route("/login")
 def goTo_login():
     return render_template("login.html")
 
+ # 회원가입 페이지
 
-@app.route("/signup")    # 회원가입 페이지
+
+@app.route("/signup")
 def goTo_signup():
     return render_template("signup.html")
 
 
-# [사용자 입력 데이터 받아오기]
+# ===== [사용자 입력 데이터 받아오기] =====
 
 
 @app.route("/submit_restaurantData_post", methods=['POST'])
