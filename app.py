@@ -103,7 +103,7 @@ def reg_restaurantData_submit_post():
         print(image_path)
     else:
         image_path = "./static/image/grey.png"
-        image_file.save(image_path)
+        image_file.filename="grey.png"
         print(image_path)
 
     data = request.form
