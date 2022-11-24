@@ -1,8 +1,8 @@
-.hr{
-	width : 100%;
-}
-
-.main-wrap{
+hr{
+	width : 900px;
+ }
+ 
+ .main-wrap{
     margin: 0px 220px 0px 220px;
     align-items: center;
 }
@@ -21,29 +21,6 @@
 	font-size : 50px;
 	  }
 
-.midnav{
-	list-style-type : none;
-	text-align : center;
-	margin : 0;
-	padding : 0;
-	overflow : hidden;
-	width : 100%;
-}
-
-.midnav a{
-	display : inline-block;
-	font-size: 20px;
-	padding : 30px 100px 50px 100px;
-	text-decoration : none;
-	color : #6B6B6E;
-	text-decoration-line: underline;
-	text-decoration-color: currentColor;
-}
-
-.midnav a:hover{
-	color : #FF4A4A;
-}
-
 .now{
 	color : #FF4A4A;
 }
@@ -56,7 +33,7 @@ a:hover{
 	  color : #FF4A4A;
 }
 
-.like:hover{
+like:clicked{
 	color : #FF4A4A;
 }
 
@@ -113,7 +90,7 @@ img {
 
 .modifylink{
 	float : right;
-	width : 20%;
+	width : 30%;
 	color:#b5b5b5;
 }
 
@@ -200,18 +177,23 @@ img {
 	padding-top:5px;
 }
 
-.table{
+table{
 	text-align : left;
-	width : 100%;
+	width : 900px;
 	font-size : 120%;
 	line-height : 100%;
+	
 }
 
-.tableh{
+tr{
+	width : 1000px;
+}
+
+th{
 	width : 30%;
 }
 
-.tabled{
+td{
 	width : 70%;
 }
 
@@ -224,8 +206,21 @@ img {
 	width : 10%;
 }
 
-.foodimages{
-	width : 160px;
+.food-images{
+	width : 1000px;
 	height : 160px;
-	margin: 10px 10px 20px 0px;
+	padding: 0 10px 0 10px;
+	overflow : hidden;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+.food-images img{
+	width : 160px; height : 160px;
+}
+
+.image-wrap{
+	width:1000px;
+	padding-left: 150px;
+	padding-bottom : 50px;
 }
