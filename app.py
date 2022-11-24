@@ -25,11 +25,14 @@ def list_restaurants():
     end_idx = limit*(page+1)
 
     data = DB.get_restaurants()  # 맛집 리스트 데이터
-    count = len(data)  # 등록된 맛집 개수
-    data = dict(list(data.items())[start_idx:end_idx])
 
-    #print(data, count)
-    return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
+    if data == None:
+        count = 0    # 등록된 맛집 개수
+        return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
+    else:
+        count = len(data)
+        data = dict(list(data.items())[start_idx:end_idx])
+        return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 
 @app.route("/detail-info/<name>/")   # 맛집 상세 정보 페이지
@@ -103,7 +106,7 @@ def reg_restaurantData_submit_post():
         print(image_path)
     else:
         image_path = "./static/image/grey.png"
-        image_file.filename="grey.png"
+        image_file.filename = "grey.png"
         print(image_path)
 
     data = request.form
