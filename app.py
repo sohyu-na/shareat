@@ -98,8 +98,8 @@ def reg_restaurantData_submit_post():
     global idx
     image_file = request.files["file"]
     if image_file.filename != '':
-        image_file.save("static/image/{}".format(image_file.filename))
-        image_path = "static/image/{}".format(image_file.filename)
+        image_file.save("./static/image/{}".format(image_file.filename))
+        image_path = "./static/image/{}".format(image_file.filename)
         print(image_path)
     else:
         image_path = "./static/image/grey.png"
@@ -108,7 +108,7 @@ def reg_restaurantData_submit_post():
 
     data = request.form
 
-    if DB.insert_restaurant(data['store_name'], data, image_file.filename):
+    if DB.insert_restaurant(data['store_name'], data, image_path):
         return render_template("result_맛집등록.html", data=data, image_path=image_path)
     else:
         return "Restaurant name already exist!"
