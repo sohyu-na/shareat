@@ -73,6 +73,18 @@ class DBhandler:
             review_grades.append(float(value['review_grade']))
         return sum(review_grades)/len(review_grades)
     
+    #리뷰에 접근하여 가게 재방문의사 계산하기
+    def get_revisitrate_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        cnt=0
+        revisit_count=0
+        for rev in reviews.each():
+            cnt+=1
+            value = rev.val()
+            if(value['revisit']=='y'):
+                revisit_count+=1
+        return int(revisit_count/cnt)
+    
     #다섯가지 키워드 응답자 수 계산
     def review_keyword_respondent_check(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
