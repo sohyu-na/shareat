@@ -59,10 +59,17 @@ class DBhandler:
         target_value = ""
         for res in restaurants.each():
             value=res.val()
-
             if res.key() == name:
                 target_value=value
         return target_value
+    
+    #가게별 리뷰 개수 구하기
+    def get_reviewcount_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        reviews_cnt=0
+        for rev in reviews.each():
+            reviews_cnt+=1
+        return reviews_cnt
     
     #리뷰에 접근하여 가게 평점 계산하기
     def get_avgrate_byname(self,name):
@@ -76,14 +83,13 @@ class DBhandler:
     #리뷰에 접근하여 가게 재방문의사 계산하기
     def get_revisitrate_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
-        cnt=0
+        reviews_cnt=self.get_reviewcount_byname(name)
         revisit_count=0
         for rev in reviews.each():
-            cnt+=1
             value = rev.val()
             if(value['revisit']=='y'):
                 revisit_count+=1
-        return int(revisit_count/cnt)
+        return int(revisit_count/reviews_cnt)
     
     #다섯가지 키워드 응답자 수 계산
     def review_keyword_respondent_check(self, name):
