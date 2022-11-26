@@ -25,7 +25,15 @@ class DBhandler:
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
             "store_cost_max": data['store_cost_max'],
-            "img_path": img_path
+            "img_path": img_path,
+            "review": "",
+            "store_grade": 0,
+            "store_taste": 0,
+            "store_cost": 0,
+            "store_service": 0,
+            "store_cleanliness": 0,
+            "store_atmosphere": 0,
+            "store_revisit": 0
         }
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
@@ -125,7 +133,7 @@ class DBhandler:
         return int(cost_count/respondent*100)
     
     #리뷰에 접근하여 다섯가지 키워드 별 계산하기-service
-    def get_servicecore_byname(self,name):
+    def get_serviceScore_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent=self.review_keyword_respondent_check(name)
         service_count=0
@@ -205,7 +213,24 @@ class DBhandler:
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("review").push(review_info)
-      
+        #리뷰작성 시 가게이름을 받으면 가게이름을 매게인자로 하여 함수호출(아직 미해결)self.update_storeScore_byname(data, name)
+        
+    #리뷰 등록할 때마다 평점(평점, 재방문의사, 키워드5)을 업데이트
+    def update_storeScore_byname(self, name):
+        avgScore = self.get_avgrate_byname(self,name)
+        tasteScore = self.get_tasteScore_byname(self,name)
+        costScore = self.get_costScore_byname(self,name)
+        serviceScore = self.get_serviceScore_byname(self,name)
+        cleanlinessScore = self.get_cleanlinessScore_byname(self,name)
+        atmosphereScore = self.get_atmosphereScore_byname(self,name)
+        revisit = self.get_revisitrate_byname(self,name)
+        self.db.child("restaurant").child(name).child("review").update({"store_grade":avgScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_taste":tasteScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_cost":costScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_service":serviceScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_cleanliness":cleanlinessScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_atmosphere":atmosphereScore})
+        self.db.child("restaurant").child(name).child("review").update({"store_revisit":revisit})
 
     # 회원 가입 화면
     def insert_member(self, name, data):  # 회원 가입 페이지
