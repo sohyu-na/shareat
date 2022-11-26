@@ -63,6 +63,83 @@ class DBhandler:
             if res.key() == name:
                 target_value=value
         return target_value
+    
+    #리뷰에 접근하여 가게 평점 계산하기
+    def get_avgrate_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        review_grades=[]
+        for rev in reviews.each():
+            value = rev.val()
+            review_grades.append(float(value['review_grade']))
+        return sum(review_grades)/len(review_grades)
+    
+    #다섯가지 키워드 응답자 수 계산
+    def review_keyword_respondent_check(self, name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=0
+        for rev in reviews.each():
+            value = rev.val()
+            if((value['taste']=='y') or (value['cost']=='y') or (value['service']=='y') or (value['cleanliness']=='y') or (value['atmosphere']=='y')): #하나라도 y이면 응답자로 생각
+                respondent+=1
+                continue
+        return respondent
+    
+    #리뷰에 접근하여 다섯가지 키워드 별 계산하기-taste
+    def get_tasteScore_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=self.review_keyword_respondent_check(name)
+        taste_count=0
+        for rev in reviews.each():
+            value = rev.val()
+            if(value['taste']=='y'):
+                taste_count+=1
+        return taste_count/respondent*100
+    
+    #리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
+    def get_costScore_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=self.review_keyword_respondent_check(name)
+        cost_count=0
+        for rev in reviews.each():
+            value = rev.val()
+            if(value['taste']=='y'):
+                cost_count+=1
+        return int(cost_count/respondent*100)
+    
+    #리뷰에 접근하여 다섯가지 키워드 별 계산하기-service
+    def get_servicecore_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=self.review_keyword_respondent_check(name)
+        service_count=0
+        for rev in reviews.each():
+            value = rev.val()
+            if(value['service']=='y'):
+                service_count+=1
+        return int(service_count/respondent*100)
+    
+    #리뷰에 접근하여 다섯가지 키워드 별 계산하기-cleanliness
+    def get_cleanlinessScore_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=self.review_keyword_respondent_check(name)
+        cleanliness_count=0
+        for rev in reviews.each():
+            value = rev.val()
+            if(value['cleanliness']=='y'):
+                cleanliness_count+=1
+        return int(cleanliness_count/respondent*100)
+    
+    #리뷰에 접근하여 다섯가지 키워드 별 계산하기-atmosphere
+    def get_atmosphereScore_byname(self,name):
+        reviews = self.db.child("restaurant").child(name).child("review").get()
+        respondent=self.review_keyword_respondent_check(name)
+        atmosphere_count=0
+        for rev in reviews.each():
+            value = rev.val()
+            if(value['atmosphere']=='y'):
+                atmosphere_count+=1
+        return int(atmosphere_count/respondent*100)
+    
+        
 
     # ===== 2) 메뉴 data ======
 
@@ -110,6 +187,7 @@ class DBhandler:
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("review").push(review_info)
+      
 
     # 회원 가입 화면
     def insert_member(self, name, data):  # 회원 가입 페이지
