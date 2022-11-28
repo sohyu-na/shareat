@@ -210,7 +210,7 @@ class DBhandler:
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("review").push(review_info)
-        # 리뷰작성 시 가게이름을 받으면 가게이름을 매게인자로 하여 함수호출(아직 미해결)self.update_storeScore_byname(data, name)
+        # self.update_storeScore_byname(data, name)
 
     # 리뷰 등록할 때마다 평점(평점, 재방문의사, 키워드5)을 업데이트
     def update_storeScore_byname(self, name):
@@ -222,19 +222,19 @@ class DBhandler:
         atmosphereScore = self.get_atmosphereScore_byname(self, name)
         revisit = self.get_revisitrate_byname(self, name)
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_grade": avgScore})
+            "info").update({"store_grade": avgScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_taste": tasteScore})
+            "info").update({"store_taste": tasteScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_cost": costScore})
+            "info").update({"store_cost": costScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_service": serviceScore})
+            "info").update({"store_service": serviceScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_cleanliness": cleanlinessScore})
+            "info").update({"store_cleanliness": cleanlinessScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_atmosphere": atmosphereScore})
+            "info").update({"store_atmosphere": atmosphereScore})
         self.db.child("restaurant").child(name).child(
-            "review").update({"store_revisit": revisit})
+            "info").update({"store_revisit": revisit})
 
     # 회원 가입 화면
     def insert_member(self, name, data):  # 회원 가입 페이지
