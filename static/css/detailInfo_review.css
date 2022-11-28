@@ -18,6 +18,13 @@ ul,li {
     width:80px;
  }
  
+ button{
+   border: none;
+   background-color: white;
+   text-align:right;
+   float:right;
+ }
+ 
  #btn-modify-menu{
     text-align:right;
     float:right;
