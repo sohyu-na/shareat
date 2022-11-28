@@ -20,6 +20,13 @@ html {
 
 /*===============================================*/
 
+button{
+	border: none;
+	background-color: white;
+	text-align:right;
+	float:right;
+  }
+  
 #btn-modify-menu{
 	float:right;
 	margin:15px;

@@ -4,117 +4,51 @@
 <div class="main-wrap">
   <div class = "midnavs">
     <div class="midnav"><a href="/detail-info/{{name}}">가게정보</a></div> 
-    <div class="midnav"><a href="/detail-menu/{{name}}">대표메뉴</a></div> 
-    <div class="midnav active"><a href="/detail-reiview/{{name}}">리뷰조회</a></div> 
+        <div class="midnav"><a href="/detail-menu/{{name}}">대표메뉴</a></div> 
+        <div class="midnav active"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
   </div>
 
+<!--리뷰 등록하기 버튼-->
+  <form action="/review_storeName_post" method="post">
+    <input type="hidden" name="store_name" value="{{name}}">
+    <button type="submit">
+      <div id="btn-modify-menu">
+        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;리뷰 등록하기</b></a>
+      </div>
+    </button>
+  </form>
+  {% if total>0 %}
 
-  <div id="btn-modify-menu">
-    <a><i class="fa-solid fa-pencil"></i><b>&nbsp;리뷰 등록하기</b></a>
-  </div>
-  <table>
-    <tr>
-        <th class="writeuser">ewha2022</th>
-        <th class="writestar"><div class="stars" data-percent="50"></div></th>
-        <th class="writescore">2.5 &nbsp;----------------------------------------------</th>
-        <th class="writedate">2022.11.23</th>
-    </tr>
-    <tr>
-      <td></td>
-        <td colspan="2"><div class="reviewImage"><img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo><img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo></div></td>
-        <td class="agree"><button style = "margin-top:auto;">동의</button></td>
-    </tr>
-    <tr>
-      <td></td>
-        <td colspan="3">
-          <div class="comment">  
-            <blockquote>유야케도쿄 처음 가봤는데 맛있었어요! 양도 적당하고 직원도 친절해요. 다음에 친구 데리고 또 갈 의향 있습니다~</blockquote>
-        </div></td>
-    </tr>
-  </table>
-  <hr>
-  <table>
-    <tr>
-        <th class="writeuser">ewha2022</th>
-        <th class="writestar"><div class="stars" data-percent="50"></div></th>
-        <th class="writescore">2.5 &nbsp;----------------------------------------------</th>
-        <th class="writedate">2022.11.23</th>
-    </tr>
-    <tr>
-      <td></td>
-        <td colspan="2"><div class="reviewImage"><img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo><img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo></div></td>
-        <td class="agree"><button style = "margin-top:auto;">동의</button></td>
-    </tr>
-    <tr>
-      <td></td>
-        <td colspan="3">
-          <div class="comment">  
-            <blockquote>유야케도쿄 처음 가봤는데 맛있었어요! 양도 적당하고 직원도 친절해요. 다음에 친구 데리고 또 갈 의향 있습니다~</blockquote>
-        </div></td>
-    </tr>
-  </table>
-  <hr>
-  <table>
-  <tr>
-      <th class="writeuser">ewha2022</th>
-      <th class="writestar"><div class="stars" data-percent="50"></div></th>
-      <th class="writescore">2.5 &nbsp;----------------------------------------------</th>
-      <th class="writedate">2022.11.23</th>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="2"><div class="reviewImage"><img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo><img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo></div></td>
-      <td class="agree"><button style = "margin-top:auto;">동의</button></td>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="3">
-        <div class="comment">  
-          <blockquote>유야케도쿄 처음 가봤는데 맛있었어요! 양도 적당하고 직원도 친절해요. 다음에 친구 데리고 또 갈 의향 있습니다~</blockquote>
-      </div></td>
-  </tr>
-</table>
-<hr>
-<table>
-  <tr>
-      <th class="writeuser">ewha2022</th>
-      <th class="writestar"><div class="stars" data-percent="50"></div></th>
-      <th class="writescore">2.5 &nbsp;----------------------------------------------</th>
-      <th class="writedate">2022.11.23</th>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="2"><div class="reviewImage"><img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo><img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo></div></td>
-      <td class="agree"><button style = "margin-top:auto;">동의</button></td>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="3">
-        <div class="comment">  
-          <blockquote>유야케도쿄 처음 가봤는데 맛있었어요! 양도 적당하고 직원도 친절해요. 다음에 친구 데리고 또 갈 의향 있습니다~</blockquote>
-      </div></td>
-  </tr>
-</table>
-<hr>
-<table>
-  <tr>
-      <th class="writeuser">ewha2022</th>
-      <th class="writestar"><div class="stars" data-percent="50"></div></th>
-      <th class="writescore">2.5 &nbsp;----------------------------------------------</th>
-      <th class="writedate">2022.11.23</th>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="2"><div class="reviewImage"><img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo><img src="{{ url_for('static', filename='image/tokyo2.jpg')}}" alt=Tokyo></div></td>
-      <td class="agree"><button style = "margin-top:auto;">동의</button></td>
-  </tr>
-  <tr>
-    <td></td>
-      <td colspan="3">
-        <div class="comment">  
-          <blockquote>유야케도쿄 처음 가봤는데 맛있었어요! 양도 적당하고 직원도 친절해요. 다음에 친구 데리고 또 갈 의향 있습니다~</blockquote>
-      </div></td>
-  </tr>
-</table>
+    {% for review in review_data %}
+    <table>
+      <tr>
+          <th class="writeuser">{{review.nickname}}</th>
+          <th class="writestar"><div class="stars" data-percent="50"></div></th>
+          <th class="writescore">{{review.review_grade}} &nbsp;----------------------------------------------</th>
+          <th class="writedate">2022.11.23</th>
+      </tr>
+      <tr>
+        <td></td>
+          <td colspan="2">
+            <div class="reviewImage">
+              <img src="/{{review.reviewImg_path}}">
+            </div>
+          </td>
+          <td class="agree"><button style = "margin-top:auto;">동의</button></td>
+      </tr>
+      <tr>
+        <td></td>
+          <td colspan="3">
+            <div class="comment">  
+              <blockquote>{{review.detail_review}}</blockquote>
+          </div></td>
+      </tr>
+    </table>
+    {% endfor %}
+
+  {% else %}
+  <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
+  {% endif %}
+
 </div>
 {% endblock main %}

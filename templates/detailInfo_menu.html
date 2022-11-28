@@ -5,53 +5,58 @@
     <div class = "midnavs">
         <div class="midnav"><a href="/detail-info/{{name}}">가게정보</a></div> 
         <div class="midnav active"><a href="/detail-menu/{{name}}">대표메뉴</a></div> 
-        <div class="midnav"><a href="/detail-reiview/{{name}}">리뷰조회</a></div> 
+        <div class="midnav"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
     </div>
 
-
-    <div id="btn-modify-menu">
-        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 수정하기</b></a>
-    </div>
-
-    <div id="menu-box">
-        <div class="menu-item">
-            <div class="menu-img">
-                <div class>이미지</div>
-            </div>
-            <div class="menu-info">
-                <div class="menu-name">음식명 : _____________</div>
-                <div class="menu-price">가격 : __________</div>
-
-                <div class="menu-info-signicant">
-                    <div>
-                        ■ vegetarian                               
-                    </div>
-                    <div>
-                        ■ allergy                               
-                    </div>
-                </div>
-            </div>
+ <!--대표메뉴 수정하기 버튼-->
+  <form action="/modifyMenu_storeName_post" method="post">
+    <input type="hidden" name="store_name" value="{{name}}">
+    <button type="submit">
+        <div id="btn-modify-menu">
+            <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 수정하기</b></a>
         </div>
+    </button>
+  </form>
 
-        <div class="menu-item">
-            <div class="menu-img">
-                <div class>이미지</div>
-            </div>
-            <div class="menu-info">
-                <div class="menu-name">음식명 : _____________</div>
-                <div class="menu-price">가격 : __________</div>
+  
+  {% for menu in menu_data %}
+  <div id="menu-box">
+      <div class="menu-item">
+          <div class="menu-img">
+              <img src="/{{menu.menuImg_path}}">
+          </div>
+          <div class="menu-info">
+              <div class="menu-name">음식명 : {{menu.menu_name}}</div>
+              <div class="menu-price">가격 : {{menu.menu_price}}</div>
 
-                <div class="menu-info-signicant">
-                    <div>
-                        ■ vegetarian                               
-                    </div>
-                    <div>
-                        ■ allergy                               
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+              <div class="menu-info-signicant">
+                  <div>
+                      ■ vegetarian                               
+                  </div>
+                  <p>
+                      {% if menu['extra_ve'] == "y" %}
+                      vegetarian friendly
+                      {% endif %}
+                      {% if menu['extra_ve'] == "n" %}
+                      NOT vegetarian friendly
+                      {% endif %}
+                  </p>
+                  <div>
+                      ■ allergy                               
+                  </div>
+                  <p>
+                      {% if menu['extra_al'] == "y" %}
+                      allergic food
+                      {% endif %}
+                      {% if menu['extra_al'] == "n" %}
+                      non-allergic food
+                      {% endif %}
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock main %}
     
