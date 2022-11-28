@@ -182,7 +182,7 @@ def reg_loginData_submit_post():
     return render_template("result_로그인.html", data=data)
 
 
-@app.route("/submit_reviewData_post", methods=['POST'])
+@app.route("/submit_reviewData_post", methods=['POST'])    # 리뷰
 def reg_reviewData_submit_post():
     global idx
     image_file = request.files["picture"]
