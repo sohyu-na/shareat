@@ -168,6 +168,7 @@ img {
 .stars[data-percent="0.9"]:BEFORE {
     width:16%;
 }
+
 .stars[data-percent="1.0"]:BEFORE {
     width:20%;
 }
@@ -198,6 +199,7 @@ img {
 .stars[data-percent="1.9"]:BEFORE {
     width:36%;
 }
+
 .stars[data-percent="2.0"]:BEFORE {
     width:40%;
 }
@@ -228,6 +230,7 @@ img {
 .stars[data-percent="2.9"]:BEFORE {
     width:56%;
 }
+
 .stars[data-percent="3.0"]:BEFORE {
     width:60%;
 }
@@ -258,6 +261,7 @@ img {
 .stars[data-percent="3.9"]:BEFORE {
     width:76%;
 }
+
 .stars[data-percent="4.0"]:BEFORE {
     width:80%;
 }
