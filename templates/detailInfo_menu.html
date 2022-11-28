@@ -1,92 +1,57 @@
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="utf-8" />
+{% extends "detailnavbar.html" %}
 
-        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/detailInfo_menu.css')}}">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
-        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer" />
+{% block main %}
+<div class="main-wrap">
+    <div class = "midnavs">
+        <div class="midnav"><a href="/detail-info/{{name}}">가게정보</a></div> 
+        <div class="midnav active"><a href="/detail-menu/{{name}}">대표메뉴</a></div> 
+        <div class="midnav"><a href="/detail-reiview/{{name}}">리뷰조회</a></div> 
+    </div>
 
-        <title>맛집 상세정보-메뉴정보</title>
-    </head>
 
-    <body>
-        <!--비회원 상단바-->
-        <div id="navbar">
-            <div id="logo"><a href="/">Shareat</a></div>
-            <div id="login-or-signup">
-                <div><a href="/login">로그인</a></div>
-                <div>|</div>
-                <div><a href="/signup">회원가입</a></div>
+    <div id="btn-modify-menu">
+        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 수정하기</b></a>
+    </div>
+
+    <div id="menu-box">
+        <div class="menu-item">
+            <div class="menu-img">
+                <div class>이미지</div>
+            </div>
+            <div class="menu-info">
+                <div class="menu-name">음식명 : _____________</div>
+                <div class="menu-price">가격 : __________</div>
+
+                <div class="menu-info-signicant">
+                    <div>
+                        ■ vegetarian                               
+                    </div>
+                    <div>
+                        ■ allergy                               
+                    </div>
+                </div>
             </div>
         </div>
-        <header>
-            <div class="main_image">
-                <img src="../assets/img/tokyo.jpg" alt=Tokyo style = "width:100%;">
-                 <h1 class="main_image_text" style="font-size:40px">유 야 케  도 쿄</h1>
+
+        <div class="menu-item">
+            <div class="menu-img">
+                <div class>이미지</div>
             </div>
-        </header>
+            <div class="menu-info">
+                <div class="menu-name">음식명 : _____________</div>
+                <div class="menu-price">가격 : __________</div>
 
-
-        <main>
-            <!--네이케이션 바-->
-            <section>
-                <div id="btn-modify-menu">
-                    <a>대표메뉴 수정하기</a>
-                </div>
-
-                <div id="menu-box">
-                    <div class="menu-item">
-                        <div class="menu-img">
-                            <div class>이미지</div>
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-name">음식명 : _____________</div>
-                            <div class="menu-price">가격 : __________</div>
-
-                            <div class="menu-info-signicant">
-                                <div>
-                                    ■ vegetarian                               
-                                </div>
-                                <div>
-                                    ■ allergy                               
-                                </div>
-                            </div>
-                        </div>
+                <div class="menu-info-signicant">
+                    <div>
+                        ■ vegetarian                               
                     </div>
-
-                    <div class="menu-item">
-                        <div class="menu-img">
-                            <div class>이미지</div>
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-name">음식명 : _____________</div>
-                            <div class="menu-price">가격 : __________</div>
-
-                            <div class="menu-info-signicant">
-                                <div>
-                                    ■ vegetarian                               
-                                </div>
-                                <div>
-                                    ■ allergy                               
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        ■ allergy                               
                     </div>
                 </div>
-            </section>
-        </main>
-
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
             </div>
-        </footer>
-
-    </body>
-
-</html>
+        </div>
+    </div>
+</div>
+{% endblock main %}
+    
