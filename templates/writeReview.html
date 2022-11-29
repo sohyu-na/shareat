@@ -6,6 +6,7 @@
 		<span class="restaurant-name">{{name}} </span><span class="review-title-subMessage"> 에 대한 솔직한 리뷰를 써주세요.</span>
 	</div>
 	<form action="/submit_reviewData_post" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="store_name" value="{{name}}">
 	<div class="review-grade">
 		<input class="slider slider-progress" type="range" step="0.1" min="0.0" max="5.0" id="Range" name="Range" value="0"/> <span id="grade" > 0.0</span>  
 	</div>

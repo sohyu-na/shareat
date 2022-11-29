@@ -73,11 +73,12 @@ img {
 }
 
 .rader-chart {
-	width: 55%;
 	margin: 0 auto;
 	float : left;
-	width : 55%;
+	width : 50%;
 	margin-bottom:20px;
+	margin-left:40px;
+	height : 350px;
 }
 
 .part {
@@ -138,37 +139,157 @@ img {
 }
 
 .stars:NOT([data-percent]):BEFORE,
-.stars[data-percent="0"]:BEFORE {
+.stars[data-percent="0.0"]:BEFORE {
     display:none;
 }
-.stars[data-percent="10"]:BEFORE {
+.stars[data-percent="0.1"]:BEFORE {
+    width:5.5%;
+}
+.stars[data-percent="0.2"]:BEFORE {
+    width:7%;
+}
+.stars[data-percent="0.3"]:BEFORE {
+    width:8%;
+}
+.stars[data-percent="0.4"]:BEFORE {
+    width:9%;
+}
+.stars[data-percent="0.5"]:BEFORE {
     width:10%;
 }
-.stars[data-percent="20"]:BEFORE {
+.stars[data-percent="0.6"]:BEFORE {
+    width:11.5%;
+}
+.stars[data-percent="0.7"]:BEFORE {
+    width:12.5%;
+}
+.stars[data-percent="0.8"]:BEFORE {
+    width:14%;
+}
+.stars[data-percent="0.9"]:BEFORE {
+    width:16%;
+}
+.stars[data-percent="1.0"]:BEFORE {
     width:20%;
 }
-.stars[data-percent="30"]:BEFORE {
+.stars[data-percent="1.1"]:BEFORE {
+    width:25.5%;
+}
+.stars[data-percent="1.2"]:BEFORE {
+    width:27%;
+}
+.stars[data-percent="1.3"]:BEFORE {
+    width:28%;
+}
+.stars[data-percent="1.4"]:BEFORE {
+    width:29%;
+}
+.stars[data-percent="1.5"]:BEFORE {
     width:30%;
 }
-.stars[data-percent="40"]:BEFORE {
+.stars[data-percent="1.6"]:BEFORE {
+    width:31.5%;
+}
+.stars[data-percent="1.7"]:BEFORE {
+    width:32.5%;
+}
+.stars[data-percent="1.8"]:BEFORE {
+    width:34%;
+}
+.stars[data-percent="1.9"]:BEFORE {
+    width:36%;
+}
+.stars[data-percent="2.0"]:BEFORE {
     width:40%;
 }
-.stars[data-percent="50"]:BEFORE {
+.stars[data-percent="2.1"]:BEFORE {
+    width:45.5%;
+}
+.stars[data-percent="2.2"]:BEFORE {
+    width:47%;
+}
+.stars[data-percent="2.3"]:BEFORE {
+    width:48%;
+}
+.stars[data-percent="2.4"]:BEFORE {
+    width:49%;
+}
+.stars[data-percent="2.5"]:BEFORE {
     width:50%;
 }
-.stars[data-percent="60"]:BEFORE {
+.stars[data-percent="2.6"]:BEFORE {
+    width:51.5%;
+}
+.stars[data-percent="2.7"]:BEFORE {
+    width:52.5%;
+}
+.stars[data-percent="2.8"]:BEFORE {
+    width:54%;
+}
+.stars[data-percent="2.9"]:BEFORE {
+    width:56%;
+}
+.stars[data-percent="3.0"]:BEFORE {
     width:60%;
 }
-.stars[data-percent="70"]:BEFORE {
+.stars[data-percent="3.1"]:BEFORE {
+    width:65.5%;
+}
+.stars[data-percent="3.2"]:BEFORE {
+    width:67%;
+}
+.stars[data-percent="3.3"]:BEFORE {
+    width:68%;
+}
+.stars[data-percent="3.4"]:BEFORE {
+    width:69%;
+}
+.stars[data-percent="3.5"]:BEFORE {
     width:70%;
 }
-.stars[data-percent="80"]:BEFORE {
+.stars[data-percent="3.6"]:BEFORE {
+    width:71.5%;
+}
+.stars[data-percent="3.7"]:BEFORE {
+    width:72.5%;
+}
+.stars[data-percent="3.8"]:BEFORE {
+    width:74%;
+}
+.stars[data-percent="3.9"]:BEFORE {
+    width:76%;
+}
+.stars[data-percent="4.0"]:BEFORE {
     width:80%;
 }
-.stars[data-percent="90"]:BEFORE {
+.stars[data-percent="4.1"]:BEFORE {
+    width:85.5%;
+}
+.stars[data-percent="4.2"]:BEFORE {
+    width:87%;
+}
+.stars[data-percent="4.3"]:BEFORE {
+    width:88%;
+}
+.stars[data-percent="4.4"]:BEFORE {
+    width:89%;
+}
+.stars[data-percent="4.5"]:BEFORE {
     width:90%;
 }
-.stars[data-percent="100"]:BEFORE {
+.stars[data-percent="4.6"]:BEFORE {
+    width:91.5%;
+}
+.stars[data-percent="4.7"]:BEFORE {
+    width:92.5%;
+}
+.stars[data-percent="4.8"]:BEFORE {
+    width:94%;
+}
+.stars[data-percent="4.9"]:BEFORE {
+    width:96%;
+}
+.stars[data-percent="5.0"]:BEFORE {
     width:100%;
 }
 
