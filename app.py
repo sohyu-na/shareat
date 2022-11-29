@@ -56,14 +56,15 @@ def goTo_detailReiview(name):
     rev =DB.get_reviews_byname(str(name))
     print(rev)
 
-    review_data = DB.get_review_byname(str(name))
+    # review_data = DB.get_review_byname(str(name))
     #count = len(review_data.keys())
 
     if rev == None:
         count = 0    # 등록된 맛집 개수
-        return render_template("detailInfo_review.html", review_data=review_data, data=data, name=name, total=count)  #total=count
+        return render_template("detailInfo_review.html", data=data, name=name, total=count)  #total=count
     
     else:
+        review_data = DB.get_review_byname(str(name))
         count = len(rev)
         return render_template("detailInfo_review.html", review_data=review_data, data=data, name=name, total=count)  #total=count
 
