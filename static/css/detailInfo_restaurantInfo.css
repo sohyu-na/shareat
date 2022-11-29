@@ -73,11 +73,12 @@ img {
 }
 
 .rader-chart {
-	width: 55%;
 	margin: 0 auto;
 	float : left;
-	width : 55%;
+	width : 50%;
 	margin-bottom:20px;
+	margin-left:40px;
+	height : 350px;
 }
 
 .part {

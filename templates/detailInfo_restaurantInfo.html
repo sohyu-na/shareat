@@ -12,7 +12,8 @@
     <div>
         <input id="check-btn" type="checkbox" />
         <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
-        <div class="rader-chart">
+
+        <div class="rader-chart">            
             <canvas id="myRaderChart"></canvas>
             <script>
                 var ctx = document.getElementById("myRaderChart");
@@ -21,7 +22,7 @@
                     data: { 
                         labels: ["맛", "가성비", "서비스", "분위기", "위생"],
                         datasets: [{
-                            data: [100, 70, 85, 90, 90],
+                            data: [{{data.info.store_taste}}, {{data.info.store_cost}}, {{data.info.store_service}}, {{data.info.store_atmosphere}}, {{data.info.store_cleanliness}}],
                             backgroundColor: 'rgba(255, 74, 74, 0.45)',
                             borderColor: '#fe2120',
                             borderWidth: 1,
@@ -35,6 +36,9 @@
                                 suggestedMax: 100,
                                 display : false,
                                 maxTicksLimit: 3
+                            },
+                            pointLabels:{
+                                fontSize:12
                             }
                         }
                     }
@@ -52,12 +56,12 @@
     <br>
     <div class="part">
         <p> 
-            <span class="redstar"><b>4.5</b></span>
+            <span class="redstar"><b>{{data.info.store_grade}}</b></span>
             <span class="graystar"> / 5.0</span>    
         </p>
-        <div class="stars" data-percent="90"></div>
+        <div class="stars" data-percent={{data.info.store_grade}}></div>
         <br>
-        <h3 class="revisit"><b>재방문 의사 92%</b></h3>
+        <h3 class="revisit"><b>재방문 의사 {{data.info.store_revisit}}%</b></h3>
     </div>
     <br>
     <hr class= "hr">
