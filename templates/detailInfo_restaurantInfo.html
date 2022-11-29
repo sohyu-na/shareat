@@ -19,9 +19,9 @@
                 var myRadarChart = new Chart(ctx, {
                     type: 'radar', 
                     data: { 
-                        labels: ["맛", "가성비", "서비스", "위생", "분위기"],
+                        labels: ["맛", "가성비", "서비스", "분위기", "위생"],
                         datasets: [{
-                            data: [data.info.store_taste, data.info.store_cost, data.info.store_service, data.info.store_cleanliness, data.info.store_atmosphere],
+                            data: [100, 70, 85, 90, 90],
                             backgroundColor: 'rgba(255, 74, 74, 0.45)',
                             borderColor: '#fe2120',
                             borderWidth: 1,
@@ -52,12 +52,12 @@
     <br>
     <div class="part">
         <p> 
-            <span class="redstar"><b>{{data.info.store_grade}}</b></span>
+            <span class="redstar"><b>4.5</b></span>
             <span class="graystar"> / 5.0</span>    
         </p>
-        <div class="stars" data-percent={{data.info.store_grade}}></div>
+        <div class="stars" data-percent="90"></div>
         <br>
-        <h3 class="revisit"><b>재방문 의사 {{data.info.store_revisit}}</b></h3>
+        <h3 class="revisit"><b>재방문 의사 92%</b></h3>
     </div>
     <br>
     <hr class= "hr">
