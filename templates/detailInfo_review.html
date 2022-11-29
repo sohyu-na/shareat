@@ -19,6 +19,8 @@
   </form>
 
 
+  {% if total>0 %}
+
   {% for review in review_data %}
   <table>
     <tr>
@@ -45,6 +47,10 @@
     </tr>
   </table>
   {% endfor %}
+
+{% else %}
+<p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
+{% endif %}
 
 </div>
 {% endblock main %}
