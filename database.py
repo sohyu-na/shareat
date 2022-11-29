@@ -72,6 +72,7 @@ class DBhandler:
     #가게별 리뷰 개수 구하기
     def get_reviews_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get().val()
+        return reviews
         
     def get_reviewcount_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
