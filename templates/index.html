@@ -1,143 +1,222 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
+  <head>
+    <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="{{url_for('static',filename='css/mainHome.css')}}">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
-        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/mainHome.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-        <title>Shareat</title>
-    </head>
-    
-    <body>
-        <header>
-            <nav class="navbar">
-                <a id="logo" href="/">Shareat</a>
+    <title>Shareat</title>
+  </head>
 
+  <body>
+    <header>
+      <nav class="navbar">
+        <a id="logo" href="/">Shareat</a>
 
-                <ul id="login-or-signup">
-                    <li><a href="/login">로그인</a></li>
-                    <li>|</li>
-                    <li><a href="/signup">회원가입</a></li>
-                </ul>
+        <ul id="login-or-signup">
+          {% if session['id'] %}
+          <li>
+            <a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a>
+            <!--회원 상단바-->
+            <li id="profile-logo"><i class="fas fa-light fa-circle-user fa-2x"></i></li>
+          </li>
+          {% else %}
+          <li><a href="/login">로그인</a></li>
+          <li>|</li>
+          <li><a href="/signup">회원가입</a></li>
+          {% endif %}
+        </ul>
 
-                <ul id="navbar_menu">
-                    <li><a href="/registration-restaurant">맛집 등록하기</a></li>
-                    <li><a href="#category">맛집 목록</a></li>
-                    <li><a href="/mylist">내가 찜한 맛집</a></li>
-                    <!--temp(for 과제제출)-->
-                    <li><a href="/registration-menu">메뉴 등록</a></li>
-                    <li><a href="/review">리뷰 등록</a></li>
-                </ul>
-            </nav>
+        <ul id="navbar_menu">
+          <li><a href="/registration-restaurant">맛집 등록하기</a></li>
+          <li><a href="#category">맛집 목록</a></li>
+          <li><a href="/mylist">내가 찜한 맛집</a></li>
+          <!--temp(for 과제제출)-->
+          <li><a href="/registration-menu">메뉴 등록</a></li>
+          <li><a href="/review">리뷰 등록</a></li>
+        </ul>
+      </nav>
 
+      <div id="header-content">
+        <div id="header-left-side">
+          <div id="slogan">
+            <div>나 만 의&emsp;맛 집 을&emsp;공 유 하 는</div>
+            <div>우 리 들 만 의&emsp;맛 집 백 과</div>
+          </div>
+          <div id="btn-register-restaurant">
+            <a href="#" class="btn-slide">
+              <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
+              <span class="slide-bottom" data-content="Slide"
+                >맛집 등록하기</span
+              >
+            </a>
+            <!-- <button><a href="#">맛집 등록 GO!</a></button> -->
+          </div>
+        </div>
+        <div id="header-right-side">
+          <div class="temp">이미지</div>
+        </div>
+      </div>
+    </header>
 
-            <div id="header-content">
-                <div id="header-left-side">
-                    <div id="slogan">
-                        <div>나 만 의&emsp;맛 집 을&emsp;공 유 하 는</div>
-                        <div>우 리 들 만 의&emsp;맛 집 백 과</div>
-                    </div>
-                    <div id="btn-register-restaurant">
-                        <a href="#"class="btn-slide">
-                            <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
-                            <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
-                        </a>
-                        <!-- <button><a href="#">맛집 등록 GO!</a></button> -->
-                    </div>
+    <main id="list-location">
+      <nav id="category">
+        <div id="btn-select-category">
+          <button>category</button>
+
+          <div id="chb-select-category">
+            <input
+              id="category1"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category1">한식</label>
+            <input
+              id="category2"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category2">중식</label>
+            <input
+              id="category3"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category3">일식</label>
+            <input
+              id="category4"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category4">양식</label>
+            <input
+              id="category5"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category5">아시아</label>
+            <input
+              id="category6"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category6">남미</label>
+            <input
+              id="category7"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category7">디저트</label>
+            <input
+              id="category8"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="categor8y">주점</label>
+            <input
+              id="category9"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="category9">기타</label>
+            <input
+              id="select-all"
+              class="chb-category"
+              name=""
+              value=""
+              type="checkbox"
+            />
+            <label for="select-all">전체</label>
+          </div>
+        </div>
+
+        <div id="btn-select-sort">
+          <button>평점순</button>
+          <span> | </span>
+          <button>최신순</button>
+        </div>
+      </nav>
+      <section>
+        <!---->
+        {% if total>0 %} {% for data in datas %}
+        <div class="restaurant-item">
+          <a href="/detail-info/{{data[0]}}">
+            <div class="restaurant-item-box">
+              <figure>
+                <img
+                  class="temp restaurant-img"
+                  src="{{data[1].info.img_path}}"
+                />
+                <!-- <div class="">이미지</div> -->
+              </figure>
+              <figcaption>
+                <div class="restaurant-name">{{data[0]}}</div>
+                <div class="restaurant-category">
+                  {{data[1].info.store_category}}
                 </div>
-                <div id="header-right-side">
-                    <div class="temp">이미지</div>
-                </div>            
+                <div class="restaurant-point">{{data[1].info.store_grade}}</div>
+              </figcaption>
             </div>
-        </header>
+          </a>
+        </div>
+        {% endfor %}
+        <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
+        <i class="icon-next-list fa-solid fa-chevron-right"
+          ><button></button
+        ></i>
+      </section>
 
-        <main id="list-location">
-            <nav id="category">
-                <div id="btn-select-category">
-                    <button>category</button>
+      <div class="page=wrap">
+        <div class="page-nation">
+          <ul>
+            <li>
+              {% for i in range(page_count) %}
+              <a
+                href="{{url_for('list_restaurants',page=i)}}#list-location"
+                color="black"
+                >{{i}}</a
+              >
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </div>
 
-                    <div id="chb-select-category">  
-                        <input id="category1" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category1">한식</label>
-                        <input id="category2" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category2">중식</label>
-                        <input id="category3" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category3">일식</label>
-                        <input id="category4" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category4">양식</label>
-                        <input id="category5" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category5">아시아</label>
-                        <input id="category6" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category6">남미</label>
-                        <input id="category7" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category7">디저트</label>
-                        <input id="category8" class="chb-category" name="" value="" type="checkbox">
-                        <label for="categor8y">주점</label>
-                        <input id="category9" class="chb-category" name="" value="" type="checkbox">
-                        <label for="category9">기타</label>
-                        <input id="select-all" class="chb-category" name="" value="" type="checkbox">
-                        <label for="select-all">전체</label>
-                     </div>
-                </div>
+      {% else %}
+      <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
+      {% endif %}
+    </main>
 
-                <div id="btn-select-sort">
-                    <button>평점순</button>
-                    <span> | </span>
-                    <button>최신순</button>
-                </div>
-            </nav>
-            <section>
-                <!---->
-                {% if total>0 %}
-                    {% for data in datas %}
-                    <div class="restaurant-item">
-                        <a href="/detail-info/{{data[0]}}">
-                            <div class="restaurant-item-box">
-                                <figure>
-                                    <img class="temp restaurant-img" src="{{data[1].info.img_path}}">
-                                    <!-- <div class="">이미지</div> -->
-                                </figure>
-                                <figcaption>                       
-                                    <div class="restaurant-name">{{data[0]}}</div>
-                                    <div class="restaurant-category">{{data[1].info.store_category}}</div>
-                                    <div class="restaurant-point">{{data[1].info.store_grade}}</div>
-                                </figcaption>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
-                <i class="icon-next-list fa-solid fa-chevron-right"><button></button></i>
-
-            </section>
-
-            <div class="page=wrap">
-                <div class="page-nation">
-                    <ul>
-                        <li>
-                            {% for i in range(page_count) %}
-                            <a href="{{url_for('list_restaurants',page=i)}}#list-location" color="black">{{i}}</a>
-                            {% endfor %}
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            {% else %}
-            <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
-            {% endif %}
-        </main>
-      
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
-            </div>
-        </footer>
-    </body>
+    <footer>
+      <div id="footer-content">Team 어서오소</div>
+    </footer>
+  </body>
 </html>
