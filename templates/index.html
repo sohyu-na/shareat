@@ -123,7 +123,7 @@
                     <ul>
                         <li>
                             {% for i in range(page_count) %}
-                            <a href="{{url_for('list_restaurants',page=i)}}#list-location" color="black">{{i}}</a>
+                            <a href="{{url_for('list_restaurants',page=i)}}#list-location" color="black">{{i+1}}</a>
                             {% endfor %}
                         </li>
                     </ul>
