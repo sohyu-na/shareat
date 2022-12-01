@@ -69,7 +69,7 @@ class DBhandler:
                 target_value=value
         return target_value
     
-    
+    #리뷰 목록 가져오기
     def get_reviews_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get().val()
         return reviews
@@ -101,7 +101,7 @@ class DBhandler:
                 revisit_count+=1
         return int(revisit_count/reviews_cnt*100)
     
-    #다섯가지 키워드 응답자 수 계산
+    #다섯가지 키워드 응답자 수 계산 !주의! 0일 경우 internal 에러라니까 조건문 추가해야함.
     def review_keyword_respondent_check(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent=0
@@ -113,15 +113,15 @@ class DBhandler:
         return respondent
     
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-taste
-    def get_tasteScore_byname(self, name):
+    def get_tasteScore_byname(self,name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         taste_count = 0
         for rev in reviews.each():
             value = rev.val()
-            if (value['taste'] == 'y'):
-                taste_count += 1
-        return int(taste_count/respondent*100)
+            if(value['taste'] == 'y'):
+                taste_count+=1
+        return type(int(taste_count/respondent*100))
     
     #리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self,name):
@@ -130,7 +130,7 @@ class DBhandler:
         cost_count=0
         for rev in reviews.each():
             value = rev.val()
-            if(value['taste']=='y'):
+            if(value['cost']=='y'):
                 cost_count+=1
         return int(cost_count/respondent*100)
     

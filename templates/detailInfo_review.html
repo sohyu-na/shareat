@@ -18,23 +18,28 @@
     </button>
   </form>
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  {% if total>0 %}
 
   {% for review in review_data %}
   <table>
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
-        <th class="writestar"><div class="stars" data-percent="50"></div></th>
+        <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
         <th class="writescore">{{review.review_grade}} &nbsp;----------------------------------------------</th>
         <th class="writedate">2022.11.23</th>
     </tr>
     <tr>
       <td></td>
-        <td colspan="2">
+        <td colspan="3">
           <div class="reviewImage">
             <img src="/{{review.reviewImg_path}}">
           </div>
         </td>
-        <td class="agree"><button style = "margin-top:auto;">동의</button></td>
     </tr>
     <tr>
       <td></td>
@@ -44,7 +49,12 @@
         </div></td>
     </tr>
   </table>
+  <div class="agree"><button style = "margin-top:auto;">동의</button></div>
   {% endfor %}
+
+{% else %}
+<p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
+{% endif %}
 
 </div>
 {% endblock main %}
