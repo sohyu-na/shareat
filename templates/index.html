@@ -22,7 +22,8 @@
 
     <script>
         //[카테고리 선택 체크박스]
-        //전체 버튼 클릭 시에 체크박스 전체 선택
+
+        //전체 버튼 클릭 시에 체크박스 전체 선택하기
         function selectAll(selectAll)  {
           const checkboxes 
               = document.getElementsByName('category');
@@ -31,6 +32,7 @@
             checkbox.checked = selectAll.checked;
           })
         }
+
         //맛집 목록 카테고리별 정렬
     </script>
 
@@ -166,7 +168,7 @@
               id="select-all"
               class="chb-category"
               name="category"
-              value="selectall"
+              value="전체"
               type="checkbox"
               onclick='selectAll(this)'
             />
@@ -180,6 +182,7 @@
           <button>최신순</button>
         </div>
       </nav>
+
       <section>
         <!---->
         {% if total>0 %} {% for data in datas %}
