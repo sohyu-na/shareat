@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from database import DBhandler
+import hashlib
 import sys
 from urllib import parse
 
@@ -158,7 +159,7 @@ def reg_restaurantData_submit_post():
     if DB.insert_restaurant(data['store_name'], data, image_path):
         return render_template("result_맛집등록.html", data=data, image_path=image_path)
     else:
-        return "Restaurant name already exist!"
+        return "Restaurant name already exists!"
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
 def reg_storeName_submit_post():
@@ -167,23 +168,46 @@ def reg_storeName_submit_post():
     return render_template("registerMenu.html", name=data)
 
 
+#데이터베이스에 회원정보 넣기
 @app.route("/submit_signupData_post", methods=['POST'])
 def reg_signupData_submit_post():
-    data = request.form
-    if DB.insert_member(name=data['memberInfo_id'], data=data):
-        return render_template("result_회원가입.html", data=data)
+    data=request.form
+    pw=request.form['memberInfo_password']
+    rePw=request.form['memberInfo_rePassword']
+    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    rePw_hash= hashlib.sha256(rePw.encode('utf-8')).hexdigest()
+
+    if pw_hash==rePw_hash:
+        if DB.insert_member(name=data['memberInfo_id'],data=data, pw_hash=pw_hash):
+            return render_template("login.html")
+        else:
+            flash("이미 가입된 아이디이거나 비밀번호가 일치하지 않습니다.")
+            return render_template("signup.html")
     else:
-        return "이미 가입된 아이디이거나 비밀번호가 일치하지 않습니다."
+        flash("비밀번호 재확인이 비밀번호와 일치하지 않습니다.")
+        return render_template("signup.html")
 
 
 @app.route("/submit_loginData_post", methods=['POST'])
 def reg_loginData_submit_post():
-    data = request.form
+    id_=request.form['input_id']
+    pw=request.form['input_password']
+    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    
+    if DB.find_user(id_,pw_hash):
+        session['id']=id_
+        return redirect(url_for("list_restaurants"))
+    else:
+        flash("Wrong ID or PW!")
+        return render_template("login.html")
+    
 
-    for value in data.values():
-        print(value, end=' ')
 
-    return render_template("result_로그인.html", data=data)
+#로그아웃
+@app.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for("list_restaurants"))
 
 
 
@@ -227,3 +251,9 @@ def reg_reviewData_submit_post():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+if __name__ == "__main__":
+    #app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+
+app.secret_key = 'super secret key'

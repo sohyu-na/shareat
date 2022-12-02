@@ -257,19 +257,17 @@ class DBhandler:
         
 
     # 회원 가입 화면
-    def insert_member(self, name, data):  # 회원 가입 페이지
+    def insert_member(self, name, data, pw_hash):  # 회원 가입 페이지
         member_info = {
-            "memberInfo_password": data['memberInfo_password'],
-            "memberInfo_rePassword": data['memberInfo_rePassword'],
+            "memberInfo_password": pw_hash,
             "memberInfo_birthDate": data['memberInfo_birthDate'],
             "memberInfo_sex": data['memberInfo_sex']
         }
         if self.id_duplicate_check(name):
-            if data['memberInfo_password'] == data['memberInfo_rePassword']:
-                self.db.child("member").child(name).set(member_info)
-                return True
-            else:
-                return False
+            self.db.child("member").child(name).set(member_info)
+            return True
+        else:
+            return False
 
     def id_duplicate_check(self, name):
         members = self.db.child("member").get()
@@ -279,3 +277,16 @@ class DBhandler:
             if res.key() == name:
                 return False
         return True
+
+
+    #로그인
+    def find_user(self, id_, pw_):
+        users = self.db.child("member").get()
+        target_value=[]
+        for res in users.each():
+            value = res.val()
+
+            if res.key() == id_ and value['memberInfo_password'] == pw_:
+                return True
+            
+        return False
