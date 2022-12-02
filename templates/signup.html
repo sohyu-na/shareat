@@ -1,66 +1,3 @@
-<<<<<<< Updated upstream
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-
-        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-
-        <title>회원가입</title>
-    </head>
-    <body>
-        <!--navbar-->
-        <div id="navbar">
-            <div id="logo"><a href="/">Shareat</a></div>
-        </div>
-        <!-- Page Content-->
-        <section>
-            <div class="main-container">
-                <form action="/submit_signupData_post" method="post">
-                <div class="login-input-section-wrap">
-                    <h1><br>회원가입<br><br></h1>
-                    <table>
-                        <tr>
-                            <td class="td1">아이디 *</td>
-                            <td><input name="memberInfo_id" class="text-area" required placeholder="3자 이상" type="text" minlength="3"></input></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td class="td1">비밀번호 *</td>
-                            <td><input name="memberInfo_password" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
-                        </tr> 
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td class="td1">비밀번호 재확인 *</td>
-                            <td><input name="memberInfo_rePassword" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
-                        </tr> 
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td class="td1">생년월일</td>
-                            <td><input name="memberInfo_birthDate" class="text-area" type="date"></input>
-                        </tr> 
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <td class="td1">성별</td>
-                            <td>
-                                <input type="radio" id="male" name="memberInfo_sex" value="male"/>&nbsp;남 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="female" name="memberInfo_sex" value="female"/>&nbsp;여
-                                <input type="hidden" name="memberInfo_sex" size="60" value="unknown" checked  />
-                            </td>
-                        </tr> 
-                    </table>
-                    <br><br>
-                    <button class="sign-button-wrap" type="submit" value="Sign up">Sign up</button>
-                    <br><br>
-                </div>
-                </form>
-=======
 {% extends "common.html" %}
 <head>    
     <title>회원가입</title>
@@ -111,7 +48,6 @@
                 <br><br>
                 <button class="sign-button-wrap" type="submit" value="Sign up">Sign up</button>
                 <br><br>
->>>>>>> Stashed changes
             </div>
             </form>
         </div>
