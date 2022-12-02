@@ -188,10 +188,9 @@
           </a>
         </div>
         {% endfor %}
-        <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
-        <i class="icon-next-list fa-solid fa-chevron-right"
-          ><button></button
-        ></i>
+        <!--맛집 목록 넘기기 아이콘 버튼-->
+        <!-- <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
+        <i class="icon-next-list fa-solid fa-chevron-right"></i><button></button></i> -->
       </section>
 
       <div class="page=wrap">
@@ -199,11 +198,7 @@
           <ul>
             <li>
               {% for i in range(page_count) %}
-              <a
-                href="{{url_for('list_restaurants',page=i)}}#list-location"
-                color="black"
-                >{{i}}</a
-              >
+              <a href="{{url_for('list_restaurants',page=i)}}#list-location">{{i+1}}</a>
               {% endfor %}
             </li>
           </ul>
@@ -214,61 +209,9 @@
       <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
       {% endif %}
     </main>
-                <div id="btn-select-sort">
-                    <button>평점순</button>
-                    <span> | </span>
-                    <button>최신순</button>
-                </div>
-            </nav>
-            <section>
-                <!---->
-                {% if total>0 %}
-                    {% for data in datas %}
-                    <div class="restaurant-item">
-                        <a href="/detail-info/{{data[0]}}">
-                            <div class="restaurant-item-box">
-                                <figure>
-                                    <img class="temp restaurant-img" src="{{data[1].info.img_path}}">
-                                    <!-- <div class="">이미지</div> -->
-                                </figure>
-                                <figcaption>                       
-                                    <div class="restaurant-name">{{data[0]}}</div>
-                                    <div class="restaurant-category">{{data[1].info.store_category}}</div>
-                                    <div class="restaurant-point">{{data[1].info.store_grade}}</div>
-                                </figcaption>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                    
-                    <!--맛집 목록 넘기기 버튼 -->
-                <!-- <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
-                <i class="icon-next-list fa-solid fa-chevron-right"><button></button></i> -->
 
-            </section>
-
-            <div class="page=wrap">
-                <div class="page-nation">
-                    <ul>
-                        <li>
-                            {% for i in range(page_count) %}
-                            <a href="{{url_for('list_restaurants',page=i)}}#list-location">{{i+1}}</a>
-                            {% endfor %}
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            {% else %}
-            <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
-            {% endif %}
-        </main>
-      
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
-            </div>
-        </footer>
-    </body>
+    <footer>
+      <div id="footer-content">Team 어서오소</div>
+    </footer>
+  </body>
 </html>
