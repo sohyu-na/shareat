@@ -260,8 +260,11 @@ class DBhandler:
     def insert_member(self, name, data, pw_hash):  # 회원 가입 페이지
         member_info = {
             "memberInfo_password": pw_hash,
-            "memberInfo_birthDate": data['memberInfo_birthDate'],
-            "memberInfo_sex": data['memberInfo_sex']
+            "memberInfo_name": data['memberInfo_name'],
+            "memberInfo_birthDate_yy": data['memberInfo_birthDate_yy'],
+            "memberInfo_birthDate_mm": data['memberInfo_birthDate_mm'],
+            "memberInfo_birthDate_dd": data['memberInfo_birthDate_dd'],
+            "memberInfo_gender": data['memberInfo_gender']
         }
         if self.id_duplicate_check(name):
             self.db.child("member").child(name).set(member_info)
