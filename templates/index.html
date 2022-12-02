@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <link
-      rel="stylesheet"
-      href="{{url_for('static',filename='css/mainHome.css')}}"
-    />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/mainHome.css')}}"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
@@ -15,10 +12,30 @@
       referrerpolicy="no-referrer"
     />
 
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
     <title>Shareat</title>
   </head>
 
   <body>
+
+    <script>
+        //[카테고리 선택 체크박스]
+
+        //전체 버튼 클릭 시에 체크박스 전체 선택하기
+        function selectAll(selectAll)  {
+          const checkboxes 
+              = document.getElementsByName('category');
+          
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+          })
+        }
+
+        //맛집 목록 카테고리별 정렬
+    </script>
+
     <header>
       <nav class="navbar">
         <a id="logo" href="/">Shareat</a>
@@ -78,81 +95,82 @@
             <input
               id="category1"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="한식"
               type="checkbox"
             />
             <label for="category1">한식</label>
             <input
               id="category2"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="중식"
               type="checkbox"
             />
             <label for="category2">중식</label>
             <input
               id="category3"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="일식"
               type="checkbox"
             />
             <label for="category3">일식</label>
             <input
               id="category4"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="양식"
               type="checkbox"
             />
             <label for="category4">양식</label>
             <input
               id="category5"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="아시아"
               type="checkbox"
             />
             <label for="category5">아시아</label>
             <input
               id="category6"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="남미"
               type="checkbox"
             />
             <label for="category6">남미</label>
             <input
               id="category7"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="디저트"
               type="checkbox"
             />
             <label for="category7">디저트</label>
             <input
               id="category8"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="주점"
               type="checkbox"
             />
             <label for="categor8y">주점</label>
             <input
               id="category9"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="기타"
               type="checkbox"
             />
             <label for="category9">기타</label>
             <input
               id="select-all"
               class="chb-category"
-              name=""
-              value=""
+              name="category"
+              value="전체"
               type="checkbox"
+              onclick='selectAll(this)'
             />
             <label for="select-all">전체</label>
           </div>
@@ -164,6 +182,7 @@
           <button>최신순</button>
         </div>
       </nav>
+
       <section>
         <!---->
         {% if total>0 %} {% for data in datas %}
@@ -188,10 +207,9 @@
           </a>
         </div>
         {% endfor %}
-        <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
-        <i class="icon-next-list fa-solid fa-chevron-right"
-          ><button></button
-        ></i>
+        <!--맛집 목록 넘기기 아이콘 버튼-->
+        <!-- <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
+        <i class="icon-next-list fa-solid fa-chevron-right"></i><button></button></i> -->
       </section>
 
       <div class="page=wrap">
@@ -199,11 +217,7 @@
           <ul>
             <li>
               {% for i in range(page_count) %}
-              <a
-                href="{{url_for('list_restaurants',page=i)}}#list-location"
-                color="black"
-                >{{i}}</a
-              >
+              <a href="{{url_for('list_restaurants',page=i)}}#list-location">{{i+1}}</a>
               {% endfor %}
             </li>
           </ul>
@@ -218,5 +232,6 @@
     <footer>
       <div id="footer-content">Team 어서오소</div>
     </footer>
+
   </body>
 </html>
