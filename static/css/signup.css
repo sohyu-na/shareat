@@ -27,7 +27,6 @@ h1{
     margin: auto;
  }
 
-
  .signup-wrap{
     width: 460px;
     margin: auto;
@@ -118,6 +117,7 @@ h1{
     border: none;
     outline:none;
 }
+
 #signup-birth-mm{
     background-color: white;
 }
