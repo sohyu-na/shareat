@@ -55,10 +55,26 @@ class DBhandler:
                 return False
         return True
 
-    # DB 데이터 읽어오기
+    # DB 데이터 가져오기
     def get_restaurants(self):
         restaurants = self.db.child("restaurant").get().val()
         return restaurants
+
+    # 카테고리로 맛집 목록 가져오기
+    def get_restaurants_bycategory(self, cate):
+        retaurants = self.db.child("restaurant").get()
+        target_value = []
+        for res in retaurants.each():
+            value = res.val()
+
+            if value['info']['store_category'] == cate:
+                target_value.append(value)
+
+        new_dict = {}
+        for k, v in enumerate(target_value):
+            new_dict[k] = v
+
+        return new_dict
 
     # 가게 이름으로 특정 가게 정보 가져오기
     def get_restaurant_byname(self, name):
