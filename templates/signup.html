@@ -1,60 +1,125 @@
-{% extends "common.html" %}
-<head>    
-    <title>회원가입</title>
-</head>
-{% block main %}
-    <!-- Page Content-->
-    <section>
-        <div class="main-container">
-            {% with mesg = get_flashed_messages() %}
-            {% if mesg !=[] %}
-                <script>alert("{{ mesg[0] }}")</script>
-            {% endif %}
-            {% endwith %}
-            
-            <form action="/submit_signupData_post" method="post">
-            <div class="login-input-section-wrap">
-                <h1><br>회원가입<br><br></h1>
-                <table>
-                    <tr>
-                        <td class="td1">아이디 *</td>
-                        <td><input name="memberInfo_id" class="text-area" required placeholder="3자 이상" type="text" minlength="3"></input></td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td class="td1">비밀번호 *</td>
-                        <td><input name="memberInfo_password" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
-                    </tr> 
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td class="td1">비밀번호 재확인 *</td>
-                        <td><input name="memberInfo_rePassword" class="text-area" required placeholder="4자 이상 15자 이하" type="password" minlength="4" maxlength="15"></input></td>
-                    </tr> 
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td class="td1">생년월일</td>
-                        <td><input name="memberInfo_birthDate" class="text-area" type="date"></input>
-                    </tr> 
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td class="td1">성별</td>
-                        <td>
-                            <input type="radio" id="male" name="memberInfo_sex" value="male"/>&nbsp;남 &nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="female" name="memberInfo_sex" value="female"/>&nbsp;여
-                            <input type="hidden" name="memberInfo_sex" size="60" value="unknown" checked />
-                        </td>
-                    </tr> 
-                </table>
-                <br><br>
-                <button class="sign-button-wrap" type="submit" value="Sign up">Sign up</button>
-                <br><br>
-            </div>
-            </form>
-        </div>
-    </section>
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
 
+        <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
+
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
+        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
+
+        <title>회원가입</title>
+    </head>
+    <body>
+    {% with mesg = get_flashed_messages() %}
+    {% if mesg !=[] %}
+        <script>alert("{{ mesg[0] }}")</script>
+    {% endif %}
+    {% endwith %}
+            
+        <form action="/submit_signupData_post" method="post">
+            <div class="main-signup">
+                <!--웹페이지 상단-->
+                <div id="logo">
+                    <a href="/shareat" target="_blank">Shareat</a>
+                </div>
+                
+                <!--회원가입 부분-->
+                <section class="signup-wrap">
+        
+                    <div>
+                        <!--아이디,비번,비번재확인-->
+        
+                        <h3>아이디</h3>
+                        <span class="signup-input">
+                            <input id="signup-id" name="memberInfo_id" type="text"></input>
+                        </span>
+        
+                        <h3>비밀번호</h3>
+                        <span class="signup-input">
+                            <input id="signup-pw" name="memberInfo_password" type="text"></input>
+                            <span class="pw-lock"></span>
+                        </span>
+        
+                        <h3>비밀번호 재확인</h3>
+                        <span class="signup-input">
+                            <input id="signup-pww" name="memberInfo_rePassword" type="text"></input>
+                            <span class="pww-lock"></span>
+                        </span>
+        
+                    </div>
+        
+                    <div style="margin-top: 35px;">
+                        <!--이름,생년월일,성별,이메일-->
+                        <h3>이름</h3>
+                        <span class="signup-input">
+                            <input id="signup-name" name="memberInfo_name" type="text"></input>
+                        </span>
+        
+                        <h3>생년월일</h3>
+                        <span style="display: flex;">
+                            <span class="signup-input-birth">
+                                <input id="signup-birth-yy" name="memberInfo_birthDate_yy" type="text" placeholder="년(4자)"></input>
+                            </span>
+                            <span class="signup-input-birth" style="margin-left: 10px;">
+                                <select id="signup-birth-mm" name="memberInfo_birthDate_mm" class="selectbox" name="month" onchange="">
+                                    <option value="month">월</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </span>
+                            <span class="signup-input-birth" style="margin-left: 10px;">
+                                <input id="signup-birth-dd" name="memberInfo_birthDate_dd" type="text" placeholder="일"></input>
+                            </span>
+                        </span>
+        
+                        <h3>성별</h3>
+                        <span class="signup-input">
+                            <select id="signup-gender" class="selectbox" name="memberInfo_gender" onchange="">
+                                <option value="gender">성별</option>
+                                <option value="man">남자</option>
+                                <option value="woman">여자</option>
+                                <option value="no">선택 안함</option>
+                            </select>
+                        </span>
+                    </div>
+        
+                    <div>
+                        <!--가입하기-->
+                        <div class="signup-btn-wrap">
+                            <button type="submit" id="signup-btn">가입하기</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </form>
+    <footer style="background-color: white; border-top:none;">
+        <div id="footer-content">
+            Team 어서오소    
+        </div>
+    </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-{% endblock main %}
+    </body>
+</html>
+
+
