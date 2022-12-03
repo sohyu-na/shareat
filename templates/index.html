@@ -204,7 +204,7 @@
       <section>
         {% if total>0 %} {% for data in datas %}
         <div class="restaurant-item">
-          <a href="/detail-info/{{data[0]}}">
+          <a href="/detail-info/{{data[1].info.name}}">
             <div class="restaurant-item-box">
               <figure>
                 <img
@@ -214,7 +214,7 @@
                 <!-- <div class="">이미지</div> -->
               </figure>
               <figcaption>
-                <div class="restaurant-name">{{data[0]}}</div>
+                <div class="restaurant-name">{{data[1].info.name}}</div>
                 <div class="restaurant-category">
                   {{data[1].info.store_category}}
                 </div>

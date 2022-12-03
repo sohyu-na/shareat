@@ -14,6 +14,7 @@ class DBhandler:
     # DB에 저장
     def insert_restaurant(self, name, data, img_path):
         restaurant_info = {
+            "name":name,
             "store_phoneNum": data['store_phoneNum'],
             "store_addr": data['store_addr'],
             "store_site": data['store_site'],

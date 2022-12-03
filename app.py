@@ -32,7 +32,7 @@ def list_restaurants():
     if category == "all":
         data = DB.get_restaurants()
     else:
-        data = DB.get_restaurants_bycategory(category)
+        data = DB.get_restaurants_bycategory(category)   
 
     # data = dict(list(data.items())[start_idx:end_idx])
     # data = dict(sorted(data))
@@ -44,14 +44,8 @@ def list_restaurants():
         return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
     else:
         count = len(data)
-
-       # if count <= limit:
-        #    data = dict(list(data.items())[count])
-        # else:
-        #   data = dict(list(data.items())[start_idx:end_idx])
-
+        data = dict(list(data.items())[start_idx:end_idx])
         page_count = len(data)
-
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
 
 # 맛집 상세정보 페이지
@@ -278,6 +272,8 @@ def reg_reviewData_submit_post():
     return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
 
+app.secret_key = 'super secret key'
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
@@ -285,4 +281,3 @@ if __name__ == "__main__":
     #app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
 
-app.secret_key = 'super secret key'
