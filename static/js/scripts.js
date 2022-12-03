@@ -111,6 +111,22 @@ function menusubmitBox(){
 	window.location.href = "detailInfo_menu.html";
 }
 
+function report(box) {
+	let result=''
+	if(box.checked == true){
+	   result=box.value;
+	   var checkBox = document.getElementsByName("restaurant");
+	   var msg = box.value + " 을(를) 내가 찜한 맛집에 추가했습니다.\n";
+	   alert(msg);
+	   }
+	else{
+	   result='';
+	   var checkBox = document.getElementsByName("restaurant");
+	   var msg = box.value + " 을(를) 내가 찜한 맛집에서 제거했습니다.\n";
+	   alert(msg);
+	}
+ }
+
 	
 
 

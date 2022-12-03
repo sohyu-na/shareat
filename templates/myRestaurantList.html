@@ -1,0 +1,55 @@
+{% extends "common.html" %}
+
+{% block main %}
+<main id="list-location">
+    <div class="mainav">
+        <div class="mainavti">내가 찜한 맛집</div>
+        <br><br>
+        <div class="mainavsu">맛집 상세 페이지에서 찜하기 버튼을 누르면 내가 찜한 맛집 리스트에 추가됩니다.
+            <br><br>맛집 사진을 누르면 해당 사이트로 이동할 수 있습니다.
+        </div>
+        <div class="mainavfon">
+            찜한 맛집 총 <b>{{total}}</b>개
+            
+        </div>
+    </div>
+    <section>
+        <!---->
+        {% if total>0 %}
+            {% for data in datas %}
+            <div class="restaurant-item">
+                <a href="/detail-info/{{data[0]}}">
+                    <div class="restaurant-item-box">
+                        <figure>
+                            <img class="temp restaurant-img" src="{{data[1].info.img_path}}">
+                            <!-- <div class="">이미지</div> -->
+                        </figure>
+                        <figcaption>                       
+                            <div class="restaurant-names">{{data[0]}}</div>
+                            <div class="restaurant-category">{{data[1].info.store_category}}</div>
+                            <div class="restaurant-point">{{data[1].info.store_grade}}</div>
+                        </figcaption>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
+            <i class="icon-next-list fa-solid fa-chevron-right"><button></button></i>
+            <div class="page=wrap">
+                <div class="page-nation">
+                    <ul>
+                        <li>
+                            {% for i in range(page_count) %}
+                            <a href="{{url_for('goTo_myRestaurantList',page=i)}}#list-location" color="black">{{i}}</a>
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        {% else %}
+        <p>아직 찜한 맛집이 없어요. 원하는 맛집의 찜하기 버튼을 눌러 주세요!</p>
+        {% endif %}
+    </section>  
+</main>
+{% endblock main %}
