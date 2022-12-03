@@ -200,6 +200,26 @@ main nav{
   border-radius: 20px;
 }
 
+#btn-select-category span{
+  padding-left: 10px;
+  padding-right: 5px;
+
+}
+
+#category-selectbox{
+  border: solid 1.5px rgb(158, 158, 158);
+  border-radius: 5px;
+  margin-left:10px;
+  width: 80px;
+  height: 30px;
+  color: #FF4A4A;
+  font-weight: bold;
+}
+
+#category-selectbox option{
+  color: #4d4d4d89;
+}
+
 #btn-select-sort{
   display: flex;
   justify-content: end;
@@ -207,6 +227,21 @@ main nav{
   width: 100%;
   color:rgb(134, 132, 132);
 }
+
+#btn-select-sort input{
+  display: none;
+}
+
+#btn-select-sort label:hover{
+  color:#FF4A4A
+}
+
+#btn-select-sort span{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*맛집 목록 카테고리별 정렬 체크박스ver*/
 
 #btn-select-category button, #btn-select-sort button{
   border:none;
@@ -220,7 +255,7 @@ main nav{
   font-weight: bold;
 }
 
-#chb-select-category{
+/* #chb-select-category{
   position: relative;
   top: -1px;
   margin-left: 10px;
@@ -267,11 +302,7 @@ input[type="checkbox"]:checked {
 }
 input[type="checkbox"]:checked::after {
   display: block;
-}
-
-#btn-select-sort button:hover{
-  color:#FF4A4A;
-}
+} */
 
 section{
   position: relative;
