@@ -44,12 +44,7 @@ def list_restaurants():
         return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
     else:
         count = len(data)
-
-       # if count <= limit:
-        #    data = dict(list(data.items())[count])
-        # else:
-        #   data = dict(list(data.items())[start_idx:end_idx])
-
+        data = dict(list(data.items())[start_idx:end_idx])
         page_count = len(data)
 
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
