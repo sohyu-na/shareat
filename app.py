@@ -22,12 +22,18 @@ def goTo_mainHome():
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
+
     limit = 9
 
     start_idx = limit*page
     end_idx = limit*(page+1)
 
-    data = DB.get_restaurants()  # 맛집 리스트 데이터
+  
+    if category == "all":
+        data = DB.get_restaurants()
+    else:
+        data = DB.get_restaurants_bycategory(category)
 
     if data == None:
         count = 0    # 등록된 맛집 개수
