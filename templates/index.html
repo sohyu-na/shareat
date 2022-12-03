@@ -92,10 +92,8 @@
     <main id="list-location">
       <nav id="category">
         <div id="btn-select-category">
-          <button>category</button>
-
-          <div id="chb-select-category">
-            <select id="category" name="category" onchange="location=this.value">>
+            <span>category</span>
+            <select id="category-selectbox" name="category" onchange="location=this.value">>
               <option value="{{url_for('list_restaurants', page=i, category='all')}}">전체</option>
               <option value="{{url_for('list_restaurants', page=i, category='한식')}}">한식</option>
               <option value="{{url_for('list_restaurants', page=i, category='중식')}}">중식</option>
@@ -107,8 +105,22 @@
               <option value="{{url_for('list_restaurants', page=i, category='주점')}}">주점</option>
               <option value="{{url_for('list_restaurants', page=i, category='기타')}}">기타</option>
             </select>
+        </div>
 
-            <!-- <input
+        <div id="btn-select-sort">
+
+          <input type="radio" id="sort-list-garde" name="sort_list">
+          <label for="sort-list-garde">평점순</label>
+  
+          <span> | </span>
+
+          <input type="radio" id="sort-list-date" name="sort_list">
+          <label for="sort-list-date">최신순</label>
+
+        </div>
+
+        <!--맛집 목록 카테고리별 정렬 체크박스ver-->
+                    <!-- <input
               id="category1"
               class="chb-category"
               name="category"
@@ -190,14 +202,6 @@
               onclick='selectAll(this)'
             />
             <label for="select-all">전체</label> -->
-          </div>
-        </div>
-
-        <div id="btn-select-sort">
-          <button>평점순</button>
-          <span> | </span>
-          <button>최신순</button>
-        </div>
       </nav>
 
       <!--[맛집 목록]-->
