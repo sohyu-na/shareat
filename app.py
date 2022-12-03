@@ -254,6 +254,7 @@ def reg_reviewData_submit_post():
 
     return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
+app.secret_key = 'super secret key'
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
@@ -262,4 +263,3 @@ if __name__ == "__main__":
     #app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
 
-app.secret_key = 'super secret key'
