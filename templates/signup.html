@@ -39,18 +39,18 @@
         
                         <h3>아이디</h3>
                         <span class="signup-input">
-                            <input id="signup-id" name="memberInfo_id" type="text"></input>
+                            <input id="signup-id" name="memberInfo_id" type="text" required></input>
                         </span>
         
                         <h3>비밀번호</h3>
                         <span class="signup-input">
-                            <input id="signup-pw" name="memberInfo_password" type="text"></input>
+                            <input id="signup-pw" name="memberInfo_password" type="text" required></input>
                             <span class="pw-lock"></span>
                         </span>
         
                         <h3>비밀번호 재확인</h3>
                         <span class="signup-input">
-                            <input id="signup-pww" name="memberInfo_rePassword" type="text"></input>
+                            <input id="signup-pww" name="memberInfo_rePassword" type="text" required></input>
                             <span class="pww-lock"></span>
                         </span>
         
@@ -60,17 +60,17 @@
                         <!--이름,생년월일,성별,이메일-->
                         <h3>이름</h3>
                         <span class="signup-input">
-                            <input id="signup-name" name="memberInfo_name" type="text"></input>
+                            <input id="signup-name" name="memberInfo_name" type="text" required></input>
                         </span>
         
                         <h3>생년월일</h3>
                         <span style="display: flex;">
                             <span class="signup-input-birth">
-                                <input id="signup-birth-yy" name="memberInfo_birthDate_yy" type="text" placeholder="년(4자)"></input>
+                                <input id="signup-birth-yy" name="memberInfo_birthDate_yy" type="text" placeholder="년(4자)" required></input>
                             </span>
                             <span class="signup-input-birth" style="margin-left: 10px;">
-                                <select id="signup-birth-mm" name="memberInfo_birthDate_mm" class="selectbox" name="month" onchange="">
-                                    <option value="month">월</option>
+                                <select id="signup-birth-mm" name="memberInfo_birthDate_mm" class="selectbox" name="month" onchange="" required>
+                                    <option value="">월</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -86,14 +86,14 @@
                                 </select>
                             </span>
                             <span class="signup-input-birth" style="margin-left: 10px;">
-                                <input id="signup-birth-dd" name="memberInfo_birthDate_dd" type="text" placeholder="일"></input>
+                                <input id="signup-birth-dd" name="memberInfo_birthDate_dd" type="text" placeholder="일" required></input>
                             </span>
                         </span>
         
                         <h3>성별</h3>
                         <span class="signup-input">
-                            <select id="signup-gender" class="selectbox" name="memberInfo_gender" onchange="">
-                                <option value="gender">성별</option>
+                            <select id="signup-gender" class="selectbox" name="memberInfo_gender" onchange="" required>
+                                <option value="">성별</option>
                                 <option value="man">남자</option>
                                 <option value="woman">여자</option>
                                 <option value="no">선택 안함</option>
