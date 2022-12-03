@@ -33,7 +33,8 @@ def list_restaurants():
         count = 0    # 등록된 맛집 개수
         return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
-        count = len(data)
+        count = len(data)        
+        data = dict(sorted(data.items(),key=lambda x:x[1]['info']['store_grade'],reverse=True))
         data = dict(list(data.items())[start_idx:end_idx])
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
@@ -43,6 +44,11 @@ def list_restaurants():
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
+
+@app.route("/modify-info/<name>")   # 맛집 수정 정보 페이지
+def goTo_modifyInfo(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
 @app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
 def goTo_detailMenu(name):
