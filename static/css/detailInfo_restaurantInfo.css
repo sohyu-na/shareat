@@ -1,11 +1,12 @@
 hr{
 	width : 900px;
  }
- 
- .main-wrap{
-    margin: 0px 220px 0px 220px;
+
+.main-wrap{
+    margin: 0px 220px 50px 220px;
     align-items: center;
 }
+
 .main_image {
 	position: relative;
 	width : 100%;
@@ -298,11 +299,12 @@ img {
 	padding-top:5px;
 }
 
-table{
+.table_detailInfo_restaurantInfo{
 	text-align : left;
-	width : 900px;
+	width : 1500px;
 	font-size : 120%;
 	line-height : 100%;
+	padding: 0 70px;
 	
 }
 
@@ -311,7 +313,7 @@ tr{
 }
 
 th{
-	width : 30%;
+	width : 10%;
 }
 
 td{

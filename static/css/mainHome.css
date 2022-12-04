@@ -14,6 +14,10 @@ a, a:visited{
 
 /*=================Header Styling=================*/
 
+.reg_btn{
+  border: none;
+}
+
 #logo {
   font-size: 25px;
   font-weight: bold;
@@ -52,7 +56,7 @@ header{
   display: flex;
   flex-direction: column;
   background-color: #FF4A4A;
-  height: 370px;
+  height: 420px;
   color:white;
 }
 
@@ -335,7 +339,7 @@ figcaption{
   text-align: end;
 }
 
-/*아이콘 - 다음 맛집 리스트 페이지로 넘어가기*/
+/*맛집리스트 페이지 전환 아이콘 버튼 */
 .icon-pre-list, .icon-next-list{
   position: absolute;
   font-size: 60px;
@@ -363,6 +367,7 @@ figcaption{
   background-color: transparent;
 }
 
+/*맛집리스트 페이지 전환 숫자 버튼*/
 .page-nation li{
   list-style: none;
 }
@@ -377,6 +382,7 @@ figcaption{
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  color: black;
 }
 
 .page-nation a{
@@ -384,15 +390,20 @@ figcaption{
   margin: 0 3px;
   float: left;
   border: 1px solid #e6e6e6;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
   background-color: #fff;
-  font-size: 13px;
-  color: black;
+  font-size: 12px;
+  /* color: black; */
   text-decoration: none;
   font-weight:bold;
+  }
+
+  .page-nation a:hover{
+    color:#FF4A4A;
   }
 
 /*=================Footer Styling=================*/
