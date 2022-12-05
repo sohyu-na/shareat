@@ -46,25 +46,20 @@
 
         <ul id="login-or-signup">
           {% if session['id'] %}
-          <li>
-            <a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a>
-            <!--회원 상단바-->
-            <li id="profile-logo"><i class="fas fa-light fa-circle-user fa-2x"></i></li>
-          </li>
+          <!--회원 상단바-->
+          <li><a href="/mylist">내가 찜한 맛집</a></li>
+          <li><b>{{session['id']}}님 </b></li>
+          <li><a href="/logout"> logout</a></li>
+          <li id="profile-logo"><i class="fas fa-light fa-circle-user fa-2x"></i></li>
           {% else %}
+          <li><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
           <li><a href="/login">로그인</a></li>
           <li>|</li>
           <li><a href="/signup">회원가입</a></li>
+          <script>
+            function alertDialogBox_like() {alert("로그인 후 이용 가능합니다. 로그인을 해주세요!");}
+          </script> 
           {% endif %}
-        </ul>
-
-        <ul id="navbar_menu">
-          <li><a href="/registration-restaurant">맛집 등록하기</a></li>
-          <li><a href="#category">맛집 목록</a></li>
-          <li><a href="/mylist">내가 찜한 맛집</a></li>
-          <!--temp(for 과제제출)-->
-          <li><a href="/registration-menu">메뉴 등록</a></li>
-          <li><a href="/review">리뷰 등록</a></li>
         </ul>
       </nav>
 
@@ -74,15 +69,27 @@
             <div>나 만 의&emsp;맛 집 을&emsp;공 유 하 는</div>
             <div>우 리 들 만 의&emsp;맛 집 백 과</div>
           </div>
+
+          {% if session['id'] %}
+          <!--맛집 등록 버튼-->
           <div id="btn-register-restaurant">
-            <a href="#" class="btn-slide">
+            <a href="/registration-restaurant" class="btn-slide">
               <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
-              <span class="slide-bottom" data-content="Slide"
-                >맛집 등록하기</span
-              >
+              <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
             </a>
-            <!-- <button><a href="#">맛집 등록 GO!</a></button> -->
           </div>
+            {% else %}
+            <!--맛집 등록 버튼-->
+              <div id="btn-register-restaurant" onclick="alertDialogBox()">
+                <a href="/" class="btn-slide">
+                  <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
+                  <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
+                </a>
+              </div>
+            <script>
+              function alertDialogBox() {alert("로그인 후 메뉴 수정이 가능합니다. 로그인을 해주세요!");}
+            </script> 
+            {% endif %}
         </div>
         <div id="header-right-side">
           <div class="temp">이미지</div>
@@ -250,7 +257,7 @@
       <p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
       {% endif %}
     </main>
-
+    
     <footer>
       <div id="footer-content">Team 어서오소</div>
     </footer>

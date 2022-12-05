@@ -8,7 +8,8 @@
         <div class="midnav active"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
   </div>
 
-<!--리뷰 등록하기 버튼-->
+  {% if session['id'] %}
+  <!--리뷰 등록하기 버튼-->
   <form action="/review_storeName_post" method="post">
     <input type="hidden" name="store_name" value="{{name}}">
     <button type="submit">
@@ -17,6 +18,17 @@
       </div>
     </button>
   </form>
+  {% else %}
+  <!--리뷰 등록하기 버튼-->
+  <button onclick="alertDialogBox()">
+    <div id="btn-modify-menu">
+      <a><i class="fa-solid fa-pencil"></i><b>&nbsp;리뷰 등록하기</b></a>
+    </div>
+  </button>
+  <script>
+    function alertDialogBox() {alert("로그인 후 리뷰 등록 가능합니다. 로그인을 해주세요!");}
+  </script> 
+  {% endif %}
 
   <br>
   <br>
@@ -26,12 +38,12 @@
   {% if total>0 %}
 
   {% for review in review_data %}
-  <table>
+  <table class="table_review">
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
         <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
         <th class="writescore">{{review.review_grade}} &nbsp;----------------------------------------------</th>
-        <th class="writedate">2022.11.23</th>
+        <th class="writedate">{{review.timestamp}}</th>
     </tr>
     <tr>
       <td></td>
@@ -44,12 +56,21 @@
     <tr>
       <td></td>
         <td colspan="3">
+          <div class="agree">
+            <!--
+              <form action="/submit_review_agree_userId" method="post">
+              <input type="hidden" name="review_agree_userId" value="{{session['id']}}">
+              <button type="submit" style = "margin-top:auto;">동의</button></input>
+              <input type="hidden" name="store_name" value="{{name}}">
+            </form>
+            -->
+            <button style = "margin-top:auto;">동의</button></input>
+          </div>
           <div class="comment">  
             <blockquote>{{review.detail_review}}</blockquote>
         </div></td>
     </tr>
   </table>
-  <div class="agree"><button style = "margin-top:auto;">동의</button></div>
   {% endfor %}
 
 {% else %}

@@ -13,7 +13,7 @@ h4 {
     justify-content: center;
 }
 
-table {
+.tabel_registerRestaurantInfo {
     width: 55%;
     border-collapse: separate;
     border-spacing: 25px 25px;

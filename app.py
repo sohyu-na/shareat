@@ -66,10 +66,18 @@ def goTo_detailInfo(name):
 @app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
 def goTo_detailMenu(name):
     data = DB.get_restaurant_byname(str(name))
-    menu_data = DB.get_menu_byname(str(name))
-    #count = len(menu_data.keys())
-    # total=count
-    return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name)
+    menu = DB.get_menus_byname(str(name))
+
+    if menu == None:
+        count = 0    # 등록된 메뉴 개수
+        # total=count
+        return render_template("detailInfo_menu.html", data=data, name=name, total=count)
+
+    else:
+        menu_data = DB.get_menu_byname(str(name))
+        count = len(menu)
+        # total=count
+        return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
 
 
 @app.route("/detail-review/<name>")   # 리뷰 상세 정보 페이지
@@ -237,6 +245,14 @@ def logout_user():
     session.clear()
     return redirect(url_for("list_restaurants"))
 
+# 로그아웃
+
+
+@app.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for("list_restaurants"))
+
 
 # [사용자 입력 데이터 받아오기] - 메뉴
 @app.route("/submit_menuData_post", methods=['POST'])
@@ -277,6 +293,15 @@ def reg_reviewData_submit_post():
 
     return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
+
+# @app.route("/submit_review_agree_userId", methods=['POST'])
+# def submit_review_agree_userId():
+#     data = request.form
+#     name = data['store_name']
+#     review_agree_userId = data['review_agree_userId']
+#     DB.insert_review_agree_userId(name, review_agree_userId)
+
+#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

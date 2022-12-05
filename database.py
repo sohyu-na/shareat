@@ -1,5 +1,6 @@
 import pyrebase
 import json
+from datetime import datetime
 
 
 class DBhandler:
@@ -13,6 +14,27 @@ class DBhandler:
 
     # DB에 저장
     def insert_restaurant(self, name, data, img_path):
+        # 맛집 등록 시간 DB에 저장
+        now = datetime.now()
+        str_year = now.strftime("%Y")
+        str_month = now.strftime("%m")
+        str_day = now.strftime("%d")
+        str_hour = now.strftime("%H")
+        str_minute = now.strftime("%M")
+        str_second = now.strftime("%S")
+        timestamp = now.strftime('%Y-%m-%d %H:%M:%S')
+
+        restaurant_time = {
+            "timestamp": timestamp,
+            "str_year": str_year,
+            "str_month": str_month,
+            "str_day": str_day,
+            "str_hour": str_hour,
+            "str_minute": str_minute,
+            "str_second": str_second,
+            "timestamp": timestamp,
+        }
+        # 맛집 정보를 DB에 저장
         restaurant_info = {
             "store_name": data['store_name'],
             "store_phoneNum": data['store_phoneNum'],
@@ -41,6 +63,8 @@ class DBhandler:
         if self.restaurant_duplicate_check(name):
             self.db.child("restaurant").child(
                 name).child("info").set(restaurant_info)
+            self.db.child("restaurant").child(
+                name).child("time").set(restaurant_time)
             print(data, img_path)
             return True
         else:
@@ -225,8 +249,18 @@ class DBhandler:
             target_value.append(value)
         return target_value
 
+        # 메뉴 목록 가져오기
+    def get_menus_byname(self, name):
+        reviews = self.db.child("restaurant").child(
+            name).child("menu").get().val()
+        return reviews
+
     # ===== 3) 리뷰 데이터 ======
     def insert_review(self, name, data, reviewImg_path):
+        # 리뷰 등록 시간 DB에 저장
+        now = datetime.now()
+        timestamp = now.strftime('%Y.%m.%d')
+
         review_info = {
             "store_name": name,
             "nickname": data['nickname'],
@@ -238,13 +272,25 @@ class DBhandler:
             "atmosphere": data['atmosphere'],
             "revisit": data['revisit'],
             "detail_review": data['detail_review'],
-            "reviewImg_path": reviewImg_path
+            "reviewImg_path": reviewImg_path,
+            "timestamp": timestamp
         }
+
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("restaurant").child(
             name).child("review").push(review_info)
+        #  #리뷰 동의 유저 아이디 저장
+        # self.db.child("restaurant").child(
+        #     name).child("review").push(review_info)
         self.update_storeScore_byname(name)
+
+    # #리뷰 동의 유저 아이디 저장
+    # def insert_review_agree_userId(self, name, review_agree_userId):
+    #     agree_users_info = {
+    #         "agree_userId": review_agree_userId
+    #     }
+    #     return agree_users_info
 
     def get_review_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
