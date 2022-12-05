@@ -154,10 +154,23 @@ def reg_storeName_review_post():
 
 # 내가 찜한 맛집 페이지
 
-
-@app.route("/mylist")
+@app.route("/myRestaurantList")
 def goTo_myRestaurantList():
-    return render_template("myRestaurantList.html")
+    page = request.args.get("page", 0, type=int)
+    limit = 9
+
+    start_idx = limit*page
+    end_idx = limit*(page+1)
+
+    data = DB.get_mylist()  # 찜한 맛집 리스트 데이터
+
+    if data == None:
+        count = 0    # 등록된 맛집 개수
+        return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
+    else:
+        count = len(data)
+        list_data = dict(list(data.items())[start_idx:end_idx])
+        return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 # 로그인 페이지
 

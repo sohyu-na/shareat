@@ -303,7 +303,6 @@ class DBhandler:
         return target_value
 
     # 리뷰 등록할 때마다 평점(평점, 재방문의사, 키워드5)을 업데이트
-
     def update_storeScore_byname(self, name):
         avgScore = self.get_avgrate_byname(name)
         tasteScore = self.get_tasteScore_byname(name)
@@ -327,16 +326,21 @@ class DBhandler:
         self.db.child("restaurant").child(name).child(
             "info").update({"store_revisit": revisit})
 
-    # 회원 가입 화면
 
-    def insert_member(self, name, data, pw_hash):  # 회원 가입 페이지
+
+
+    # ===== 4) 회원 data =====
+    
+    #회원가입
+    def insert_member(self, name, data, pw_hash):
         member_info = {
             "memberInfo_password": pw_hash,
             "memberInfo_name": data['memberInfo_name'],
             "memberInfo_birthDate_yy": data['memberInfo_birthDate_yy'],
             "memberInfo_birthDate_mm": data['memberInfo_birthDate_mm'],
             "memberInfo_birthDate_dd": data['memberInfo_birthDate_dd'],
-            "memberInfo_gender": data['memberInfo_gender']
+            "memberInfo_gender": data['memberInfo_gender'],
+            "myRestaurantList": ""
         }
         if self.id_duplicate_check(name):
             self.db.child("member").child(name).set(member_info)
@@ -354,7 +358,6 @@ class DBhandler:
         return True
 
     # 로그인
-
     def find_user(self, id_, pw_):
         users = self.db.child("member").get()
         target_value = []
@@ -365,3 +368,25 @@ class DBhandler:
                 return True
 
         return False
+
+
+    # ===== 5) 내가 찜한 맛집 data =====
+    
+
+    #DB 마이리스트 읽어오기
+    def get_mylist(self):
+        myrestaurants = self.db.child("member").child(id).child("likelist").get()
+        target_value = []
+        for res in myrestaurants:
+            target_value.append(self.get_restaurant_byname(res))
+        new_dict = {}
+        for k, v in enumerate(target_value):
+            new_dict[k] = v
+        return new_dict
+    
+    #찜하기 버튼으로 마이리스트에 추가하기
+    def add_mylist(self, name, data):
+        member_info_likelist = {
+            "myRestaurantList" : data['restaurant']
+        }
+        self.db.child("member").child(name).child("myRestaurantList")
