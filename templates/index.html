@@ -101,7 +101,7 @@
       <nav id="category">
         <div id="btn-select-category">
             <span>category</span>
-            <select id="category-selectbox" name="category" onchange="location=this.value">>
+            <select id="category-selectbox" name="category" onchange="location=this.value" >
               <option value="{{url_for('list_restaurants', page=i, category='all')}}">전체</option>
               <option value="{{url_for('list_restaurants', page=i, category='한식')}}">한식</option>
               <option value="{{url_for('list_restaurants', page=i, category='중식')}}">중식</option>

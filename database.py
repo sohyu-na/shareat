@@ -165,7 +165,7 @@ class DBhandler:
             value = rev.val()
             if (value['taste'] == 'y'):
                 taste_count += 1
-        return type(int(taste_count/respondent*100))
+        return int(taste_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self, name):
