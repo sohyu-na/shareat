@@ -22,14 +22,24 @@
     </head>
 
     <body>
-        <!--비회원 상단바-->
+        <!--상단바-->
         <div id="navbar">
             <div id="logo"><a href="/">Shareat</a></div>
+
+            {% if session['id'] %}
+            <div id="login-or-signup">
+                <div><a href="/mylist">내가 찜한 맛집</a></div>
+                <div></div>
+                <div><a href="/logout"> logout</a></div>
+            </div>
+            <div><i id="profile_logo" class="fas fa-light fa-circle-user fa-2x"></i></div>
+            {% else %}
             <div id="login-or-signup">
                 <div><a href="/login">로그인</a></div>
                 <div>|</div>
                 <div><a href="/signup">회원가입</a></div>
             </div>
+            {% endif %}
         </div>
         
         <header>

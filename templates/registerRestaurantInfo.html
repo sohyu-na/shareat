@@ -3,7 +3,7 @@
 {% block main %}
 <h4>공유하고 싶은 맛집의 정보를 입력해 주세요</h4>
     <form action="/submit_restaurantData_post" method="post" enctype="multipart/form-data">
-        <table>
+        <table class="tabel_registerRestaurantInfo">
             <tr>
                 <td class="td1">상호명 *</td>
                 <td><input type="text" class="text-area" name="store_name" size="80" required placeholder="&nbsp;가게의 이름을 입력해 주세요"  /></td>

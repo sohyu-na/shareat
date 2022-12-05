@@ -23,17 +23,24 @@ def goTo_mainHome():
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
+    sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
 
     limit = 9
-
     start_idx = limit*page
     end_idx = limit*(page+1)
 
-  
+    # 선택한 카테고리 맛집 목록 추출
     if category == "all":
         data = DB.get_restaurants()
     else:
         data = DB.get_restaurants_bycategory(category)
+
+    # data = dict(
+    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
+
+    # 선택한 목록 순서 기준으로 맛집 목록 정렬
+    # if sort == "grade":
+    #     data = dict(sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -43,6 +50,7 @@ def list_restaurants():
         data = dict(sorted(data.items(),key=lambda x:x[1]['info']['store_grade'],reverse=True))
         data = dict(list(data.items())[start_idx:end_idx])
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
+
 
 # 맛집 상세정보 페이지
 
@@ -59,9 +67,19 @@ def goTo_modifyInfo(name):
 @app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
 def goTo_detailMenu(name):
     data = DB.get_restaurant_byname(str(name))
-    menu_data = DB.get_menu_byname(str(name))
-    #count = len(menu_data.keys())
-    return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name)  #total=count
+    menu = DB.get_menus_byname(str(name))
+
+    if menu == None:
+        count = 0    # 등록된 메뉴 개수
+        # total=count
+        return render_template("detailInfo_menu.html", data=data, name=name, total=count)
+
+    else:
+        menu_data = DB.get_menu_byname(str(name))
+        count = len(menu)
+        # total=count
+        return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
+
 
 @app.route("/detail-review/<name>")   # 리뷰 상세 정보 페이지
 def goTo_detailReiview(name):
@@ -130,10 +148,23 @@ def reg_storeName_review_post():
 
 # 내가 찜한 맛집 페이지
 
-
-@app.route("/mylist")
+@app.route("/myRestaurantList")
 def goTo_myRestaurantList():
-    return render_template("myRestaurantList.html")
+    page = request.args.get("page", 0, type=int)
+    limit = 9
+
+    start_idx = limit*page
+    end_idx = limit*(page+1)
+
+    data = DB.get_mylist()  # 찜한 맛집 리스트 데이터
+
+    if data == None:
+        count = 0    # 등록된 맛집 개수
+        return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
+    else:
+        count = len(data)
+        list_data = dict(list(data.items())[start_idx:end_idx])
+        return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 # 로그인 페이지
 
@@ -214,8 +245,9 @@ def reg_loginData_submit_post():
         return render_template("login.html")
     
 
+# 로그아웃
 
-#로그아웃
+
 @app.route("/logout")
 def logout_user():
     session.clear()
@@ -261,6 +293,24 @@ def reg_reviewData_submit_post():
     return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
 app.secret_key = 'super secret key'
+
+# @app.route("/submit_review_agree_userId", methods=['POST'])
+# def submit_review_agree_userId():
+#     data = request.form
+#     name = data['store_name']
+#     review_agree_userId = data['review_agree_userId']
+#     DB.insert_review_agree_userId(name, review_agree_userId)
+
+#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
+
+# @app.route("/submit_review_agree_userId", methods=['POST'])
+# def submit_review_agree_userId():
+#     data = request.form
+#     name = data['store_name']
+#     review_agree_userId = data['review_agree_userId']
+#     DB.insert_review_agree_userId(name, review_agree_userId)
+
+#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
