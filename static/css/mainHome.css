@@ -235,6 +235,9 @@ main nav{
 #btn-select-sort label:hover{
   color:#FF4A4A
 }
+#btn-select-sort [type="radio"]:checked+label{
+  color:#FF4A4A
+}
 
 #btn-select-sort span{
   padding-left: 10px;
