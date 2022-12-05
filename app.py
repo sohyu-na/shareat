@@ -36,8 +36,8 @@ def list_restaurants():
     else:
         data = DB.get_restaurants_bycategory(category)
 
-    data = dict(
-        sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
+    # data = dict(
+    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
 
     # 선택한 목록 순서 기준으로 맛집 목록 정렬
     # if sort == "grade":
@@ -238,12 +238,6 @@ def reg_loginData_submit_post():
         flash("Wrong ID or PW!")
         return render_template("login.html")
 
-
-# 로그아웃
-@app.route("/logout")
-def logout_user():
-    session.clear()
-    return redirect(url_for("list_restaurants"))
 
 # 로그아웃
 
