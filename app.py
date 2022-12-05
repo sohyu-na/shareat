@@ -24,20 +24,24 @@ def goTo_mainHome():
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
-    limit = 9
+    sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
 
+    limit = 9
     start_idx = limit*page
     end_idx = limit*(page+1)
 
+    # 선택한 카테고리 맛집 목록 추출
     if category == "all":
         data = DB.get_restaurants()
     else:
         data = DB.get_restaurants_bycategory(category)
 
-    # data = dict(list(data.items())[start_idx:end_idx])
-    # data = dict(sorted(data))
+    data = dict(
+        sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
 
-    # data = DB.get_restaurants()
+    # 선택한 목록 순서 기준으로 맛집 목록 정렬
+    # if sort == "grade":
+    #     data = dict(sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -48,6 +52,7 @@ def list_restaurants():
         page_count = len(data)
 
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
+
 
 # 맛집 상세정보 페이지
 
