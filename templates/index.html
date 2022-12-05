@@ -36,6 +36,7 @@
         //페이지 로딩 시 선택했던 select option 선택되도록
         $(document).ready(function() {
           $('#category option:contains("{{category}}")').prop("selected",true);
+          $('#sort input:contains("{{sort}}")').prop("selected",true);
         });
     </script>
 
