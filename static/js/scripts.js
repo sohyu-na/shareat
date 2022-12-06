@@ -114,10 +114,10 @@ function menusubmitBox(){
 function report(box) {
 	let result=''
 	if(box.checked == true){
-	   result=box.value;
 	   var checkBox = document.getElementsByName("restaurant");
-	   var msg = box.value + " 을(를) 내가 찜한 맛집에 추가했습니다.\n";
+	   var msg = box.value + " 을(를) 내가 찜한 맛집에 추가했습니다.\n내가 찜한 맛집 페이지로 이동합니다.\n";
 	   alert(msg);
+	   location.href="/myRestaurantList"
 	   }
 	else{
 	   result='';
