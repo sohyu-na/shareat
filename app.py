@@ -139,7 +139,6 @@ def reg_storeName_modifyMenu_post():
 
 # 리뷰 등록 페이지
 
-
 @app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
@@ -154,15 +153,19 @@ def reg_storeName_review_post():
 
 # 내가 찜한 맛집 페이지
 
-@app.route("/myRestaurantList")
+@app.route("/myRestaurantList", methods=['POST'])
 def goTo_myRestaurantList():
+    data = request.form
+    DB.insert_mylist(data["store_name"], data["userId"])
+    
     page = request.args.get("page", 0, type=int)
     limit = 9
 
     start_idx = limit*page
     end_idx = limit*(page+1)
-
-    data = DB.get_mylist()  # 찜한 맛집 리스트 데이터
+    
+    data = DB.get_mylist(data["userId"])
+    # 찜한 맛집 리스트 데이터
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -171,6 +174,24 @@ def goTo_myRestaurantList():
         count = len(data)
         list_data = dict(list(data.items())[start_idx:end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
+
+
+#내찜맛 
+#@app.route("/submit_like_post", methods=['POST'])
+#def submit_like_post():
+    #data = request.form
+    #flag=request.args.get("flag")
+    #name=request.args.get("name")
+    #if flag=="checked":
+    #    DB.insert_mylist(name, session['id'])
+    #if DB.insert_mylist(data["store_name"], data["userId"]):
+    #    return render_template("myRestaurantList.html")
+   # else:
+    #   return True
+
+
+
+
 
 # 로그인 페이지
 
@@ -309,6 +330,8 @@ def reg_reviewData_submit_post():
 #     DB.insert_review_agree_userId(name, review_agree_userId)
 
 #     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
