@@ -25,7 +25,6 @@ class DBhandler:
         timestamp = now.strftime('%Y-%m-%d %H:%M:%S')
 
         restaurant_time = {
-            "timestamp": timestamp,
             "str_year": str_year,
             "str_month": str_month,
             "str_day": str_day,
@@ -326,12 +325,10 @@ class DBhandler:
         self.db.child("restaurant").child(name).child(
             "info").update({"store_revisit": revisit})
 
-
-
-
     # ===== 4) 회원 data =====
-    
-    #회원가입
+
+    # 회원가입
+
     def insert_member(self, name, data, pw_hash):
         member_info = {
             "memberInfo_password": pw_hash,
@@ -369,13 +366,13 @@ class DBhandler:
 
         return False
 
-
     # ===== 5) 내가 찜한 맛집 data =====
-    
 
-    #DB 마이리스트 읽어오기
+    # DB 마이리스트 읽어오기
+
     def get_mylist(self):
-        myrestaurants = self.db.child("member").child(id).child("likelist").get()
+        myrestaurants = self.db.child("member").child(
+            id).child("likelist").get()
         target_value = []
         for res in myrestaurants:
             target_value.append(self.get_restaurant_byname(res))
@@ -383,10 +380,10 @@ class DBhandler:
         for k, v in enumerate(target_value):
             new_dict[k] = v
         return new_dict
-    
-    #찜하기 버튼으로 마이리스트에 추가하기
+
+    # 찜하기 버튼으로 마이리스트에 추가하기
     def add_mylist(self, name, data):
         member_info_likelist = {
-            "myRestaurantList" : data['restaurant']
+            "myRestaurantList": data['restaurant']
         }
         self.db.child("member").child(name).child("myRestaurantList")
