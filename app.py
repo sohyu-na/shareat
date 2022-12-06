@@ -17,8 +17,6 @@ def goTo_mainHome():
     return redirect(url_for("list_restaurants"))
 
 # 메인홈(맛집 리스트)
-
-
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
@@ -53,17 +51,37 @@ def list_restaurants():
 
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
+#내찜맛 화면 출력
+@app.route("/myRestaurantList")
+def goTo_myRestaurantList():
+    #data = request.form
+    #DB.insert_mylist(data[store_name], data[userId])
+    
+    page = request.args.get("page", 0, type=int)
+    limit = 9
+    
+    start_idx = limit*page
+    end_idx = limit*(page+1)
+    
+    data = DB.get_mylist(data["userId"]) # 찜한 맛집 리스트 데이터
+
+    if data == None:
+        count = 0    # 등록된 맛집 개수
+        return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
+    else:
+        count = len(data)
+        list_data = dict(list(data.items())[start_idx:end_idx])
+        return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
+
 
 # 맛집 상세정보 페이지
-
-@app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
+@app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
-    
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
 
-#찜하기 버튼
+#찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
 @app.route("/submit_like_post", methods=['POST'])
 def submit_like_post():
     data = request.form
@@ -73,20 +91,10 @@ def submit_like_post():
     DB.insert_mylist(name, userId)
     resdata = DB.get_restaurant_byname(name)
     return redirect(url_for("goTo_detailInfo", name=name))
-    
-    #flag=request.args.get("flag")
-    #name=request.args.get("name")
-    #if flag=="checked":
-    #    DB.insert_mylist(name, session['id'])
-    #if DB.insert_mylist(data["store_name"], data["userId"]):
-    #    return render_template("myRestaurantList.html")
-   # else:
-    #   return True
 
 
-
-
-@app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
+# 메뉴 상세 정보 페이지
+@app.route("/detail-menu/<name>")
 def goTo_detailMenu(name):
     data = DB.get_restaurant_byname(str(name))
     menu = DB.get_menus_byname(str(name))
@@ -103,7 +111,8 @@ def goTo_detailMenu(name):
         return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
 
 
-@app.route("/detail-review/<name>")   # 리뷰 상세 정보 페이지
+# 리뷰 상세 정보 페이지
+@app.route("/detail-review/<name>")
 def goTo_detailReiview(name):
     data = DB.get_restaurant_byname(str(name))
     rev =DB.get_reviews_byname(str(name))
@@ -122,29 +131,27 @@ def goTo_detailReiview(name):
         return render_template("detailInfo_review.html", review_data=review_data, data=data, name=name, total=count)  #total=count
 
 
+
 # 맛집 등록 페이지
-
-
 @app.route("/registration-restaurant")
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
 
+
 # 메뉴 등록 페이지
-
-
 @app.route("/registration-menu")
 def goTo_registerMenu():
     return render_template("registerMenu.html")
 
-# 맛집 수정 페이지
 
+# 맛집 수정 페이지
 @app.route("/modify-info/<name>")   
 def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
- # 메뉴 수정 페이지s
 
+ # 메뉴 수정 페이지s
 @app.route("/registration-menu")
 def goTo_modifyMenu():
     return render_template("modifyMenu.html")
@@ -156,38 +163,16 @@ def reg_storeName_modifyMenu_post():
     return render_template("modifyMenu.html", name=data)
 
 # 리뷰 등록 페이지
-
 @app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
 
-@app.route("/review_storeName_post", methods=['POST'])  # 리뷰 등록 - 가게 이름 받아오기
+# 리뷰 등록 - 가게 이름 받아오기
+@app.route("/review_storeName_post", methods=['POST']) 
 def reg_storeName_review_post():
     data = request.form['store_name']
     print(data)
     return render_template("writeReview.html", name=data)
-
-#내찜맛 화면 출력
-@app.route("/myRestaurantList", methods=['POST'])
-def goTo_myRestaurantList():
-    data = request.form
-    
-    page = request.args.get("page", 0, type=int)
-    limit = 9
-
-    start_idx = limit*page
-    end_idx = limit*(page+1)
-    
-    data = DB.get_mylist(data["userId"]) # 찜한 맛집 리스트 데이터
-
-    if data == None:
-        count = 0    # 등록된 맛집 개수
-        return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
-    else:
-        count = len(data)
-        list_data = dict(list(data.items())[start_idx:end_idx])
-        return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
-
 
 
 # 로그인 페이지
