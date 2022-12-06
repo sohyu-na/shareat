@@ -36,7 +36,7 @@
         //페이지 로딩 시 선택했던 select option 선택되도록
         $(document).ready(function() {
           $('#category-selectbox option:contains("{{category}}")').prop("selected",true);
-          $('#btn-select-sort input:contains("{{sort}}")').prop("checked",true);
+          // $('#btn-select-sort input:contains("{{sort}}")').prop("checked",true);
         });
     </script>
 
@@ -120,6 +120,22 @@
 
         <div id="btn-select-sort">
 
+          {% if sort=='grade' %}
+
+          <input type="radio" id="sort-list-garde" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
+          <label for="sort-list-garde" style="color:#FF4A4A">평점순</label>
+  
+          <span> | </span>
+
+          <input type="radio" id="sort-list-date" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
+          <label for="sort-list-date">최신순</label>
+
+          {% else %}
+
           <input type="radio" id="sort-list-garde" name="sort_list"
           onchange="location=this.value"
           value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
@@ -130,8 +146,9 @@
           <input type="radio" id="sort-list-date" name="sort_list"
           onchange="location=this.value"
           value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
-          <label for="sort-list-date">최신순</label>
+          <label for="sort-list-date" style="color:#FF4A4A">최신순</label>
 
+          {% endif %}
         </div>
 
         <!--맛집 목록 카테고리별 정렬 체크박스ver-->
