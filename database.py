@@ -391,3 +391,22 @@ class DBhandler:
     def insert_mylist(self, name, id):
         self.db.child("member").child(id).child("myRestaurantList").push(name)
         return True
+    
+    # if likechecked==True:
+        #     list=self.db.child("member").child(id).child("myRestaurantList").get()
+        #     for likeres in list:
+        #         if name==likeres.val():
+        #             self.db.child("member").child(id).child("myRestaurantList").child(likeres).remove()
+        #             break 
+        # else:
+        #    self.db.child("member").child(id).child("myRestaurantList").push(name)
+        
+    #내찜맛 리스트에 그 가게가 있는지 확인하는 함수
+    # def get_likechecked_check(self, name, id):
+    #     list=self.db.child("member").child(id).child("myRestaurantList").get()
+    #     for likeres in list:
+    #         if name==likeres.val():
+    #             return True
+    #     return False
+
+        
