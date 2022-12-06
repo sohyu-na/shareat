@@ -2,6 +2,7 @@
 
 {% block main %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="main-wrap">
     <div class = "midnavs">
         <div class="midnav active"><a href="/detail-info/{{name}}">가게정보</a></div> 
@@ -9,9 +10,22 @@
         <div class="midnav"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
     </div>
 
+
     <div>
-        <input id="check-btn" type="checkbox" name="restaurant" value={{name}} onclick="report(this)"/>
-        <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
+        <!--
+            <form action="/submit_like_post" method="post">
+                <input id="check-btn" type="checkbox" role="submit" name="restaurant" value="{{name}}" onclick="report(this)"/>
+                <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
+            </form>
+        -->
+        <!--리뷰 동의한 유저 저장-->
+            <form action="/myRestaurantList" method="post">
+                <div class="like">
+                    <input type="hidden" name="store_name" value="{{name}}">
+                    <input type="hidden" name="userId" value="{{session['id']}}">
+                    <button type="submit" formmethod="POST"> 찜하기</button>
+                </div>
+            </form>
 
         <div class="rader-chart">            
             <canvas id="myRaderChart"></canvas>
