@@ -59,7 +59,31 @@ def list_restaurants():
 @app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
+    
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
+
+
+#찜하기 버튼
+@app.route("/submit_like_post", methods=['POST'])
+def submit_like_post():
+    data = request.form
+    name=data["store_name"]
+    userId=data["userId"]
+    #likechecked=data["likechecked"]
+    DB.insert_mylist(name, userId)
+    resdata = DB.get_restaurant_byname(name)
+    return redirect(url_for("goTo_detailInfo", name=name))
+    
+    #flag=request.args.get("flag")
+    #name=request.args.get("name")
+    #if flag=="checked":
+    #    DB.insert_mylist(name, session['id'])
+    #if DB.insert_mylist(data["store_name"], data["userId"]):
+    #    return render_template("myRestaurantList.html")
+   # else:
+    #   return True
+
+
 
 
 @app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
@@ -143,13 +167,10 @@ def reg_storeName_review_post():
     print(data)
     return render_template("writeReview.html", name=data)
 
-
-# 내가 찜한 맛집 페이지
-
+#내찜맛 화면 출력
 @app.route("/myRestaurantList", methods=['POST'])
 def goTo_myRestaurantList():
     data = request.form
-    DB.insert_mylist(data["store_name"], data["userId"])
     
     page = request.args.get("page", 0, type=int)
     limit = 9
@@ -157,8 +178,7 @@ def goTo_myRestaurantList():
     start_idx = limit*page
     end_idx = limit*(page+1)
     
-    data = DB.get_mylist(data["userId"])
-    # 찜한 맛집 리스트 데이터
+    data = DB.get_mylist(data["userId"]) # 찜한 맛집 리스트 데이터
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -169,34 +189,14 @@ def goTo_myRestaurantList():
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 
-#내찜맛 
-#@app.route("/submit_like_post", methods=['POST'])
-#def submit_like_post():
-    #data = request.form
-    #flag=request.args.get("flag")
-    #name=request.args.get("name")
-    #if flag=="checked":
-    #    DB.insert_mylist(name, session['id'])
-    #if DB.insert_mylist(data["store_name"], data["userId"]):
-    #    return render_template("myRestaurantList.html")
-   # else:
-    #   return True
-
-
-
-
 
 # 로그인 페이지
-
-
 @app.route("/login")
 def goTo_login():
     return render_template("login.html")
 
 
 # 회원가입 페이지
-
-
 @app.route("/signup")
 def goTo_signup():
     return render_template("signup.html")
@@ -204,7 +204,7 @@ def goTo_signup():
 
 # ===== [사용자 입력 데이터 받아오기] =====
 
-
+#가게정보 삽입
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
@@ -267,8 +267,6 @@ def reg_loginData_submit_post():
     
 
 # 로그아웃
-
-
 @app.route("/logout")
 def logout_user():
     session.clear()
