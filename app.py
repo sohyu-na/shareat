@@ -35,8 +35,8 @@ def list_restaurants():
     else:
         data = DB.get_restaurants_bycategory(category)
 
-    # data = dict(
-    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
+    #data = dict(sorted(data.items(), key=lambda x: x[1]['info']['store_grade']),reverse=True)
+    #data = dict(sorted(data.items(), key=lambda x: x[1]['time']['timestamp']),reverse=False)
 
     # 선택한 목록 순서 기준으로 맛집 목록 정렬
     # if sort == "grade":
@@ -47,7 +47,6 @@ def list_restaurants():
         return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
         count = len(data)        
-        #data = dict(sorted(data.items(),key=lambda x:x[1]['info']['store_grade'],reverse=True))
         data = dict(list(data.items())[start_idx:end_idx])
         page_count = len(data)
 

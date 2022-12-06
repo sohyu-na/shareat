@@ -262,7 +262,7 @@ class DBhandler:
         timestamp = now.strftime('%Y.%m.%d')
 
         review_info = {
-            "store_name": name,
+            "store_name": data['store_name'],
             "nickname": data['nickname'],
             "review_grade": data['Range'],
             "taste": data['taste'],
@@ -273,7 +273,7 @@ class DBhandler:
             "revisit": data['revisit'],
             "detail_review": data['detail_review'],
             "reviewImg_path": reviewImg_path,
-            "timestamp": timestamp
+            "timestamp":timestamp
         }
 
         if data['nickname'] == "":
