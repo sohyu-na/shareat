@@ -374,19 +374,20 @@ class DBhandler:
     
 
     #DB 마이리스트 읽어오기
-    def get_mylist(self):
-        myrestaurants = self.db.child("member").child(id).child("likelist").get()
+    def get_mylist(self, id):
+        myrestaurants = self.db.child("member").child(id).child("myRestaurantList").get()
         target_value = []
-        for res in myrestaurants:
-            target_value.append(self.get_restaurant_byname(res))
+        for res in myrestaurants.each():
+            value = res.val()
+            target_value.append(self.get_restaurant_byname(value))
+            
         new_dict = {}
         for k, v in enumerate(target_value):
             new_dict[k] = v
         return new_dict
-    
+
+
     #찜하기 버튼으로 마이리스트에 추가하기
-    def add_mylist(self, name, data):
-        member_info_likelist = {
-            "myRestaurantList" : data['restaurant']
-        }
-        self.db.child("member").child(name).child("myRestaurantList")
+    def insert_mylist(self, name, id):
+        self.db.child("member").child(id).child("myRestaurantList").push(name)
+        return True
