@@ -3,6 +3,7 @@ from database import DBhandler
 import hashlib
 import sys
 from urllib import parse
+import math
 
 app = Flask(__name__)
 
@@ -66,16 +67,14 @@ def list_restaurants():
 #내찜맛 화면 출력
 @app.route("/myRestaurantList")
 def goTo_myRestaurantList():
-    #data = request.form
-    #DB.insert_mylist(data[store_name], data[userId])
-    
+    userId=session['id']
     page = request.args.get("page", 0, type=int)
     limit = 9
     
     start_idx = limit*page
     end_idx = limit*(page+1)
-    
-    data = DB.get_mylist(data["userId"]) # 찜한 맛집 리스트 데이터
+    data=[]
+    data = DB.get_mylist(userId) # 찜한 맛집 리스트 데이터
 
     if data == None:
         count = 0    # 등록된 맛집 개수
