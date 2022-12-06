@@ -238,7 +238,8 @@
 
       <!--[맛집 목록]-->
       <section>
-        {% if total>0 %} {% for data in datas %}
+        {% if total>0 %} 
+        {% for data in datas %}
         <div class="restaurant-item">
           <a href="/detail-info/{{data[1].info.store_name}}">
             <div class="restaurant-item-box">
