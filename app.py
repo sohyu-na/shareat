@@ -3,7 +3,6 @@ from database import DBhandler
 import hashlib
 import sys
 from urllib import parse
-import math
 
 app = Flask(__name__)
 
@@ -139,13 +138,13 @@ def goTo_modifyInfo(name):
  # 메뉴 수정 페이지s
 
 
-@ app.route("/registration-menu")
+@app.route("/registration-menu")
 def goTo_modifyMenu():
     return render_template("modifyMenu.html")
 
 
 # 메뉴 수정 - 가게 이름 받아오기
-@ app.route("/modifyMenu_storeName_post", methods=['POST'])
+@app.route("/modifyMenu_storeName_post", methods=['POST'])
 def reg_storeName_modifyMenu_post():
     data = request.form['store_name']
     print(data)
@@ -154,12 +153,12 @@ def reg_storeName_modifyMenu_post():
 # 리뷰 등록 페이지
 
 
-@ app.route("/review")
+@app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
 
 
-@ app.route("/review_storeName_post", methods=['POST'])  # 리뷰 등록 - 가게 이름 받아오기
+@app.route("/review_storeName_post", methods=['POST'])  # 리뷰 등록 - 가게 이름 받아오기
 def reg_storeName_review_post():
     data = request.form['store_name']
     print(data)
@@ -168,15 +167,19 @@ def reg_storeName_review_post():
 
 # 내가 찜한 맛집 페이지
 
-@ app.route("/myRestaurantList")
+@app.route("/myRestaurantList", methods=['POST'])
 def goTo_myRestaurantList():
+    data = request.form
+    DB.insert_mylist(data["store_name"], data["userId"])
+
     page = request.args.get("page", 0, type=int)
     limit = 9
 
     start_idx = limit*page
     end_idx = limit*(page+1)
 
-    data = DB.get_mylist()  # 찜한 맛집 리스트 데이터
+    data = DB.get_mylist(data["userId"])
+    # 찜한 맛집 리스트 데이터
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -186,6 +189,21 @@ def goTo_myRestaurantList():
         list_data = dict(list(data.items())[start_idx: end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
+
+# 내찜맛
+# @app.route("/submit_like_post", methods=['POST'])
+# def submit_like_post():
+    #data = request.form
+    # flag=request.args.get("flag")
+    # name=request.args.get("name")
+    # if flag=="checked":
+    #    DB.insert_mylist(name, session['id'])
+    # if DB.insert_mylist(data["store_name"], data["userId"]):
+    #    return render_template("myRestaurantList.html")
+   # else:
+    #   return True
+
+
 # 로그인 페이지
 
 
@@ -193,7 +211,8 @@ def goTo_myRestaurantList():
 def goTo_login():
     return render_template("login.html")
 
- # 회원가입 페이지
+
+# 회원가입 페이지
 
 
 @ app.route("/signup")
@@ -225,7 +244,7 @@ def reg_restaurantData_submit_post():
         return "Restaurant name already exists!"
 
 
-@ app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
+@app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
 def reg_storeName_submit_post():
     data = request.form['store_name']
     print(data)
@@ -233,7 +252,7 @@ def reg_storeName_submit_post():
 
 
 # 데이터베이스에 회원정보 넣기
-@ app.route("/submit_signupData_post", methods=['POST'])
+@app.route("/submit_signupData_post", methods=['POST'])
 def reg_signupData_submit_post():
     data = request.form
     pw = request.form['memberInfo_password']
@@ -297,7 +316,7 @@ def reg_menuData_submit_post():
 # [사용자 입력 데이터 받아오기] - 리뷰
 
 
-@ app.route("/submit_reviewData_post", methods=['POST'])
+@app.route("/submit_reviewData_post", methods=['POST'])
 def reg_reviewData_submit_post():
     global idx
     image_file = request.files["picture"]
@@ -317,6 +336,8 @@ def reg_reviewData_submit_post():
     # return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
 
+app.secret_key = 'super secret key'
+
 # @app.route("/submit_review_agree_userId", methods=['POST'])
 # def submit_review_agree_userId():
 #     data = request.form
@@ -326,11 +347,19 @@ def reg_reviewData_submit_post():
 
 #     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
 
+# @app.route("/submit_review_agree_userId", methods=['POST'])
+# def submit_review_agree_userId():
+#     data = request.form
+#     name = data['store_name']
+#     review_agree_userId = data['review_agree_userId']
+#     DB.insert_review_agree_userId(name, review_agree_userId)
+
+#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
 if __name__ == "__main__":
     # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
-
-app.secret_key = 'super secret key'

@@ -164,7 +164,7 @@ class DBhandler:
             value = rev.val()
             if (value['taste'] == 'y'):
                 taste_count += 1
-        return type(int(taste_count/respondent*100))
+        return int(taste_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self, name):
@@ -369,21 +369,21 @@ class DBhandler:
     # ===== 5) 내가 찜한 맛집 data =====
 
     # DB 마이리스트 읽어오기
-
-    def get_mylist(self):
+    def get_mylist(self, id):
         myrestaurants = self.db.child("member").child(
-            id).child("likelist").get()
+            id).child("myRestaurantList").get()
         target_value = []
-        for res in myrestaurants:
-            target_value.append(self.get_restaurant_byname(res))
+        for res in myrestaurants.each():
+            value = res.val()
+            target_value.append(self.get_restaurant_byname(value))
+
         new_dict = {}
         for k, v in enumerate(target_value):
             new_dict[k] = v
         return new_dict
 
     # 찜하기 버튼으로 마이리스트에 추가하기
-    def add_mylist(self, name, data):
-        member_info_likelist = {
-            "myRestaurantList": data['restaurant']
-        }
-        self.db.child("member").child(name).child("myRestaurantList")
+
+    def insert_mylist(self, name, id):
+        self.db.child("member").child(id).child("myRestaurantList").push(name)
+        return True
