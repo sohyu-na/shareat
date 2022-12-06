@@ -10,7 +10,6 @@
         </div>
         <div class="mainavfon">
             찜한 맛집 총 <b>{{total}}</b>개
-            
         </div>
     </div>
     <section>
@@ -18,14 +17,14 @@
         {% if total>0 %}
             {% for data in datas %}
             <div class="restaurant-item">
-                <a href="/detail-info/{{data[1].info.name}}">
+                <a href="/detail-info/{{data[1].info.store_name}}">
                     <div class="restaurant-item-box">
                         <figure>
                             <img class="temp restaurant-img" src="{{data[1].info.img_path}}">
                             <!-- <div class="">이미지</div> -->
                         </figure>
                         <figcaption>                       
-                            <div class="restaurant-names">{{data[1].info.name}}</div>
+                            <div class="restaurant-names">{{data[1].info.store_name}}</div>
                             <div class="restaurant-category">{{data[1].info.store_category}}</div>
                             <div class="restaurant-point">{{data[1].info.store_grade}}</div>
                         </figcaption>
@@ -35,16 +34,17 @@
             {% endfor %}
             <i class="icon-pre-list fa-solid fa-chevron-left"><button></button></i>
             <i class="icon-next-list fa-solid fa-chevron-right"><button></button></i>
-            <div class="page=wrap">
-                <div class="page-nation">
+            <div class="page-wraps">
+                <div class="page-nations">
+                    <div>
                     <ul>
                         <li>
                             {% for i in range(page_count) %}
-                            <a href="{{url_for('goTo_myRestaurantList',page=i)}}#list-location" color="black">{{i}}</a>
+                            <a href="{{url_for('goTo_myRestaurantList',page=i)}}#list-location">{{i+1}}</a>
                             {% endfor %}
                         </li>
                     </ul>
-
+                </div>
                 </div>
             </div>
         {% else %}
