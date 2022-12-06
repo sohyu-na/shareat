@@ -14,10 +14,6 @@ a, a:visited{
 
 /*=================Header Styling=================*/
 
-.reg_btn{
-  border: none;
-}
-
 #logo {
   font-size: 25px;
   font-weight: bold;
@@ -239,8 +235,8 @@ main nav{
 #btn-select-sort label:hover{
   color:#FF4A4A
 }
-#btn-select-sort [type="radio"]:checked+label{
-  color:#FF4A4A
+#btn-select-sort input:checked+label{
+    color:#FF4A4A
 }
 
 #btn-select-sort span{

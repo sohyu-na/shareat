@@ -36,8 +36,21 @@ def list_restaurants():
     else:
         data = DB.get_restaurants_bycategory(category)
 
+    # 맛집 목록 순서 정렬 (평점순/최신순)
+    if sort == "grade":
+        data = dict(
+            sorted(data.items(), key=lambda x: x[1]['info']['store_grade'], reverse=True))
+    else:
+        data = dict(
+            sorted(data.items(), key=lambda x: x[1]['time']['timestamp'], reverse=True))
+
+    # 평점순 정렬
     # data = dict(
-    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
+    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade'], reverse=True))
+
+    # 최신순 정렬
+    # data = dict(
+    #     sorted(data.items(), key=lambda x: x[1]['time']['timestamp'], reverse=False))
 
     # 선택한 목록 순서 기준으로 맛집 목록 정렬
     # if sort == "grade":
@@ -45,25 +58,25 @@ def list_restaurants():
 
     if data == None:
         count = 0    # 등록된 맛집 개수
-        return render_template("index.html", datas=data, total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
+        return render_template("index.html", total=count, page=page)
     else:
         count = len(data)
-        data = dict(list(data.items())[start_idx:end_idx])
+        data = dict(list(data.items())[start_idx: end_idx])
         page_count = len(data)
 
-        return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category)
+        return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category, sort=sort)
 
 
 # 맛집 상세정보 페이지
 
 
-@app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
+@ app.route("/detail-info/<name>")   # 맛집 상세 정보 페이지
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
 
-@app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
+@ app.route("/detail-menu/<name>")   # 메뉴 상세 정보 페이지
 def goTo_detailMenu(name):
     data = DB.get_restaurant_byname(str(name))
     menu = DB.get_menus_byname(str(name))
@@ -80,14 +93,14 @@ def goTo_detailMenu(name):
         return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
 
 
-@app.route("/detail-review/<name>")   # 리뷰 상세 정보 페이지
+@ app.route("/detail-review/<name>")   # 리뷰 상세 정보 페이지
 def goTo_detailReiview(name):
     data = DB.get_restaurant_byname(str(name))
     rev = DB.get_reviews_byname(str(name))
     print(rev)
 
     # review_data = DB.get_review_byname(str(name))
-    #count = len(review_data.keys())
+    # count = len(review_data.keys())
 
     if rev == None:
         count = 0    # 등록된 맛집 개수
@@ -104,34 +117,34 @@ def goTo_detailReiview(name):
 # 맛집 등록 페이지
 
 
-@app.route("/registration-restaurant")
+@ app.route("/registration-restaurant")
 def goTo_registerRestaurant():
     return render_template("registerRestaurantInfo.html")
 
 # 메뉴 등록 페이지
 
 
-@app.route("/registration-menu")
+@ app.route("/registration-menu")
 def goTo_registerMenu():
     return render_template("registerMenu.html")
 
 # 맛집 수정 페이지
 
 
-@app.route("/modification-restaurant")
+@ app.route("/modification-restaurant")
 def goTo_modifyRestaurantInfo():
     return render_template("modifyRestaurantInfo.html")
 
  # 메뉴 수정 페이지s
 
 
-@app.route("/registration-menu")
+@ app.route("/registration-menu")
 def goTo_modifyMenu():
     return render_template("modifyMenu.html")
 
 
 # 메뉴 수정 - 가게 이름 받아오기
-@app.route("/modifyMenu_storeName_post", methods=['POST'])
+@ app.route("/modifyMenu_storeName_post", methods=['POST'])
 def reg_storeName_modifyMenu_post():
     data = request.form['store_name']
     print(data)
@@ -140,12 +153,12 @@ def reg_storeName_modifyMenu_post():
 # 리뷰 등록 페이지
 
 
-@app.route("/review")
+@ app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
 
 
-@app.route("/review_storeName_post", methods=['POST'])  # 리뷰 등록 - 가게 이름 받아오기
+@ app.route("/review_storeName_post", methods=['POST'])  # 리뷰 등록 - 가게 이름 받아오기
 def reg_storeName_review_post():
     data = request.form['store_name']
     print(data)
@@ -154,7 +167,7 @@ def reg_storeName_review_post():
 
 # 내가 찜한 맛집 페이지
 
-@app.route("/myRestaurantList")
+@ app.route("/myRestaurantList")
 def goTo_myRestaurantList():
     page = request.args.get("page", 0, type=int)
     limit = 9
@@ -169,20 +182,20 @@ def goTo_myRestaurantList():
         return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
         count = len(data)
-        list_data = dict(list(data.items())[start_idx:end_idx])
+        list_data = dict(list(data.items())[start_idx: end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 # 로그인 페이지
 
 
-@app.route("/login")
+@ app.route("/login")
 def goTo_login():
     return render_template("login.html")
 
  # 회원가입 페이지
 
 
-@app.route("/signup")
+@ app.route("/signup")
 def goTo_signup():
     return render_template("signup.html")
 
@@ -190,7 +203,7 @@ def goTo_signup():
 # ===== [사용자 입력 데이터 받아오기] =====
 
 
-@app.route("/submit_restaurantData_post", methods=['POST'])
+@ app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
     image_file = request.files["file"]
@@ -211,7 +224,7 @@ def reg_restaurantData_submit_post():
         return "Restaurant name already exists!"
 
 
-@app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
+@ app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
 def reg_storeName_submit_post():
     data = request.form['store_name']
     print(data)
@@ -219,7 +232,7 @@ def reg_storeName_submit_post():
 
 
 # 데이터베이스에 회원정보 넣기
-@app.route("/submit_signupData_post", methods=['POST'])
+@ app.route("/submit_signupData_post", methods=['POST'])
 def reg_signupData_submit_post():
     data = request.form
     pw = request.form['memberInfo_password']
@@ -238,7 +251,7 @@ def reg_signupData_submit_post():
         return render_template("signup.html")
 
 
-@app.route("/submit_loginData_post", methods=['POST'])
+@ app.route("/submit_loginData_post", methods=['POST'])
 def reg_loginData_submit_post():
     id_ = request.form['input_id']
     pw = request.form['input_password']
@@ -255,14 +268,14 @@ def reg_loginData_submit_post():
 # 로그아웃
 
 
-@app.route("/logout")
+@ app.route("/logout")
 def logout_user():
     session.clear()
     return redirect(url_for("list_restaurants"))
 
 
 # [사용자 입력 데이터 받아오기] - 메뉴
-@app.route("/submit_menuData_post", methods=['POST'])
+@ app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
     global idx
     image_file = request.files["menu_pic"]
@@ -283,7 +296,7 @@ def reg_menuData_submit_post():
 # [사용자 입력 데이터 받아오기] - 리뷰
 
 
-@app.route("/submit_reviewData_post", methods=['POST'])
+@ app.route("/submit_reviewData_post", methods=['POST'])
 def reg_reviewData_submit_post():
     global idx
     image_file = request.files["picture"]
@@ -298,7 +311,9 @@ def reg_reviewData_submit_post():
 
     DB.insert_review(name, data, image_file.filename)
 
-    return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
+    return render_template("detailInfo_review.html")
+
+    # return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
 
 
 # @app.route("/submit_review_agree_userId", methods=['POST'])
@@ -314,7 +329,7 @@ if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
 if __name__ == "__main__":
-    #app.secret_key = 'super secret key'
+    # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
 
 app.secret_key = 'super secret key'
