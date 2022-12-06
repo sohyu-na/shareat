@@ -131,9 +131,10 @@ def goTo_registerMenu():
 # 맛집 수정 페이지
 
 
-@ app.route("/modification-restaurant")
-def goTo_modifyRestaurantInfo():
-    return render_template("modifyRestaurantInfo.html")
+@ app.route("/modify-info/<name>")   # 맛집 수정 정보 페이지
+def goTo_modifyInfo(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
  # 메뉴 수정 페이지s
 
