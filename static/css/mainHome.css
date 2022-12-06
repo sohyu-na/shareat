@@ -14,10 +14,6 @@ a, a:visited{
 
 /*=================Header Styling=================*/
 
-.reg_btn{
-  border: none;
-}
-
 #logo {
   font-size: 25px;
   font-weight: bold;
@@ -207,11 +203,12 @@ main nav{
 #btn-select-category span{
   padding-left: 10px;
   padding-right: 5px;
-
+  color:#313131;
+  font-weight: bold;
 }
 
 #category-selectbox{
-  border: solid 1.5px rgb(158, 158, 158);
+  border: solid 1.5px rgb(146, 146, 146);
   border-radius: 5px;
   margin-left:10px;
   width: 80px;
@@ -230,6 +227,7 @@ main nav{
   align-items: center;
   width: 100%;
   color:rgb(134, 132, 132);
+  font-size: 16px;
 }
 
 #btn-select-sort input{
@@ -237,10 +235,11 @@ main nav{
 }
 
 #btn-select-sort label:hover{
+  font-size: 18px;
   color:#FF4A4A
 }
-#btn-select-sort [type="radio"]:checked+label{
-  color:#FF4A4A
+#btn-select-sort input:checked+label{
+    color:#FF4A4A
 }
 
 #btn-select-sort span{

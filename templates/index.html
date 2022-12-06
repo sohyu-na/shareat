@@ -35,8 +35,8 @@
 
         //페이지 로딩 시 선택했던 select option 선택되도록
         $(document).ready(function() {
-          $('#category option:contains("{{category}}")').prop("selected",true);
-          $('#sort input:contains("{{sort}}")').prop("selected",true);
+          $('#category-selectbox option:contains("{{category}}")').prop("selected",true);
+          // $('#btn-select-sort input:contains("{{sort}}")').prop("checked",true);
         });
     </script>
 
@@ -101,30 +101,54 @@
       <nav id="category">
         <div id="btn-select-category">
             <span>category</span>
-            <select id="category-selectbox" name="category" onchange="location=this.value" >
-              <option value="{{url_for('list_restaurants', page=i, category='all')}}">전체</option>
-              <option value="{{url_for('list_restaurants', page=i, category='한식')}}">한식</option>
-              <option value="{{url_for('list_restaurants', page=i, category='중식')}}">중식</option>
-              <option value="{{url_for('list_restaurants', page=i, category='일식')}}">일식</option>
-              <option value="{{url_for('list_restaurants', page=i, category='양식')}}">양식</option>
-              <option value="{{url_for('list_restaurants', page=i, category='아시아')}}">아시아</option>
-              <option value="{{url_for('list_restaurants', page=i, category='남미')}}">남미</option>
-              <option value="{{url_for('list_restaurants', page=i, category='디저트')}}">디저트</option>
-              <option value="{{url_for('list_restaurants', page=i, category='주점')}}">주점</option>
-              <option value="{{url_for('list_restaurants', page=i, category='기타')}}">기타</option>
+            <script>
+
+            </script>
+            <select id="category-selectbox" name="category" onchange="location=this.value">>
+              <option value="{{url_for('list_restaurants', page=i, category='all', sort=sort)}}">전체</option>
+              <option value="{{url_for('list_restaurants', page=i, category='한식',sort=sort)}}">한식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='중식',sort=sort)}}">중식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='일식',sort=sort)}}">일식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='양식',sort=sort)}}">양식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='아시아',sort=sort)}}">아시아</option>
+              <option value="{{url_for('list_restaurants', page=i, category='남미',sort=sort)}}">남미</option>
+              <option value="{{url_for('list_restaurants', page=i, category='디저트',sort=sort)}}">디저트</option>
+              <option value="{{url_for('list_restaurants', page=i, category='주점',sort=sort)}}">주점</option>
+              <option value="{{url_for('list_restaurants', page=i, category='기타',sort=sort)}}">기타</option>
             </select>
         </div>
 
         <div id="btn-select-sort">
 
-          <input type="radio" id="sort-list-garde" name="sort_list">
+          {% if sort=='grade' %}
+
+          <input type="radio" id="sort-list-garde" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
+          <label for="sort-list-garde" style="color:#FF4A4A">평점순</label>
+  
+          <span> | </span>
+
+          <input type="radio" id="sort-list-date" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
+          <label for="sort-list-date">최신순</label>
+
+          {% else %}
+
+          <input type="radio" id="sort-list-garde" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
           <label for="sort-list-garde">평점순</label>
   
           <span> | </span>
 
-          <input type="radio" id="sort-list-date" name="sort_list">
-          <label for="sort-list-date">최신순</label>
+          <input type="radio" id="sort-list-date" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
+          <label for="sort-list-date" style="color:#FF4A4A">최신순</label>
 
+          {% endif %}
         </div>
 
         <!--맛집 목록 카테고리별 정렬 체크박스ver-->
@@ -214,7 +238,8 @@
 
       <!--[맛집 목록]-->
       <section>
-        {% if total>0 %} {% for data in datas %}
+        {% if total>0 %} 
+        {% for data in datas %}
         <div class="restaurant-item">
           <a href="/detail-info/{{data[1].info.store_name}}">
             <div class="restaurant-item-box">
@@ -246,7 +271,7 @@
           <ul>
             <li>
               {% for i in range(page_count) %}
-              <a href="{{url_for('list_restaurants',page=i)}}#list-location">{{i+1}}</a>
+              <a href="{{url_for('list_restaurants', page=i, category=category,sort=sort)}}#list-location">{{i+1}}</a>
               {% endfor %}
             </li>
           </ul>
