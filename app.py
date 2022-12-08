@@ -67,7 +67,7 @@ def list_restaurants():
 #내찜맛 화면 출력
 @app.route("/myRestaurantList")
 def goTo_myRestaurantList():
-    userId=session['id']
+    userId = session['id']
     page = request.args.get("page", 0, type=int)
     limit = 9
     
@@ -136,7 +136,6 @@ def goTo_detailReiview(name):
     else:
         review_data = DB.get_review_byname(str(name))
         count = len(rev)
-        # total=count
         return render_template("detailInfo_review.html", review_data=review_data, data=data, name=name, total=count)
 
 
@@ -289,9 +288,8 @@ def reg_menuData_submit_post():
     else:
         return "menu name already exist!"
 
+
 # [사용자 입력 데이터 받아오기] - 리뷰
-
-
 @app.route("/submit_reviewData_post", methods=['POST'])
 def reg_reviewData_submit_post():
     global idx
@@ -304,6 +302,7 @@ def reg_reviewData_submit_post():
 
     data = request.form
     name = data['store_name']
+    userID = data['userID']
 
     DB.insert_review(name, data, reviewImg_path, userID)
 
@@ -320,6 +319,7 @@ def submit_review_agree_userId():
     
     return redirect(url_for("goTo_detailReiview", name=name))
 
+
 @app.route("/submit_review_userID", methods=['POST'])  # 리뷰 작성한 유저의 userID 넘겨줌
 def submit_review_userID():
     data = request.form
@@ -335,6 +335,7 @@ def submit_review_userID():
 #     return redirect(url_for("goTo_detailReiview", name=name))
 
 
+app.secret_key = 'super secret key'
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
@@ -342,3 +343,4 @@ if __name__ == '__main__':
 if __name__ == "__main__":
     # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
+    
