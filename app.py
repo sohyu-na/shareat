@@ -129,14 +129,10 @@ def goTo_detailReiview(name):
     rev = DB.get_reviews_byname(str(name))
     print(rev)
 
-    # review_data = DB.get_review_byname(str(name))
-    # count = len(review_data.keys())
-
     if rev == None:
-        count = 0    # 등록된 맛집 개수
-        # total=count
-        return render_template("detailInfo_review.html", data=data, name=name, total=count)
-
+        count = 0    # 등록된 리뷰 개수
+        return render_template("detailInfo_review.html", data=data, name=name, total=count)  #total=count
+    
     else:
         review_data = DB.get_review_byname(str(name))
         count = len(rev)
@@ -309,32 +305,35 @@ def reg_reviewData_submit_post():
     data = request.form
     name = data['store_name']
 
-    DB.insert_review(name, data, image_file.filename)
+    DB.insert_review(name, data, reviewImg_path, userID)
 
-    return render_template("detailInfo_review.html")
-
-    # return render_template("result_리뷰등록.html", name=name, data=data, reviewImg_path=reviewImg_path)
+    return redirect(url_for("goTo_detailReiview", name=name))
 
 
-app.secret_key = 'super secret key'
+@app.route("/submit_review_agree_userId", methods=['POST'])
+def submit_review_agree_userId():
+    data = request.form
+    name = data['store_name']
+    userID = data['userID']
+    review_agree_userId = data['review_agree_userId']
+    DB.insert_review_agree_userId(name, userID, review_agree_userId)
+    
+    return redirect(url_for("goTo_detailReiview", name=name))
 
-# @app.route("/submit_review_agree_userId", methods=['POST'])
-# def submit_review_agree_userId():
-#     data = request.form
-#     name = data['store_name']
-#     review_agree_userId = data['review_agree_userId']
-#     DB.insert_review_agree_userId(name, review_agree_userId)
+@app.route("/submit_review_userID", methods=['POST'])  # 리뷰 작성한 유저의 userID 넘겨줌
+def submit_review_userID():
+    data = request.form
+    name = data['store_name']
+    userID = data['userID']
+    # agreeUsers_num = DB.get_agreeNum_byname(name, userID)
+    return redirect(url_for("goTo_detailReiview", name=name))
+    
+# #동의 버튼 누를 시에 동의한 사람 수 새로고침
+# @app.route("/", methods=['POST'])  
+# def submit_review_userID():
 
-#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
+#     return redirect(url_for("goTo_detailReiview", name=name))
 
-# @app.route("/submit_review_agree_userId", methods=['POST'])
-# def submit_review_agree_userId():
-#     data = request.form
-#     name = data['store_name']
-#     review_agree_userId = data['review_agree_userId']
-#     DB.insert_review_agree_userId(name, review_agree_userId)
-
-#     return render_template("detailInfo_review.html", data=data, review_agree_userId=review_agree_userId)
 
 
 if __name__ == '__main__':
