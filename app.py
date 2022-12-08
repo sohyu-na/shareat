@@ -96,12 +96,14 @@ def goTo_detailInfo(name):
 @app.route("/submit_like_post", methods=['POST'])
 def submit_like_post():
     data = request.form
-    name=data["store_name"]
-    userId=data["userId"]
-    #likechecked=data["likechecked"]
-    DB.insert_mylist(name, userId)
-    resdata = DB.get_restaurant_byname(name)
-    return redirect(url_for("goTo_detailInfo", name=name))
+    name = data["store_name"]
+    userId = data["userId"]
+    if DB.insert_mylist(name, userId):
+        flash("내가 찜한 맛집 리스트에 추가 되었습니다.")
+        return redirect(url_for("goTo_detailInfo", name=name))
+    else:
+        flash("이미 찜한 맛집입니다.")
+        return redirect(url_for("goTo_detailInfo", name=name))
 
 
 # 메뉴 상세 정보 페이지

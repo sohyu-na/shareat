@@ -320,20 +320,13 @@ class DBhandler:
         cleanlinessScore = self.get_cleanlinessScore_byname(name)
         atmosphereScore = self.get_atmosphereScore_byname(name)
         revisit = self.get_revisitrate_byname(name)
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_grade": avgScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_taste": tasteScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_cost": costScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_service": serviceScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_cleanliness": cleanlinessScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_atmosphere": atmosphereScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_revisit": revisit})
+        self.db.child("restaurant").child(name).child("info").update({"store_grade": avgScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_taste": tasteScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_cost": costScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_service": serviceScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_cleanliness": cleanlinessScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_atmosphere": atmosphereScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_revisit": revisit})
 
     # ===== 4) 회원 data =====
 
@@ -380,8 +373,7 @@ class DBhandler:
 
     # DB 마이리스트 읽어오기
     def get_mylist(self, id):
-        myrestaurants = self.db.child("member").child(
-            id).child("myRestaurantList").get()
+        myrestaurants = self.db.child("member").child(id).child("myRestaurantList").get()
         target_value = []
         for res in myrestaurants.each():
             value = res.val()
@@ -393,9 +385,21 @@ class DBhandler:
         return new_dict
 
     # 찜하기 버튼으로 마이리스트에 추가하기
+    def insert_mylist(self, name, userId):
+        if self.mylist_duplicate_check(name, userId):
+            self.db.child("member").child(userId).child("myRestaurantList").push(name)
+            return True
+        else:
+            return False
 
-    def insert_mylist(self, name, id):
-        self.db.child("member").child(id).child("myRestaurantList").push(name)
+    # 이미 찜리스트에 있는 가게인지 확인하는 함수
+    def mylist_duplicate_check(self, name, userId):
+        lists = self.db.child("member").child(userId).child("myRestaurantList").get()
+        if lists == None:
+            return True
+        for res in lists.each():
+            if res.val() == name:
+                return False
         return True
     
     # if likechecked==True:
