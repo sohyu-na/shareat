@@ -145,7 +145,7 @@ class DBhandler:
             value = rev.val()
             if (value['taste'] == 'y'):
                 taste_count += 1
-        return type(int(taste_count/respondent*100))
+        return int(taste_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self, name):
@@ -236,7 +236,7 @@ class DBhandler:
         return reviews
 
     # ===== 3) 리뷰 데이터 ======
-    def insert_review(self, name, data, reviewImg_path):
+    def insert_review(self, name, data, reviewImg_path, userID):
         # 리뷰 등록 시간 DB에 저장
         now = datetime.now()
         timestamp = now.strftime('%Y.%m.%d')
@@ -253,26 +253,34 @@ class DBhandler:
             "revisit": data['revisit'],
             "detail_review": data['detail_review'],
             "reviewImg_path": reviewImg_path,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "userID": userID,
+            "agreeUsers_num": 0
         }
-        
+
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("restaurant").child(
-            name).child("review").push(review_info)
-        #  #리뷰 동의 유저 아이디 저장 
-        # self.db.child("restaurant").child(
-        #     name).child("review").push(review_info)
+            name).child("review").child(userID).set(review_info)   #userID로 리뷰 저장
         self.update_storeScore_byname(name)
         
         
-    # #리뷰 동의 유저 아이디 저장 
-    # def insert_review_agree_userId(self, name, review_agree_userId):
-    #     agree_users_info = {
-    #         "agree_userId": review_agree_userId
-    #     }
-    #     return agree_users_info
-        
+    #리뷰 동의 유저 아이디 저장 
+    def insert_review_agree_userId(self, name, userID, review_agree_userId):
+        self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").push(review_agree_userId)
+        #리뷰 동의한 사람 수 저장
+        self.update_agreeNum_byname(name, userID)
+     
+    #각 리뷰에 동의한 사람 수 구하고 저장
+    def update_agreeNum_byname(self, name, userID):
+        agreeUsers = self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").get()
+        num = []
+        for agreeUserId in agreeUsers.each():
+            value = agreeUserId.val()
+            num.append(value)
+        agreeUsers_num = len(num)
+        self.db.child("restaurant").child(name).child("review").child(userID).update({"agreeUsers_num": agreeUsers_num})
+
 
     def get_review_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
