@@ -52,16 +52,22 @@
             */
         </script>
 
+        {% if session['id'] %}
         <form action="/submit_like_post" method="post">
             <div class="like">
                 <input type="hidden" name="store_name" value="{{name}}">
                 <input type="hidden" name="userId" value="{{session['id']}}">
-                <!--이미 체크되어 있었는지 확인해서 값을 넘겨주고 싶은데 실패 <input type="hidden" name="likechecked" value="likechecked()">-->
                 <button id="likebutton" type="submit" formmethod="POST">찜하기</button>
             </div>
         </form> 
-        
-        
+        {% else %}
+        <div class="like">
+            <button id="likebutton" onclick="alertDialogBox()">찜하기</button>
+        </div>
+        <script>
+            function alertDialogBox() {alert("로그인 후 사용 가능합니다. 로그인을 해주세요!");}
+        </script> 
+        {% endif %}
 
         <div class="rader-chart">            
             <canvas id="myRaderChart"></canvas>
