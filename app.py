@@ -160,19 +160,24 @@ def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
+# 메뉴 추가 페이지 
+@app.route("/add-menu/<name>")
+def goTO_addMenu(name):
+    return render_template("registerMenu.html", name=name)
 
- # 메뉴 수정 페이지s
-@app.route("/registration-menu")
-def goTo_modifyMenu():
-    return render_template("modifyMenu.html")
+# 메뉴 수정 페이지s
+#@app.route("/modify-menu/<name>")
+#def goTo_modifyMenu(name):
+#    data = DB.get_menu_byname(str(name))
+#    return render_template("modifyMenu.html", data=data, name=name)
 
 
 # 메뉴 수정 - 가게 이름 받아오기
-@app.route("/modifyMenu_storeName_post", methods=['POST'])
-def reg_storeName_modifyMenu_post():
-    data = request.form['store_name']
-    print(data)
-    return render_template("modifyMenu.html", name=data)
+#@app.route("/modifyMenu_storeName_post", methods=['POST'])
+#def reg_storeName_modifyMenu_post():
+#    data = request.form['store_name']
+#    print(data)
+#    return render_template("modifyMenu.html", name=data)
 
 # 리뷰 등록 페이지
 @app.route("/review")
