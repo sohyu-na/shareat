@@ -10,20 +10,23 @@
 
 
   {% if session['id'] %}
- <!--대표메뉴 수정하기 버튼-->
- <form action="/modifyMenu_storeName_post" method="post">
+ <!--로그인 상태 대표메뉴 추가하기 버튼-->
+    <div>
+        <a href="/add-menu/{{name}}" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
+    </div>
+ <!--<form action="/modifyMenu_storeName_post" method="post">
     <input type="hidden" name="store_name" value="{{name}}">
     <button type="submit">
         <div id="btn-modify-menu">
-            <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 수정하기</b></a>
+            <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 추가하기</b></a>
         </div>
     </button>
-  </form>
+  </form>-->
   {% else %}
-  <!--리뷰 등록하기 버튼-->
+  <!--로그아웃 상태 대표메뉴 추가하기 버튼-->
   <button onclick="alertDialogBox()">
     <div id="btn-modify-menu">
-        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 수정하기</b></a>
+        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 추가하기</b></a>
     </div>
   </button>
   <script>
