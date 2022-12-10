@@ -201,7 +201,7 @@ def goTo_signup():
 
 # ===== [사용자 입력 데이터 받아오기] =====
 
-#가게정보 삽입
+#가게정보 등록
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
@@ -218,10 +218,30 @@ def reg_restaurantData_submit_post():
     data = request.form
 
     if DB.insert_restaurant(data['store_name'], data, image_path):
-        return render_template("registerRestaurantInfo.html", data=data, image_path=image_path)
+        return render_template("index.html", data=data, image_path=image_path)
     else:
         return "Restaurant name already exists!"
 
+#가게정보 수정
+@app.route("/modify_restaurantData_post", methods=['POST'])
+def mod_restaurantData_submit_post():
+    global idx
+    image_file = request.files["file"]
+    if image_file.filename != '':
+        image_file.save("./static/image/{}".format(image_file.filename))
+        image_path = "./static/image/{}".format(image_file.filename)
+        print(image_path)
+    else:
+        image_path = "./static/image/grey.png"
+        image_file.filename = "grey.png"
+        print(image_path)
+
+    data = request.form
+
+    if DB.insert_restaurant(data['store_name'], data, image_path):
+        return render_template("detailInfo_restaurantInfo.html", data=data, image_path=image_path)
+    else:
+        return "Restaurant name already exists!"
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
 def reg_storeName_submit_post():
