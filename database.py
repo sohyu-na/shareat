@@ -405,13 +405,13 @@ class DBhandler:
     #    self.db.child("member").child(id).child("myRestaurantList").push(name)
         
     #내찜맛 리스트에 해당 가게 이름이 있는지 확인하는 함수
-    def res_in_myRestaurantlist_check(self, name, userId):
-        myrestaurants = self.db.child("member").child(userId).child("myRestaurantList").get()
-        if myrestaurants == None:
-            return 0
-        for res in myrestaurants.each():
-            if res.val()==name:
-                return 1
-        return 0
+    #def res_in_myRestaurantlist_check(self, name, userId):
+    #    myrestaurants = self.db.child("member").child(userId).child("myRestaurantList").get()
+    #    if myrestaurants == None:
+    #        return 0
+    #    for res in myrestaurants.each():
+    #        if res.val()==name:
+    #            return 1
+    #    return 0
 
         

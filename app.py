@@ -92,8 +92,8 @@ def goTo_detailInfo(name):
     userId=session['id']
     likechecked = 0
     # 로그인 되어 있다면 렌더링하는 가게가 내찜맛에 추가되어 있는 지 확인
-    if userId:
-        likechecked = DB.res_in_myRestaurantlist_check(name, userId)
+    #if userId:
+    #    likechecked = DB.res_in_myRestaurantlist_check(name, userId)
     return render_template("detailInfo_restaurantInfo.html", data=data, name=name,likechecked=likechecked)
 
 
@@ -228,7 +228,7 @@ def reg_restaurantData_submit_post():
     data = request.form
 
     if DB.insert_restaurant(data['store_name'], data, image_path):
-        return render_template("index.html", data=data, image_path=image_path)
+        return redirect(url_for("list_restaurants"))
     else:
         return "Restaurant name already exists!"
 
