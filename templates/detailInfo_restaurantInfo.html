@@ -10,48 +10,7 @@
         <div class="midnav"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
     </div>
 
-
     <div>
-        <!--찜하기버튼: 눌렀을 때 알람뜨는 체크박스 버전
-            <form action="/submit_like_post" method="post">
-                <input id="check-btn" type="checkbox" name="restaurant" value="{{name}} onclick="report(this)"/>
-                <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
-            </form>
-        -->
-        
-        <!--찜하기버튼: aria-pressed 적용한 버튼
-            <form>
-            <button style="color: gray;" type="button" aria-pressed="true">찜하기aria</button>
-            </form>
-        -->
-        <script>
-
-            function zzimalert(name){
-                var msg = name + " 을(를) 내가 찜한 맛집에 추가했습니다.\n내가 찜한 맛집 페이지로 이동합니다.\n";
-                alert(msg);
-            }
-
-            /* aria-pressed 바꾸는 함수
-            const toggle = document.querySelector('[aria-pressed]');
-                toggle.addEventListener('click', (e) => {
-                let pressed = e.target.getAttribute('aria-pressed') === 'true';
-                e.target.setAttribute('aria-pressed', String(!pressed));
-            });
-            */
-
-            /*이미 체크되어 있었는지 확인하는 함수. aria-pressed를 바꿀 수 있어야지 사용 가능함.
-            function likechecked(){
-                var el = document.getElementById('likebutton').getAttribute('aria-pressed');
-                if (el==true){
-                    return ture;
-                }else if(el==false){
-                    return false;
-                }
-                return false;
-            }    
-            */
-        </script>
-
         {% if session['id'] %}
         <form action="/submit_like_post" method="post">
             <div class="like">
@@ -60,6 +19,18 @@
                 <button id="likebutton" type="submit" formmethod="POST">찜하기</button>
             </div>
         </form> 
+        <script>
+            //가게리스트에 없을 때 아직 미완.
+            window.onload=function(){
+                var bool=Boolean("{{likechecked}}")
+                if (bool){
+                    document.getElementById("likebutton").style.color = "#FF4A4A";
+                }else{
+                    document.getElementById("likebutton").style.color = "#b5b5b5;";
+                }
+            }
+            
+        </script>
         {% else %}
         <div class="like">
             <button id="likebutton" onclick="alertDialogBox()">찜하기</button>
