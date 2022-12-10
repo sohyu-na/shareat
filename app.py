@@ -218,7 +218,7 @@ def reg_restaurantData_submit_post():
     data = request.form
 
     if DB.insert_restaurant(data['store_name'], data, image_path):
-        return render_template("result_맛집등록.html", data=data, image_path=image_path)
+        return render_template("registerRestaurantInfo.html", data=data, image_path=image_path)
     else:
         return "Restaurant name already exists!"
 
@@ -286,7 +286,7 @@ def reg_menuData_submit_post():
     name = data['store_name']
 
     if DB.insert_menu(name, data, image_file.filename):
-        return render_template("result_메뉴등록.html", data=data, menuImg_path=menuImg_path)
+        return render_template("registerMenu.html", data=data, menuImg_path=menuImg_path)
     else:
         return "menu name already exist!"
 
