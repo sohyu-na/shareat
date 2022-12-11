@@ -68,6 +68,62 @@ class DBhandler:
             return True
         else:
             return False
+    
+    # DB에 수정
+    def modify_restaurant(self, name, data, img_path):
+        # 맛집 등록 시간 DB에 저장
+        now = datetime.now()
+        str_year = now.strftime("%Y")
+        str_month = now.strftime("%m")
+        str_day = now.strftime("%d")
+        str_hour = now.strftime("%H")
+        str_minute = now.strftime("%M")
+        str_second = now.strftime("%S")
+        timestamp = now.strftime('%Y-%m-%d %H:%M:%S')
+
+        restaurant_time = {
+            "str_year": str_year,
+            "str_month": str_month,
+            "str_day": str_day,
+            "str_hour": str_hour,
+            "str_minute": str_minute,
+            "str_second": str_second,
+            "timestamp": timestamp,
+        }
+        # 맛집 정보를 DB에 저장
+        restaurant_info = {
+            "store_name": data['store_name'],
+            "store_phoneNum": data['store_phoneNum'],
+            "store_addr": data['store_addr'],
+            "store_site": data['store_site'],
+            "store_open": data['store_open'],
+            "store_close": data['store_close'],
+            "store_parking": data['store_parking'],
+            "store_reservation": data['store_reservation'],
+            "store_reservation_link": data['store_reservation_link'],
+            "store_category": data['store_category'],
+            "store_cost_min": data['store_cost_min'],
+            "store_cost_max": data['store_cost_max'],
+            "img_path": img_path,
+            "store_grade": 0,
+            "store_taste": 0,
+            "store_cost": 0,
+            "store_service": 0,
+            "store_cleanliness": 0,
+            "store_atmosphere": 0,
+            "store_revisit": 0,
+            "store_reviewCount": 0
+        }
+        # self.db.child("restaurant").child(name).set(restaurant_info)
+        # return True
+        if self.restaurant_duplicate_check(name):
+            return False
+        else:
+            self.db.child("restaurant").child(
+                name).child("info").update(restaurant_info)
+            self.db.child("restaurant").child(
+                name).child("time").update(restaurant_time)
+            return True
 
     # 맛집 등록 시 중복 체크
     def restaurant_duplicate_check(self, name):
