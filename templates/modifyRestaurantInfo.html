@@ -9,8 +9,8 @@
       $('#parkingU input:contains("{{data.info.store_parking}}")').prop("checked",true);
     });*/
 </script>
-<h4>수정하고 싶은 맛집의 정보를 입력해 주세요 {{data.info.store_parking}}</h4>
-<form action="/modify_restaurantData_post" method="post">
+<h4>수정하고 싶은 맛집의 정보를 입력해 주세요 </h4>
+<form action="/modify_restaurantData_post" method="post" enctype="multipart/form-data" >
     <table>
     <tr>
         <td class="td1">상호명 *</td>
@@ -47,7 +47,7 @@
             <input type="radio" name="store_reservation" size="80" value="가능"/>&nbsp;가능
             <input type="radio" name="store_reservation" size="80" value="불가능"/>&nbsp;불가능
             <input type="hidden" name="store_reservation" size="80" value="unknown" checked />&nbsp;
-            <input type="text" class="text-area" name="store_reservation_link" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
+            <input type="text" class="text-area" name="store_reservation_link" size="60" value="{{data.info.store_reservation_link}}" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
         </td>
     </tr>
     <tr>
@@ -67,14 +67,14 @@
     <tr>
         <td class="td1">가격대</td>
         <td>
-            <input type="text" class="text-area" name="store_cost_min" size="33" value="{{data.info.store_cost_min}}"/>&nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" class="text-area" name="store_cost_max" size="33" value="{{data.info.store_cost_max}}"/>&nbsp;이하
+            <input type="text" class="text-area" name="store_cost_min" size="33" value="{{data.info.store_cost_min}}"/>원 &nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" class="text-area" name="store_cost_max" size="33" value="{{data.info.store_cost_max}}"/>원 &nbsp;이하
         </td>
     </tr>
     <tr> 
         <td class="td1" valign="top">식당의 사진</td>
         <td >
-            <input type="file" class="real-upload" name="file" accept="image/*" required multiple />
+            <input type="file" class="real-upload" name="file" accept="image/*" required multiple/>
             <div class="upload">
                 <p>가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
                 <ul class="image-preview"></ul>
