@@ -84,12 +84,11 @@ def goTo_myRestaurantList():
         list_data = dict(list(data.items())[start_idx:end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
-
 # 맛집 상세정보 페이지
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
-    userId=session['id']
+    #userId=session['id']
     likechecked = 0
     # 로그인 되어 있다면 렌더링하는 가게가 내찜맛에 추가되어 있는 지 확인
     #if userId:
@@ -247,10 +246,12 @@ def mod_restaurantData_submit_post():
         print(image_path)
 
     data = request.form
+    name = data["store_name"]
 
-    if DB.insert_restaurant(data['store_name'], data, image_path):
-        return render_template("detailInfo_restaurantInfo.html", data=data, image_path=image_path)
+    if DB.modify_restaurant(data['store_name'], data, image_path):
+        return redirect(url_for("goTo_detailInfo", name=name))
     else:
+        #flash("가게 이름을 변경 할 수 없습니다 !") 가게 수정시 가게 이름 바꿀라 하면 어떡할지 
         return "Restaurant name already exists!"
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
@@ -316,7 +317,7 @@ def reg_menuData_submit_post():
     name = data['store_name']
 
     if DB.insert_menu(name, data, image_file.filename):
-        return render_template("registerMenu.html", data=data, menuImg_path=menuImg_path)
+        return redirect(url_for("goTo_detailMenu", name=name))
     else:
         return "menu name already exist!"
 
