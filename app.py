@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from database import DBhandler
+import math
 import hashlib
 import sys
 from urllib import parse
@@ -138,9 +139,16 @@ def goTo_modifyInfo(name):
  # 메뉴 수정 페이지s
 
 
-@app.route("/registration-menu")
-def goTo_modifyMenu():
-    return render_template("modifyMenu.html")
+@app.route("/modify-menu/<name>")
+def goTo_modifyMenu(name):
+    data = DB.get_restaurant_byname(str(name))
+
+    if data == None:
+        count = 0    # 등록된 메뉴 개수
+        return render_template("modifyMenu.html", name=name, total=count)
+    else:
+        count = len(data)
+        return render_template("modifyMenu.html", name=name, datas=data, total=count)
 
 
 # 메뉴 수정 - 가게 이름 받아오기
@@ -232,8 +240,8 @@ def reg_restaurantData_submit_post():
         image_path = "./static/image/{}".format(image_file.filename)
         print(image_path)
     else:
-        image_path = "./static/image/grey.png"
-        image_file.filename = "grey.png"
+        image_path = "./static/image_slides/default_image.png"
+        image_file.filename = "default_image.png"
         print(image_path)
 
     data = request.form
