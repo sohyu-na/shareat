@@ -11,29 +11,38 @@
     </div>
 
     <div>
+        {% with mesg = get_flashed_messages() %}
+        {% if mesg !=[] %}
+            <script>alert("{{ mesg[0] }}")</script>
+        {% endif %}
+        {% endwith %}
         {% if session['id'] %}
         <form action="/submit_like_post" method="post">
             <div class="like">
                 <input type="hidden" name="store_name" value="{{name}}">
                 <input type="hidden" name="userId" value="{{session['id']}}">
-                <button id="likebutton" type="submit" formmethod="POST">찜하기</button>
+                <button id="likebutton" type="submit" formmethod="POST"><i class="fa-solid fa-heart fa-3x"></i><br>찜하기</button>
             </div>
         </form> 
         <script>
             //가게리스트에 없을 때 아직 미완.
             window.onload=function(){
-                var bool=Boolean("{{likechecked}}")
-                if (bool){
-                    document.getElementById("likebutton").style.color = "#FF4A4A";
-                }else{
-                    document.getElementById("likebutton").style.color = "#b5b5b5;";
+                //var bool=Boolean("{{likechecked}}")
+                if ("{{session['id']}}"!=" "){
+                    if ({{likechecked}}){
+                        document.getElementById("likebutton").style.color = "#FF4A4A";
+                    }else{
+                        document.getElementById("likebutton").style.color = "#b5b5b5;";
+                    }
+                }
+                else{
+                    
                 }
             }
-            
         </script>
         {% else %}
         <div class="like">
-            <button id="likebutton" onclick="alertDialogBox()">찜하기</button>
+            <button id="likebutton" onclick="alertDialogBox()"><i class="fa-solid fa-heart fa-3x"></i><br>찜하기</button>
         </div>
         <script>
             function alertDialogBox() {alert("로그인 후 사용 가능합니다. 로그인을 해주세요!");}
@@ -91,7 +100,7 @@
         <h3 class="revisit"><b>재방문 의사 {{data.info.store_revisit}}%</b></h3>
     </div>
     <br>
-    <hr class= "hr">
+    <hr>
     <div>
         <a href="/modify-info/{{name}}" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
     </div>
@@ -149,7 +158,11 @@
             </td>
         </tr>
     </table>
-    <hr class="hr">
+    <br>
+    <hr>
+    <br>
+    <br>
+    <p class = "image"><b>사진</b></p>
             <a href="#" class="more"><h3><b>더보기+</b></h3></a>
     <br>
     <br>
