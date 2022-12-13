@@ -104,15 +104,7 @@ class DBhandler:
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
             "store_cost_max": data['store_cost_max'],
-            "img_path": img_path,
-            "store_grade": 0,
-            "store_taste": 0,
-            "store_cost": 0,
-            "store_service": 0,
-            "store_cleanliness": 0,
-            "store_atmosphere": 0,
-            "store_revisit": 0,
-            "store_reviewCount": 0
+            "img_path": img_path
         }
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
@@ -278,7 +270,7 @@ class DBhandler:
         }
         # self.db.child("restaurant").child(name).child("menu").child('menu_name').set(menu_info)
         # return True
-        if self.menu_duplicate_check(data['menu_name']):
+        if self.menu_duplicate_check(name, data['menu_name']):
             self.db.child("restaurant").child(name).child(
                 "menu").child(data['menu_name']).set(menu_info)
             print(data, menuImg_path)
@@ -286,12 +278,12 @@ class DBhandler:
         else:
             return False
 
-    def menu_duplicate_check(self, name):
+    def menu_duplicate_check(self, name, menu):
         menus = self.db.child("restaurant").child(name).child("menu").get()
         if menus.each() == None:
             return True
         for res in menus.each():
-            if res.key() == name:
+            if res.key() == menu:
                 return False
         return True
 
