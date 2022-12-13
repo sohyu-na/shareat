@@ -1,5 +1,5 @@
 hr{
-	width : 900px;
+	width : 100%;
  }
  
 .main-wrap{
@@ -53,6 +53,8 @@ like:clicked{
 
 #likebutton{
 	color : #b5b5b5;
+	text-align: center;
+	margin: 10%;
 }
 
 [aria-pressed="true"] {
