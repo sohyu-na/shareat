@@ -21,7 +21,7 @@ a, a:visited{
 }
 
 .navbar{
-  width: 97%;
+  width: 100%;
   height: 80px;
 }
 
@@ -31,22 +31,83 @@ a, a:visited{
   padding: 0 50px;
 }
 
-.navbar>ul {
+.navbar ul {
   list-style: none;
   float: right;
 }
 
 .navbar>ul li {
   float: left;
-  padding: 0 15px;
+  padding: 5px 5px;
   line-height: 30px;
 }
 
 #login-or-signup {
+  position: relative;
   font-size: 13px;
+  margin-right: 40px;
 }
 
+#profile-logo{
+  display: block;
+  position: relative;
+  font-size: 30px;
+}
 
+#popup_myMenu{
+  display: none;
+  position: absolute;
+  width: 130px;
+  padding: 8px;
+  left: -132%;
+  top:90%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;  
+  border-radius: 8px;
+  background: #ffffff;
+  color: rgb(15, 15, 15);
+  font-size: 14px;
+  text-align: center;
+}
+
+#popup_myMenu:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  pointer-events: none;
+  content: " ";
+  text-align: center;
+}
+
+#popup_myMenu > li{
+  display:inline-block;
+}
+
+#myMenu_1{
+  color:#FF4A4A;
+  font-weight: bolder;
+}
+
+#myMenu_2 {
+  font-size: 12px;
+}
+
+#profile-logo:hover #popup_myMenu
+{
+  display: block;
+  text-align: center;
+}
+
+/* #popup_myMenu:after:hover + #popup_myMenu li{
+  display: block;
+} */
 
 header{
   display: flex;
