@@ -451,7 +451,7 @@ class DBhandler:
     # 이미 찜리스트에 있는 가게인지 확인하는 함수
     def mylist_duplicate_check(self, name, userId):
         lists = self.db.child("member").child(userId).child("myRestaurantList").get()
-        if lists == None:
+        if lists.each() == None:
             return True
         for res in lists.each():
             if res.val() == name:
