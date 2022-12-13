@@ -24,14 +24,14 @@
         //[카테고리 선택 체크박스]
 
         //전체 버튼 클릭 시에 체크박스 전체 선택하기
-        function selectAll(selectAll)  {
-          const checkboxes 
-              = document.getElementsByName('category');
+        // function selectAll(selectAll)  {
+        //   const checkboxes 
+        //       = document.getElementsByName('category');
           
-          checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-          })
-        }
+        //   checkboxes.forEach((checkbox) => {
+        //     checkbox.checked = selectAll.checked;
+        //   })
+        // }
 
         //페이지 로딩 시 선택했던 select option 선택되도록
         $(document).ready(function() {
@@ -46,7 +46,6 @@
 
         <ul id="login-or-signup">
           {% if session['id'] %}
-          <!--회원 상단바-->
           <li><a href="/myRestaurantList">내가 찜한 맛집</a></li>
           <li><b>{{session['id']}}님 </b></li>
           <li><a href="/logout"> logout</a></li>
@@ -91,14 +90,52 @@
           </script> 
           {% endif %}
         </div>
+
+        <!--자동 사진 슬라이드--->
+        <script>
+          var index = 0;   //이미지에 접근하는 인덱스
+          window.onload = function(){
+              slideShow();
+          }
+          
+          function slideShow() {
+          var i;
+          var x = document.getElementsByClassName("slide");  
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";   //처음에 전부 display를 none으로
+          }
+          index++;
+          if (index > x.length) {
+              index = 1;  //인덱스가 초과되면 1로 변경
+          }   
+          x[index-1].style.display = "block";  //해당 인덱스는 block으로
+          setTimeout(slideShow, 3000);   //함수를 3초마다 호출
+      
+      }
+    </script>
         <div id="header-right-side">
-          <div class="temp">이미지</div>
-        </div>
+          <img class="slide" src="../static/image_slides/미세기텐동.jpg" >
+          <img class="slide" src="../static/image_slides/반서울.png" >
+          <img class="slide" src="../static/image_slides/파스타.jpg" >
+          <img class="slide" src="../static/image_slides/비빔밥.jpg" >
+          <img class="slide" src="../static/image_slides/족발.jpg" >
+          <img class="slide" src="../static/image_slides/탕수육.jpg" >
+          <img class="slide" src="../static/image_slides/타코.jpg" >
+          <img class="slide" src="../static/image_slides/월남쌈.jpg" >
+          <img class="slide" src="../static/image_slides/초밥.jpg" >
+          <img class="slide" src="../static/image_slides/칵테일.png" >
+          <img class="slide" src="../static/image_slides/커피.jpg" >
+          <img class="slide" src="../static/image_slides/케익.jpg" >
+          <img class="slide" src="../static/image_slides/팬케익.jpg" >
+        </div> 
       </div>
+     
     </header>
 
     <main id="list-location">
       <nav id="category">
+
+        <!--맛집 카테고리 정렬 셀렉트 박스-->
         <div id="btn-select-category">
             <span>category</span>
             <script>
@@ -117,10 +154,11 @@
               <option value="{{url_for('list_restaurants', page=i, category='기타',sort=sort)}}">기타</option>
             </select>
         </div>
-
+        
+        <!--맛집 목록 순서 정렬 버튼-->
         <div id="btn-select-sort">
 
-          {% if sort=='grade' %}
+          {% if sort=='grade' %}         <!--평점순 정렬 선택 -->
 
           <input type="radio" id="sort-list-garde" name="sort_list"
           onchange="location=this.value"
@@ -134,7 +172,7 @@
           value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
           <label for="sort-list-date">최신순</label>
 
-          {% else %}
+          {% else %}   <!--최신순 정렬 선택 -->
 
           <input type="radio" id="sort-list-garde" name="sort_list"
           onchange="location=this.value"
@@ -248,7 +286,6 @@
                   class="temp restaurant-img"
                   src="{{data[1].info.img_path}}"
                 />
-                <!-- <div class="">이미지</div> -->
               </figure>
               <figcaption>
                 <div class="restaurant-name">{{data[1].info.store_name}}</div>
@@ -266,6 +303,7 @@
         <i class="icon-next-list fa-solid fa-chevron-right"></i><button></button></i> -->
       </section>
 
+      <!--맛집 목록 번호 버튼-->
       <div class="page=wrap">
         <div class="page-nation">
           <ul>

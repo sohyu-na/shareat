@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from database import DBhandler
+import math
 import hashlib
 import sys
 from urllib import parse
@@ -18,6 +19,8 @@ def goTo_mainHome():
     return redirect(url_for("list_restaurants"))
 
 # 메인홈(맛집 리스트)
+
+
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
@@ -64,17 +67,19 @@ def list_restaurants():
 
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category, sort=sort)
 
-#내찜맛 화면 출력
+# 내찜맛 화면 출력
+
+
 @app.route("/myRestaurantList")
 def goTo_myRestaurantList():
     userId = session['id']
     page = request.args.get("page", 0, type=int)
     limit = 9
-    
+
     start_idx = limit*page
     end_idx = limit*(page+1)
-    data=[]
-    data = DB.get_mylist(userId) # 찜한 맛집 리스트 데이터
+    data = []
+    data = DB.get_mylist(userId)  # 찜한 맛집 리스트 데이터
 
     if data == None:
         count = 0    # 등록된 맛집 개수
@@ -85,17 +90,20 @@ def goTo_myRestaurantList():
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 # 맛집 상세정보 페이지
+
+
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
     if session['id']:
-        likechecked = DB.res_in_myRestaurantlist_check(name=name, userId=session['id'])
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name,likechecked=likechecked)
+        likechecked = DB.res_in_myRestaurantlist_check(
+            name=name, userId=session['id'])
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked)
     else:
         return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
 
-#찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
+# 찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
 @app.route("/submit_like_post", methods=['POST'])
 def submit_like_post():
     data = request.form
@@ -136,13 +144,13 @@ def goTo_detailReiview(name):
 
     if rev == None:
         count = 0    # 등록된 리뷰 개수
-        return render_template("detailInfo_review.html", data=data, name=name, total=count)  #total=count
-    
+        # total=count
+        return render_template("detailInfo_review.html", data=data, name=name, total=count)
+
     else:
         review_data = DB.get_review_byname(str(name))
         count = len(rev)
         return render_template("detailInfo_review.html", review_data=review_data, data=data, name=name, total=count)
-
 
 
 # 맛집 등록 페이지
@@ -158,26 +166,28 @@ def goTo_registerMenu():
 
 
 # 맛집 수정 페이지
-@app.route("/modify-info/<name>")   
+@app.route("/modify-info/<name>")
 def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
-# 메뉴 추가 페이지 
+# 메뉴 추가 페이지
+
+
 @app.route("/add-menu/<name>")
 def goTO_addMenu(name):
     return render_template("registerMenu.html", name=name)
 
 # 메뉴 수정 페이지s
-#@app.route("/modify-menu/<name>")
-#def goTo_modifyMenu(name):
+# @app.route("/modify-menu/<name>")
+# def goTo_modifyMenu(name):
 #    data = DB.get_menu_byname(str(name))
 #    return render_template("modifyMenu.html", data=data, name=name)
 
 
 # 메뉴 수정 - 가게 이름 받아오기
-#@app.route("/modifyMenu_storeName_post", methods=['POST'])
-#def reg_storeName_modifyMenu_post():
+# @app.route("/modifyMenu_storeName_post", methods=['POST'])
+# def reg_storeName_modifyMenu_post():
 #    data = request.form['store_name']
 #    print(data)
 #    return render_template("modifyMenu.html", name=data)
@@ -188,7 +198,9 @@ def goTo_writeReview():
     return render_template("writeReview.html")
 
 # 리뷰 등록 - 가게 이름 받아오기
-@app.route("/review_storeName_post", methods=['POST']) 
+
+
+@app.route("/review_storeName_post", methods=['POST'])
 def reg_storeName_review_post():
     data = request.form['store_name']
     print(data)
@@ -209,7 +221,7 @@ def goTo_signup():
 
 # ===== [사용자 입력 데이터 받아오기] =====
 
-#가게정보 등록
+# 가게정보 등록
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
@@ -219,8 +231,8 @@ def reg_restaurantData_submit_post():
         image_path = "./static/image/{}".format(image_file.filename)
         print(image_path)
     else:
-        image_path = "./static/image/grey.png"
-        image_file.filename = "grey.png"
+        image_path = "./static/image_slides/default_image.png"
+        image_file.filename = "default_image.png"
         print(image_path)
 
     data = request.form
@@ -230,7 +242,9 @@ def reg_restaurantData_submit_post():
     else:
         return "Restaurant name already exists!"
 
-#가게정보 수정
+# 가게정보 수정
+
+
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():
     global idx
@@ -250,8 +264,9 @@ def mod_restaurantData_submit_post():
     if DB.modify_restaurant(data['store_name'], data, image_path):
         return redirect(url_for("goTo_detailInfo", name=name))
     else:
-        #flash("가게 이름을 변경 할 수 없습니다 !") 가게 수정시 가게 이름 바꿀라 하면 어떡할지 
+        # flash("가게 이름을 변경 할 수 없습니다 !") 가게 수정시 가게 이름 바꿀라 하면 어떡할지
         return "Restaurant name already exists!"
+
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
 def reg_storeName_submit_post():
@@ -350,7 +365,7 @@ def submit_review_agree_userId():
     userID = data['userID']
     review_agree_userId = data['review_agree_userId']
     DB.insert_review_agree_userId(name, userID, review_agree_userId)
-    
+
     return redirect(url_for("goTo_detailReiview", name=name))
 
 
@@ -361,9 +376,9 @@ def submit_review_userID():
     userID = data['userID']
     # agreeUsers_num = DB.get_agreeNum_byname(name, userID)
     return redirect(url_for("goTo_detailReiview", name=name))
-    
+
 # #동의 버튼 누를 시에 동의한 사람 수 새로고침
-# @app.route("/", methods=['POST'])  
+# @app.route("/", methods=['POST'])
 # def submit_review_userID():
 
 #     return redirect(url_for("goTo_detailReiview", name=name))
@@ -377,4 +392,3 @@ if __name__ == '__main__':
 if __name__ == "__main__":
     # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
-    

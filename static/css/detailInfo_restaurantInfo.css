@@ -89,7 +89,7 @@ img {
 	width : 50%;
 	margin-bottom:20px;
 	margin-left:40px;
-	height : 350px;
+	height : 320px;
 }
 
 .part {
@@ -311,15 +311,14 @@ img {
 
 .table_detailInfo_restaurantInfo{
 	text-align : left;
-	width : 1500px;
-	font-size : 120%;
+	width : 100%;
+	font-size : 17px;
 	line-height : 100%;
 	padding: 0 70px;
-	
 }
 
 tr{
-	width : 1000px;
+	width : 100%;
 }
 
 th{
@@ -337,10 +336,11 @@ td{
 .more{
 	float : right;
 	width : 10%;
+	font-size : 13px;
 }
 
 .food-images{
-	width : 1000px;
+	width : 100%;
 	height : 160px;
 	padding: 0 10px 0 10px;
 	overflow : hidden;
