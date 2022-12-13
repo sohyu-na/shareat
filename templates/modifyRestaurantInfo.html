@@ -1,16 +1,6 @@
 {% extends "common.html" %}
 
 {% block main %}
-<<<<<<< HEAD
-<!-- <script>
-     $(document).ready(function() {
-          $('input:radio[name=store_parking]:contains("{{data.info.store_parking}}")').prop("checked",true);
-        });
-</script> -->
-
-<h4>수정하고 싶은 맛집의 정보를 입력해 주세요</h4>
-<form action="/submit_restaurantData_post" method="post">
-=======
 <script>
     /*$(document).ready(function() {
         alert("{{data.info.store_parking}}");
@@ -21,7 +11,6 @@
 </script>
 <h4>수정하고 싶은 맛집의 정보를 입력해 주세요 </h4>
 <form action="/modify_restaurantData_post" method="post" enctype="multipart/form-data" >
->>>>>>> d72a73f673c1e55dab0228934bb1125a50eb259d
     <table>
     <tr>
         <td class="td1">상호명 *</td>
@@ -47,15 +36,9 @@
     <tr>
         <td class="td1">주차가능 여부</td>
         <td>
-<<<<<<< HEAD
             <input type="radio" name="store_parking" size="80" value="yes"/>&nbsp;가능
             <input type="radio" name="store_parking" size="60" value="no"/>&nbsp;불가능
             <input type="hidden" name="store_parking" size="60" value="unknown"/>&nbsp;
-=======
-            <input type="radio" name="store_parking" id="parkingY" size="80" value="yes"/>&nbsp;가능
-            <input type="radio" name="store_parking" id="parkingN" size="60" value="no"/>&nbsp;불가능
-            <input type="hidden" name="store_parking" id="parkingU" size="60" value="unknown" checked  />&nbsp;
->>>>>>> d72a73f673c1e55dab0228934bb1125a50eb259d
         </td>
     </tr>
     <tr>
@@ -63,13 +46,8 @@
         <td>
             <input type="radio" name="store_reservation" size="80" value="가능"/>&nbsp;가능
             <input type="radio" name="store_reservation" size="80" value="불가능"/>&nbsp;불가능
-<<<<<<< HEAD
-            <input type="hidden" name="store_reservation" size="80" value="unknown"/>&nbsp;
-            <input type="text" class="text-area" name="store_reservation_link" size="60" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
-=======
             <input type="hidden" name="store_reservation" size="80" value="unknown" checked />&nbsp;
             <input type="text" class="text-area" name="store_reservation_link" size="60" value="{{data.info.store_reservation_link}}" placeholder="&nbsp;예약 페이지 링크를 입력해 주세요" />
->>>>>>> d72a73f673c1e55dab0228934bb1125a50eb259d
         </td>
     </tr>
     <tr>
