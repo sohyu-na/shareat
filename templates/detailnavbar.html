@@ -24,11 +24,11 @@
     <body>
         <!--상단바-->
         <div id="navbar">
-            <div id="logo"><a href="/">Shareat</a></div>
+            <div id="logo_common"><a href="/">Shareat</a></div>
 
             {% if session['id'] %}
             <div id="login-or-signup">
-                <div><a href="/mylist">내가 찜한 맛집</a></div>
+                <div><a href="/myRestaurantList">내가 찜한 맛집</a></div>
                 <div></div>
                 <div><a href="/logout"> logout</a></div>
             </div>

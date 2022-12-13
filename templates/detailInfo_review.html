@@ -37,9 +37,25 @@
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
         <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
-        <th class="writescore">{{review.review_grade}} &nbsp;----------------------------------------------</th>
+        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - - - - - - - - -</th>
         <th class="writedate">{{review.timestamp}}</th>
     </tr>
+
+    <tr>
+        <td>
+            <form action="/submit_review_userID" method="post">
+              <input type="hidden" name="store_name" value="{{name}}">
+              <input type="hidden" name="userID" value="{{review.userID}}">
+            </form>
+            {% if review.agreeUsers_num %}
+            <div>{{review.userID}}이 작성한 리뷰입니다.</div>
+            <div>{{review.agreeUsers_num}}명이 동의한 리뷰입니다.</div>
+            {% else %}
+            <div>0명이 동의한 리뷰입니다.</div>
+            {% endif %}
+        </td>
+    </tr>
+
     <tr>
       <td></td>
         <td colspan="3">
@@ -48,18 +64,25 @@
           </div>
         </td>
     </tr>
+    <form action="/submit_review_agree_userId" method="post">
+      <input type="hidden" name="store_name" value="{{name}}">
+      <input type="hidden" name="userID" value="{{review.userID}}">
+    </form>
     <tr>
       <td></td>
         <td colspan="3">
           <div class="agree">
-            <!--
+            <!--동의 버튼 한번만 누를 수 있음-->
+            
+
+
+            <!--리뷰 동의한 유저 저장-->
               <form action="/submit_review_agree_userId" method="post">
-              <input type="hidden" name="review_agree_userId" value="{{session['id']}}">
-              <button type="submit" style = "margin-top:auto;">동의</button></input>
-              <input type="hidden" name="store_name" value="{{name}}">
-            </form>
-            -->
-            <button style = "margin-top:auto;">동의</button></input>
+                <input type="hidden" name="store_name" value="{{name}}">
+                <input type="hidden" name="userID" value="{{review.userID}}">
+                <input type="hidden" name="review_agree_userId" value="{{session['id']}}">
+                <button type="submit" formmethod="POST" style = "margin-top:auto;"> 동의</button>
+              </form>
           </div>
           <div class="comment">  
             <blockquote>{{review.detail_review}}</blockquote>

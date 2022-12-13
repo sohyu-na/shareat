@@ -68,6 +68,62 @@ class DBhandler:
             return True
         else:
             return False
+    
+    # DB에 수정
+    def modify_restaurant(self, name, data, img_path):
+        # 맛집 등록 시간 DB에 저장
+        now = datetime.now()
+        str_year = now.strftime("%Y")
+        str_month = now.strftime("%m")
+        str_day = now.strftime("%d")
+        str_hour = now.strftime("%H")
+        str_minute = now.strftime("%M")
+        str_second = now.strftime("%S")
+        timestamp = now.strftime('%Y-%m-%d %H:%M:%S')
+
+        restaurant_time = {
+            "str_year": str_year,
+            "str_month": str_month,
+            "str_day": str_day,
+            "str_hour": str_hour,
+            "str_minute": str_minute,
+            "str_second": str_second,
+            "timestamp": timestamp,
+        }
+        # 맛집 정보를 DB에 저장
+        restaurant_info = {
+            "store_name": data['store_name'],
+            "store_phoneNum": data['store_phoneNum'],
+            "store_addr": data['store_addr'],
+            "store_site": data['store_site'],
+            "store_open": data['store_open'],
+            "store_close": data['store_close'],
+            "store_parking": data['store_parking'],
+            "store_reservation": data['store_reservation'],
+            "store_reservation_link": data['store_reservation_link'],
+            "store_category": data['store_category'],
+            "store_cost_min": data['store_cost_min'],
+            "store_cost_max": data['store_cost_max'],
+            "img_path": img_path,
+            "store_grade": 0,
+            "store_taste": 0,
+            "store_cost": 0,
+            "store_service": 0,
+            "store_cleanliness": 0,
+            "store_atmosphere": 0,
+            "store_revisit": 0,
+            "store_reviewCount": 0
+        }
+        # self.db.child("restaurant").child(name).set(restaurant_info)
+        # return True
+        if self.restaurant_duplicate_check(name):
+            return False
+        else:
+            self.db.child("restaurant").child(
+                name).child("info").update(restaurant_info)
+            self.db.child("restaurant").child(
+                name).child("time").update(restaurant_time)
+            return True
 
     # 맛집 등록 시 중복 체크
     def restaurant_duplicate_check(self, name):
@@ -255,7 +311,7 @@ class DBhandler:
         return reviews
 
     # ===== 3) 리뷰 데이터 ======
-    def insert_review(self, name, data, reviewImg_path):
+    def insert_review(self, name, data, reviewImg_path, userID):
         # 리뷰 등록 시간 DB에 저장
         now = datetime.now()
         timestamp = now.strftime('%Y.%m.%d')
@@ -272,24 +328,34 @@ class DBhandler:
             "revisit": data['revisit'],
             "detail_review": data['detail_review'],
             "reviewImg_path": reviewImg_path,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "userID": userID,
+            "agreeUsers_num": 0
         }
 
         if data['nickname'] == "":
             review_info['nickname'] = "익명"
         self.db.child("restaurant").child(
-            name).child("review").push(review_info)
-        #  #리뷰 동의 유저 아이디 저장
-        # self.db.child("restaurant").child(
-        #     name).child("review").push(review_info)
+            name).child("review").child(userID).set(review_info)   #userID로 리뷰 저장
         self.update_storeScore_byname(name)
+        
+        
+    #리뷰 동의 유저 아이디 저장 
+    def insert_review_agree_userId(self, name, userID, review_agree_userId):
+        self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").push(review_agree_userId)
+        #리뷰 동의한 사람 수 저장
+        self.update_agreeNum_byname(name, userID)
+     
+    #각 리뷰에 동의한 사람 수 구하고 저장
+    def update_agreeNum_byname(self, name, userID):
+        agreeUsers = self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").get()
+        num = []
+        for agreeUserId in agreeUsers.each():
+            value = agreeUserId.val()
+            num.append(value)
+        agreeUsers_num = len(num)
+        self.db.child("restaurant").child(name).child("review").child(userID).update({"agreeUsers_num": agreeUsers_num})
 
-    # #리뷰 동의 유저 아이디 저장
-    # def insert_review_agree_userId(self, name, review_agree_userId):
-    #     agree_users_info = {
-    #         "agree_userId": review_agree_userId
-    #     }
-    #     return agree_users_info
 
     def get_review_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
@@ -310,20 +376,13 @@ class DBhandler:
         cleanlinessScore = self.get_cleanlinessScore_byname(name)
         atmosphereScore = self.get_atmosphereScore_byname(name)
         revisit = self.get_revisitrate_byname(name)
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_grade": avgScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_taste": tasteScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_cost": costScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_service": serviceScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_cleanliness": cleanlinessScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_atmosphere": atmosphereScore})
-        self.db.child("restaurant").child(name).child(
-            "info").update({"store_revisit": revisit})
+        self.db.child("restaurant").child(name).child("info").update({"store_grade": avgScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_taste": tasteScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_cost": costScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_service": serviceScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_cleanliness": cleanlinessScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_atmosphere": atmosphereScore})
+        self.db.child("restaurant").child(name).child("info").update({"store_revisit": revisit})
 
     # ===== 4) 회원 data =====
 
@@ -370,8 +429,7 @@ class DBhandler:
 
     # DB 마이리스트 읽어오기
     def get_mylist(self, id):
-        myrestaurants = self.db.child("member").child(
-            id).child("myRestaurantList").get()
+        myrestaurants = self.db.child("member").child(id).child("myRestaurantList").get()
         target_value = []
         for res in myrestaurants.each():
             value = res.val()
@@ -383,7 +441,33 @@ class DBhandler:
         return new_dict
 
     # 찜하기 버튼으로 마이리스트에 추가하기
+    def insert_mylist(self, name, userId):
+        if self.mylist_duplicate_check(name, userId):
+            self.db.child("member").child(userId).child("myRestaurantList").push(name)
+            return True
+        else:
+            return False
 
-    def insert_mylist(self, name, id):
-        self.db.child("member").child(id).child("myRestaurantList").push(name)
+    # 이미 찜리스트에 있는 가게인지 확인하는 함수
+    def mylist_duplicate_check(self, name, userId):
+        lists = self.db.child("member").child(userId).child("myRestaurantList").get()
+        if lists.each() == None:
+            return True
+        for res in lists.each():
+            if res.val() == name:
+                return False
         return True
+    
+    #    self.db.child("member").child(id).child("myRestaurantList").push(name)
+        
+    #내찜맛 리스트에 해당 가게 이름이 있는지 확인하는 함수
+    #def res_in_myRestaurantlist_check(self, name, userId):
+    #    myrestaurants = self.db.child("member").child(userId).child("myRestaurantList").get()
+    #    if myrestaurants == None:
+    #        return 0
+    #    for res in myrestaurants.each():
+    #        if res.val()==name:
+    #            return 1
+    #    return 0
+
+        

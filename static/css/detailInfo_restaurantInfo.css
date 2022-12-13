@@ -51,6 +51,14 @@ like:clicked{
 	color : #b5b5b5;
 }
 
+#likebutton{
+	color : #b5b5b5;
+}
+
+[aria-pressed="true"] {
+	color: #FF4A4A;
+}
+
 html,body,h1,h2,p,dl,dt,dd {
 	margin: 0;
 	padding: 30;
