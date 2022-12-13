@@ -88,12 +88,11 @@ def goTo_myRestaurantList():
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
-    #userId=session['id']
-    likechecked = 0
-    # 로그인 되어 있다면 렌더링하는 가게가 내찜맛에 추가되어 있는 지 확인
-    #if userId:
-    #    likechecked = DB.res_in_myRestaurantlist_check(name, userId)
-    return render_template("detailInfo_restaurantInfo.html", data=data, name=name,likechecked=likechecked)
+    if session['id']:
+        likechecked = DB.res_in_myRestaurantlist_check(name=name, userId=session['id'])
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name,likechecked=likechecked)
+    else:
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
 
 #찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
