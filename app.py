@@ -317,9 +317,11 @@ def reg_menuData_submit_post():
     name = data['store_name']
 
     if DB.insert_menu(name, data, image_file.filename):
+        flash ("대표 메뉴가 등록이 완료되었습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
     else:
-        return "menu name already exist!"
+        flash ("해당 메뉴가 이미 있습니다")
+        return redirect(url_for("goTo_detailMenu", name=name))
 
 
 # [사용자 입력 데이터 받아오기] - 리뷰
