@@ -75,30 +75,27 @@ def goTo_myRestaurantList():
     userId = session['id']
     page = request.args.get("page", 0, type=int)
     limit = 9
-
+    
     start_idx = limit*page
     end_idx = limit*(page+1)
-    data = []
-    data = DB.get_mylist(userId)  # 찜한 맛집 리스트 데이터
-
-    if data == None:
+    data=[]
+    
+    if DB.check_mylist_is_empty(userId):
         count = 0    # 등록된 맛집 개수
         return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
+        data = DB.get_mylist(userId) # 찜한 맛집 리스트 데이터
         count = len(data)
         list_data = dict(list(data.items())[start_idx:end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
-
+    
 # 맛집 상세정보 페이지
-
-
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
     if session['id']:
-        likechecked = DB.res_in_myRestaurantlist_check(
-            name=name, userId=session['id'])
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked)
+        likechecked = DB.res_in_myRestaurantlist_check(name=name, userId=session['id'])
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name,likechecked=likechecked)
     else:
         return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
 
@@ -144,9 +141,8 @@ def goTo_detailReiview(name):
 
     if rev == None:
         count = 0    # 등록된 리뷰 개수
-        # total=count
-        return render_template("detailInfo_review.html", data=data, name=name, total=count)
-
+        return render_template("detailInfo_review.html", data=data, name=name, total=count)  #total=count
+    
     else:
         review_data = DB.get_review_byname(str(name))
         count = len(rev)
@@ -166,12 +162,12 @@ def goTo_registerMenu():
 
 
 # 맛집 수정 페이지
-@app.route("/modify-info/<name>")
+@app.route("/modify-info/<name>")   
 def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
-# 메뉴 추가 페이지
+# 메뉴 추가 페이지 
 
 
 @app.route("/add-menu/<name>")
@@ -200,7 +196,7 @@ def goTo_writeReview():
 # 리뷰 등록 - 가게 이름 받아오기
 
 
-@app.route("/review_storeName_post", methods=['POST'])
+@app.route("/review_storeName_post", methods=['POST']) 
 def reg_storeName_review_post():
     data = request.form['store_name']
     print(data)
@@ -365,7 +361,7 @@ def submit_review_agree_userId():
     userID = data['userID']
     review_agree_userId = data['review_agree_userId']
     DB.insert_review_agree_userId(name, userID, review_agree_userId)
-
+    
     return redirect(url_for("goTo_detailReiview", name=name))
 
 
@@ -376,9 +372,9 @@ def submit_review_userID():
     userID = data['userID']
     # agreeUsers_num = DB.get_agreeNum_byname(name, userID)
     return redirect(url_for("goTo_detailReiview", name=name))
-
+    
 # #동의 버튼 누를 시에 동의한 사람 수 새로고침
-# @app.route("/", methods=['POST'])
+# @app.route("/", methods=['POST'])  
 # def submit_review_userID():
 
 #     return redirect(url_for("goTo_detailReiview", name=name))
