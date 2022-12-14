@@ -1,3 +1,4 @@
+
 .mainav{
     margin-left:150px;
     margin-right:150px;
@@ -5,18 +6,23 @@
     
 .mainavti{
     color: #FF4A4A;
-    font-size: 30px;
+    font-size: 27px;
     text-align: left;
 }
     
 .mainavsu{
-    font-size: 18px;
-    color: #b5b5b5;
+    font-size: 14px;
+    color: #a4a4a4;
 }    
 
 .mainavfon{
     text-align:right;
-    font-size:20px;
+    font-size:17px;
+    margin-top: 30px;
+}
+
+.mainavfon b{
+    color:#FF4A4A;
 }
     
 main {
@@ -33,12 +39,20 @@ main nav{
     margin-top: 45px;
     margin-bottom: 25px;
 }
+
+#myList-content{
+    display: flex;
+    justify-content: center;
+}
     
 section{
+    width:75%;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin:0;
+    margin-top:15px;
 }
     
 .restaurant-item-box{
@@ -65,13 +79,14 @@ figure{
     
 figure .temp{
     width:290px;
-    height:150px;
-    background-color: rgb(220,220,220);
+    height:160px;
     text-align: center;
     line-height : 150px;
 }
     
 figcaption{
+    position: relative;
+    width:290px;
     display: flex;
     align-items: flex-end;
     margin-top: 10px;
@@ -79,9 +94,10 @@ figcaption{
 }
     
 .restaurant-names{
-    margin-right: 15px;
+    max-width: 65%;
+    margin-right: 10px;
     font-size: 20px;
-    white-space : nowrap;
+    word-wrap: break-word;
     color:#000000;
 }
     
@@ -92,10 +108,11 @@ figcaption{
 }
     
 .restaurant-point{
+    position: absolute;
+    right: 0px;
     margin-right: 20px;
     font-size: 20px;
     font-weight: bold;
-    width: 100%;
     text-align: end;
     color:#000000;
 }
