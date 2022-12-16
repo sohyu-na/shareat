@@ -60,11 +60,8 @@ class DBhandler:
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
         if self.restaurant_duplicate_check(name):
-            self.db.child("restaurant").child(
-                name).child("info").set(restaurant_info)
-            self.db.child("restaurant").child(
-                name).child("time").set(restaurant_time)
-            print(data, img_path)
+            self.db.child("restaurant").child(name).child("info").set(restaurant_info)
+            self.db.child("restaurant").child(name).child("time").set(restaurant_time)
             return True
         else:
             return False
@@ -418,15 +415,20 @@ class DBhandler:
         return False
 
     # ===== 5) 내가 찜한 맛집 data =====
-
+    def check_mylist_is_empty(self, userId):
+        myrestaurants = self.db.child("member").child(userId).child("myRestaurantList").get()
+        if myrestaurants.each() == None:
+            return True
+        else:
+            return False
+    
     # DB 마이리스트 읽어오기
-    def get_mylist(self, id):
-        myrestaurants = self.db.child("member").child(id).child("myRestaurantList").get()
+    def get_mylist(self, userId):
+        myrestaurants = self.db.child("member").child(userId).child("myRestaurantList").get()
         target_value = []
         for res in myrestaurants.each():
             value = res.val()
             target_value.append(self.get_restaurant_byname(value))
-
         new_dict = {}
         for k, v in enumerate(target_value):
             new_dict[k] = v

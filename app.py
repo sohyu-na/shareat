@@ -79,12 +79,12 @@ def goTo_myRestaurantList():
     start_idx = limit*page
     end_idx = limit*(page+1)
     data = []
-    data = DB.get_mylist(userId)  # 찜한 맛집 리스트 데이터
 
-    if data == None:
+    if DB.check_mylist_is_empty(userId):
         count = 0    # 등록된 맛집 개수
         return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
+        data = DB.get_mylist(userId)  # 찜한 맛집 리스트 데이터
         count = len(data)
         list_data = dict(list(data.items())[start_idx:end_idx])
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
@@ -332,10 +332,10 @@ def reg_menuData_submit_post():
     name = data['store_name']
 
     if DB.insert_menu(name, data, image_file.filename):
-        flash ("대표 메뉴가 등록이 완료되었습니다")
+        flash("대표 메뉴가 등록이 완료되었습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
     else:
-        flash ("해당 메뉴가 이미 있습니다")
+        flash("해당 메뉴가 이미 있습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
 
 

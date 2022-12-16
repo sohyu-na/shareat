@@ -51,12 +51,18 @@
 
         <ul id="login-or-signup">
           {% if session['id'] %}
-          <li><a href="/myRestaurantList">내가 찜한 맛집</a></li>
+          <li id="profile-logo">
+              <a href="#"><i id="profile_icon" class="fas fa-light fa-circle-user fa-1x"></i></a>
+              <ul id="popup_myMenu">
+                <li id="myMenu_1"><a href="/myRestaurantList">내가 찜한 맛집♥</a></li>
+                <li id="myMenu_2"><a href="/logout">logout</a></li>
+              </ul>
+          </li>
+
           <li><b>{{session['id']}}님 </b></li>
-          <li><a href="/logout"> logout</a></li>
-          <li id="profile-logo"><i class="fas fa-light fa-circle-user fa-2x"></i></li>
+
           {% else %}
-          <li><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
+          <li style="margin-right: 10px;"><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
           <li><a href="/login">로그인</a></li>
           <li>|</li>
           <li><a href="/signup">회원가입</a></li>
