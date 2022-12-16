@@ -24,16 +24,20 @@
         //[카테고리 선택 체크박스]
 
         //전체 버튼 클릭 시에 체크박스 전체 선택하기
-        function selectAll(selectAll)  {
-          const checkboxes 
-              = document.getElementsByName('category');
+        // function selectAll(selectAll)  {
+        //   const checkboxes 
+        //       = document.getElementsByName('category');
           
-          checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-          })
-        }
+        //   checkboxes.forEach((checkbox) => {
+        //     checkbox.checked = selectAll.checked;
+        //   })
+        // }
 
-        //맛집 목록 카테고리별 정렬
+        //페이지 로딩 시 선택했던 select option 선택되도록
+        $(document).ready(function() {
+          $('#category-selectbox option:contains("{{category}}")').prop("selected",true);
+          // $('#btn-select-sort input:contains("{{sort}}")').prop("checked",true);
+        });
     </script>
 
     <header>
@@ -42,13 +46,18 @@
 
         <ul id="login-or-signup">
           {% if session['id'] %}
-          <!--회원 상단바-->
-          <li><a href="/mylist">내가 찜한 맛집</a></li>
+          <li id="profile-logo">
+              <a href="#"><i id="profile_icon" class="fas fa-light fa-circle-user fa-1x"></i></a>
+              <ul id="popup_myMenu">
+                <li id="myMenu_1"><a href="/myRestaurantList">내가 찜한 맛집♥</a></li>
+                <li id="myMenu_2"><a href="/logout">logout</a></li>
+              </ul>
+          </li>
+
           <li><b>{{session['id']}}님 </b></li>
-          <li><a href="/logout"> logout</a></li>
-          <li id="profile-logo"><i class="fas fa-light fa-circle-user fa-2x"></i></li>
+
           {% else %}
-          <li><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
+          <li style="margin-right: 10px;"><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
           <li><a href="/login">로그인</a></li>
           <li>|</li>
           <li><a href="/signup">회원가입</a></li>
@@ -74,37 +83,126 @@
               <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
             </a>
           </div>
-            {% else %}
-            <!--맛집 등록 버튼-->
-              <div id="btn-register-restaurant" onclick="alertDialogBox()">
-                <a href="/" class="btn-slide">
-                  <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
-                  <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
-                </a>
-              </div>
-            <script>
-              function alertDialogBox() {alert("로그인 후 메뉴 수정이 가능합니다. 로그인을 해주세요!");}
-            </script> 
-            {% endif %}
+          {% else %}
+          <!--맛집 등록 버튼-->
+            <div id="btn-register-restaurant" onclick="alertDialogBox()">
+              <a href="/" class="btn-slide">
+                <span class="slide-top" data-content="Slide">맛집 공유 GO!</span>
+                <span class="slide-bottom" data-content="Slide">맛집 등록하기</span>
+              </a>
+            </div>
+          <script>
+            function alertDialogBox() {alert("로그인 후 메뉴 수정이 가능합니다. 로그인을 해주세요!");}
+          </script> 
+          {% endif %}
         </div>
+
+        <!--자동 사진 슬라이드--->
+        <script>
+          var index = 0;   //이미지에 접근하는 인덱스
+          window.onload = function(){
+              slideShow();
+          }
+          
+          function slideShow() {
+          var i;
+          var x = document.getElementsByClassName("slide");  
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";   //처음에 전부 display를 none으로
+          }
+          index++;
+          if (index > x.length) {
+              index = 1;  //인덱스가 초과되면 1로 변경
+          }   
+          x[index-1].style.display = "block";  //해당 인덱스는 block으로
+          setTimeout(slideShow, 3000);   //함수를 3초마다 호출
+      
+      }
+    </script>
         <div id="header-right-side">
-          <div class="temp">이미지</div>
-        </div>
+          <img class="slide" src="../static/image_slides/미세기텐동.jpg" >
+          <img class="slide" src="../static/image_slides/반서울.png" >
+          <img class="slide" src="../static/image_slides/파스타.jpg" >
+          <img class="slide" src="../static/image_slides/비빔밥.jpg" >
+          <img class="slide" src="../static/image_slides/족발.jpg" >
+          <img class="slide" src="../static/image_slides/탕수육.jpg" >
+          <img class="slide" src="../static/image_slides/타코.jpg" >
+          <img class="slide" src="../static/image_slides/월남쌈.jpg" >
+          <img class="slide" src="../static/image_slides/초밥.jpg" >
+          <img class="slide" src="../static/image_slides/칵테일.png" >
+          <img class="slide" src="../static/image_slides/커피.jpg" >
+          <img class="slide" src="../static/image_slides/케익.jpg" >
+          <img class="slide" src="../static/image_slides/팬케익.jpg" >
+        </div> 
       </div>
+     
     </header>
 
     <main id="list-location">
       <nav id="category">
-        <div id="btn-select-category">
-          <button>category</button>
 
-          <div id="chb-select-category">
-            <input
+        <!--맛집 카테고리 정렬 셀렉트 박스-->
+        <div id="btn-select-category">
+            <span>category</span>
+            <script>
+
+            </script>
+            <select id="category-selectbox" name="category" onchange="location=this.value">>
+              <option value="{{url_for('list_restaurants', page=i, category='all', sort=sort)}}">전체</option>
+              <option value="{{url_for('list_restaurants', page=i, category='한식',sort=sort)}}">한식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='중식',sort=sort)}}">중식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='일식',sort=sort)}}">일식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='양식',sort=sort)}}">양식</option>
+              <option value="{{url_for('list_restaurants', page=i, category='아시아',sort=sort)}}">아시아</option>
+              <option value="{{url_for('list_restaurants', page=i, category='남미',sort=sort)}}">남미</option>
+              <option value="{{url_for('list_restaurants', page=i, category='디저트',sort=sort)}}">디저트</option>
+              <option value="{{url_for('list_restaurants', page=i, category='주점',sort=sort)}}">주점</option>
+              <option value="{{url_for('list_restaurants', page=i, category='기타',sort=sort)}}">기타</option>
+            </select>
+        </div>
+        
+        <!--맛집 목록 순서 정렬 버튼-->
+        <div id="btn-select-sort">
+
+          {% if sort=='grade' %}         <!--평점순 정렬 선택 -->
+
+          <input type="radio" id="sort-list-garde" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
+          <label for="sort-list-garde" style="color:#FF4A4A">평점순</label>
+  
+          <span> | </span>
+
+          <input type="radio" id="sort-list-date" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
+          <label for="sort-list-date">최신순</label>
+
+          {% else %}   <!--최신순 정렬 선택 -->
+
+          <input type="radio" id="sort-list-garde" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='grade')}}">
+          <label for="sort-list-garde">평점순</label>
+  
+          <span> | </span>
+
+          <input type="radio" id="sort-list-date" name="sort_list"
+          onchange="location=this.value"
+          value="{{url_for('list_restaurants', page=i, category=category,sort='date')}}">
+          <label for="sort-list-date" style="color:#FF4A4A">최신순</label>
+
+          {% endif %}
+        </div>
+
+        <!--맛집 목록 카테고리별 정렬 체크박스ver-->
+                    <!-- <input
               id="category1"
               class="chb-category"
               name="category"
-              value="한식"
+              value="{{url_for('list_restaurants', page=i, category='kor')}}"
               type="checkbox"
+              onchange="location=this.value"
             />
             <label for="category1">한식</label>
             <input
@@ -179,32 +277,24 @@
               type="checkbox"
               onclick='selectAll(this)'
             />
-            <label for="select-all">전체</label>
-          </div>
-        </div>
-
-        <div id="btn-select-sort">
-          <button>평점순</button>
-          <span> | </span>
-          <button>최신순</button>
-        </div>
+            <label for="select-all">전체</label> -->
       </nav>
 
+      <!--[맛집 목록]-->
       <section>
-        <!---->
-        {% if total>0 %} {% for data in datas %}
+        {% if total>0 %} 
+        {% for data in datas %}
         <div class="restaurant-item">
-          <a href="/detail-info/{{data[0]}}">
+          <a href="/detail-info/{{data[1].info.store_name}}">
             <div class="restaurant-item-box">
               <figure>
                 <img
                   class="temp restaurant-img"
                   src="{{data[1].info.img_path}}"
                 />
-                <!-- <div class="">이미지</div> -->
               </figure>
               <figcaption>
-                <div class="restaurant-name">{{data[0]}}</div>
+                <div class="restaurant-name">{{data[1].info.store_name}}</div>
                 <div class="restaurant-category">
                   {{data[1].info.store_category}}
                 </div>
@@ -219,12 +309,13 @@
         <i class="icon-next-list fa-solid fa-chevron-right"></i><button></button></i> -->
       </section>
 
+      <!--맛집 목록 번호 버튼-->
       <div class="page=wrap">
         <div class="page-nation">
           <ul>
             <li>
               {% for i in range(page_count) %}
-              <a href="{{url_for('list_restaurants',page=i)}}#list-location">{{i+1}}</a>
+              <a href="{{url_for('list_restaurants', page=i, category=category,sort=sort)}}#list-location">{{i+1}}</a>
               {% endfor %}
             </li>
           </ul>

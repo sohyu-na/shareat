@@ -2,6 +2,7 @@
 
 {% block main %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="main-wrap">
     <div class = "midnavs">
         <div class="midnav active"><a href="/detail-info/{{name}}">가게정보</a></div> 
@@ -10,8 +11,43 @@
     </div>
 
     <div>
-        <input id="check-btn" type="checkbox" />
-        <div class="like"><label for="check-btn"><h3><i class="fa-solid fa-heart"></i><b>&nbsp;찜하기</b></h3></label></div>
+        {% with mesg = get_flashed_messages() %}
+        {% if mesg !=[] %}
+            <script>alert("{{ mesg[0] }}")</script>
+        {% endif %}
+        {% endwith %}
+        {% if session['id'] %}
+        <form action="/submit_like_post" method="post">
+            <div class="like">
+                <input type="hidden" name="store_name" value="{{name}}">
+                <input type="hidden" name="userId" value="{{session['id']}}">
+                <button id="likebutton" type="submit" formmethod="POST"><i class="fa-solid fa-heart fa-3x"></i><br>찜하기</button>
+            </div>
+        </form> 
+        <script>
+            //가게리스트에 없을 때 아직 미완.
+            window.onload=function(){
+                //var bool=Boolean("{{likechecked}}")
+                if ("{{session['id']}}"!=" "){
+                    if ({{likechecked}}){
+                        document.getElementById("likebutton").style.color = "#FF4A4A";
+                    }else{
+                        document.getElementById("likebutton").style.color = "#b5b5b5;";
+                    }
+                }
+                else{
+                    
+                }
+            }
+        </script>
+        {% else %}
+        <div class="like">
+            <button id="likebutton" onclick="alertDialogBox()"><i class="fa-solid fa-heart fa-3x"></i><br>찜하기</button>
+        </div>
+        <script>
+            function alertDialogBox() {alert("로그인 후 사용 가능합니다. 로그인을 해주세요!");}
+        </script> 
+        {% endif %}
 
         <div class="rader-chart">            
             <canvas id="myRaderChart"></canvas>
@@ -64,9 +100,9 @@
         <h3 class="revisit"><b>재방문 의사 {{data.info.store_revisit}}%</b></h3>
     </div>
     <br>
-    <hr class= "hr">
+    <hr>
     <div>
-        <a href="/modification-restaurant" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
+        <a href="/modify-info/{{name}}" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;가게 정보 수정하기</b></h3></a>
     </div>
     <table class="table_detailInfo_restaurantInfo">
         <br>
@@ -123,11 +159,11 @@
         </tr>
     </table>
     <br>
-    <hr class="hr">
+    <hr>
     <br>
     <br>
     <p class = "image"><b>사진</b></p>
-            <a href="#" class="more"><h3><b>더보기</b></h3></a>
+            <a href="#" class="more"><h3><b>더보기+</b></h3></a>
     <br>
     <br>
     <div class="food-images">

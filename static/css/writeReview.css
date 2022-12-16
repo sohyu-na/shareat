@@ -2,17 +2,16 @@ section{
     margin : 50px 220px 0px 220px;
 }
 .review-title{
-   height: 70px;
+   margin-bottom: 20px;
+   /* height: 70px; */
 }
 .restaurant-name{
    display:inline-block;
-   max-width:400px;
    font-size:30px;
    color:#FF4A4A;
    line-height:1.462;
 }
 .review-title-subMessage{
-  
    font-size:15px;
    width:270px;
    margin-left:10px;

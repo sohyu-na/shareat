@@ -28,7 +28,7 @@
 
             {% if session['id'] %}
             <div id="login-or-signup">
-                <div><a href="/mylist">내가 찜한 맛집</a></div>
+                <div><a href="/myRestaurantList">내가 찜한 맛집</a></div>
                 <div></div>
                 <div><a href="/logout"> logout</a></div>
             </div>
@@ -41,11 +41,11 @@
             </div>
             {% endif %}
         </div>
-        
+                        
         <header>
             <div class="main_image">
-                <img src="/{{data.info.img_path}}" alt=Restaurant-image> 
-                    <h1 class="main_image_text" style="color:white">{{name}}</h1>
+                <img src="../static/image_slides/detailInfo_banner_image.jpg" alt=Restaurant-image> 
+                    <h1 class="main_image_text" style="font-size:35px;">{{name}}</h1>
             </div>   
         </header>
 

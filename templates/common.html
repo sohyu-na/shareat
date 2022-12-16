@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="utf-8" />
+  <head>
+      <meta charset="utf-8" />
 
         <link rel="stylesheet" href="{{url_for('static',filename='css/commonStyles.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/detailInfo_menu.css')}}">
@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="{{url_for('static',filename='css/registerMenu.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/registerRestaurantInfo.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/writeReview.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+
+
 
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
@@ -24,8 +24,8 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer" />
 
-        <title>맛집 상세정보-메뉴정보</title>
-    </head>
+      <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
     <body>
         <!--상단바-->
@@ -34,7 +34,7 @@
 
           {% if session['id'] %}
           <div id="login-or-signup">
-              <div><a href="/mylist">내가 찜한 맛집</a></div>
+              <div><a href="/myRestaurantList">내가 찜한 맛집</a></div>
               <div></div>
               <div><a href="/logout"> logout</a></div>
           </div>
@@ -50,16 +50,10 @@
 
         <main>
         {% block main %}
-
+        
         {% endblock main %}
         </main>
 
-        <footer>
-            <div id="footer-content">
-                Team 어서오소    
-            </div>
-        </footer>
-
-    </body>
+  </body>
 
 </html>

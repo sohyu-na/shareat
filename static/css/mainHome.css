@@ -14,10 +14,6 @@ a, a:visited{
 
 /*=================Header Styling=================*/
 
-.reg_btn{
-  border: none;
-}
-
 #logo {
   font-size: 25px;
   font-weight: bold;
@@ -25,7 +21,7 @@ a, a:visited{
 }
 
 .navbar{
-  width: 97%;
+  width: 100%;
   height: 80px;
 }
 
@@ -35,22 +31,83 @@ a, a:visited{
   padding: 0 50px;
 }
 
-.navbar>ul {
+.navbar ul {
   list-style: none;
   float: right;
 }
 
 .navbar>ul li {
   float: left;
-  padding: 0 15px;
+  padding: 5px 5px;
   line-height: 30px;
 }
 
 #login-or-signup {
+  position: relative;
   font-size: 13px;
+  margin-right: 40px;
 }
 
+#profile-logo{
+  display: block;
+  position: relative;
+  font-size: 30px;
+}
 
+#popup_myMenu{
+  display: none;
+  position: absolute;
+  width: 130px;
+  padding: 8px;
+  left: -132%;
+  top:90%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;  
+  border-radius: 8px;
+  background: #ffffff;
+  color: rgb(15, 15, 15);
+  font-size: 14px;
+  text-align: center;
+}
+
+#popup_myMenu:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  pointer-events: none;
+  content: " ";
+  text-align: center;
+}
+
+#popup_myMenu > li{
+  display:inline-block;
+}
+
+#myMenu_1{
+  color:#FF4A4A;
+  font-weight: bolder;
+}
+
+#myMenu_2 {
+  font-size: 12px;
+}
+
+#profile-logo:hover #popup_myMenu
+{
+  display: block;
+  text-align: center;
+}
+
+/* #popup_myMenu:after:hover + #popup_myMenu li{
+  display: block;
+} */
 
 header{
   display: flex;
@@ -87,12 +144,13 @@ header{
   margin-right: 20px;
 }
 
-#header-right-side .temp {
-  background-color: rgb(220,220,220);
-  width: 420px;
-  height: 230px;
+#header-right-side .slide {
+  /* background-color: rgb(220,220,220); */
+  width: 450px;
+  height: 260px;
   text-align: center;
   line-height : 230px;
+  border-radius: 3px;
 }
 
 #slogan{
@@ -204,13 +262,54 @@ main nav{
   border-radius: 20px;
 }
 
+#btn-select-category span{
+  padding-left: 10px;
+  padding-right: 5px;
+  color:#313131;
+  font-weight: bold;
+}
+
+#category-selectbox{
+  border: solid 1.5px rgb(146, 146, 146);
+  border-radius: 5px;
+  margin-left:10px;
+  width: 80px;
+  height: 30px;
+  color: #FF4A4A;
+  font-weight: bold;
+}
+
+#category-selectbox option{
+  color: #515050d5;
+}
+
 #btn-select-sort{
   display: flex;
   justify-content: end;
   align-items: center;
   width: 100%;
   color:rgb(134, 132, 132);
+  font-size: 16px;
 }
+
+#btn-select-sort input{
+  display: none;
+}
+
+#btn-select-sort label:hover{
+  font-size: 18px;
+  color:#FF4A4A
+}
+#btn-select-sort input:checked+label{
+    color:#FF4A4A
+}
+
+#btn-select-sort span{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*맛집 목록 카테고리별 정렬 체크박스ver*/
 
 #btn-select-category button, #btn-select-sort button{
   border:none;
@@ -224,7 +323,7 @@ main nav{
   font-weight: bold;
 }
 
-#chb-select-category{
+/* #chb-select-category{
   position: relative;
   top: -1px;
   margin-left: 10px;
@@ -271,11 +370,7 @@ input[type="checkbox"]:checked {
 }
 input[type="checkbox"]:checked::after {
   display: block;
-}
-
-#btn-select-sort button:hover{
-  color:#FF4A4A;
-}
+} */
 
 section{
   position: relative;
@@ -307,13 +402,15 @@ figure{
 
 figure .temp{
   width:290px;
-  height:150px;
-  background-color: rgb(220,220,220);
+  height:160px;
+  /* background-color: rgb(220,220,220); */
   text-align: center;
   line-height : 150px;
 }
 
 figcaption{
+  position: relative;
+  width:290px;
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
@@ -321,9 +418,10 @@ figcaption{
 }
 
 .restaurant-name{
-  margin-right: 15px;
+  max-width: 65%;
+  margin-right: 10px;
   font-size: 20px;
-  white-space : nowrap;
+  word-wrap: break-word;
 }
 
 .restaurant-category{
@@ -332,10 +430,11 @@ figcaption{
 }
 
 .restaurant-point{
+  position: absolute;
+  right: 0px;
   margin-right: 20px;
   font-size: 20px;
   font-weight: bold;
-  width: 100%;
   text-align: end;
 }
 
@@ -412,7 +511,7 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
-  height:70px;
+  height:100px;
   /* background-color: #fafafa99; */
   background-color: #2c2c33;
   border-top: 0.5px solid #c4c4c4;
