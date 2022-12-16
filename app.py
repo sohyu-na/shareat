@@ -95,7 +95,7 @@ def goTo_myRestaurantList():
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
-    if session['id']:
+    if session:
         likechecked = DB.res_in_myRestaurantlist_check(
             name=name, userId=session['id'])
         return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked)
@@ -238,12 +238,13 @@ def reg_restaurantData_submit_post():
     data = request.form
 
     if DB.insert_restaurant(data['store_name'], data, image_path):
+        flash ("가게 등록이 완료되었습니다")
         return redirect(url_for("list_restaurants"))
     else:
-        return "Restaurant name already exists!"
+        flash ("이미 존재하는 가게입니다")
+        return redirect(url_for("list_restaurants"))
 
 # 가게정보 수정
-
 
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():

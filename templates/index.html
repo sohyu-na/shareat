@@ -19,6 +19,11 @@
   </head>
 
   <body>
+    {% with mesg = get_flashed_messages() %}
+    {% if mesg !=[] %}
+        <script>alert("{{ mesg[0] }}")</script>
+    {% endif %}
+    {% endwith %}
 
     <script>
         //[카테고리 선택 체크박스]
