@@ -1,5 +1,5 @@
 hr{
-	width : 100%;
+	width : 900px;
  }
  
 .main-wrap{
@@ -53,8 +53,6 @@ like:clicked{
 
 #likebutton{
 	color : #b5b5b5;
-	text-align: center;
-	margin: 10%;
 }
 
 [aria-pressed="true"] {
@@ -89,7 +87,7 @@ img {
 	width : 50%;
 	margin-bottom:20px;
 	margin-left:40px;
-	height : 320px;
+	height : 350px;
 }
 
 .part {
@@ -311,14 +309,15 @@ img {
 
 .table_detailInfo_restaurantInfo{
 	text-align : left;
-	width : 100%;
-	font-size : 17px;
+	width : 1500px;
+	font-size : 120%;
 	line-height : 100%;
 	padding: 0 70px;
+	
 }
 
 tr{
-	width : 100%;
+	width : 1000px;
 }
 
 th{
@@ -336,11 +335,10 @@ td{
 .more{
 	float : right;
 	width : 10%;
-	font-size : 13px;
 }
 
 .food-images{
-	width : 100%;
+	width : 1000px;
 	height : 160px;
 	padding: 0 10px 0 10px;
 	overflow : hidden;

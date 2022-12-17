@@ -18,6 +18,10 @@ ul,li {
     width:80px;
  }
  
+ .fa-solid fa-thumbs-up{
+   color:#FF4A4A;
+ }
+
  button{
    border: none;
    background-color: white;
@@ -134,10 +138,10 @@ ul,li {
 
    .table_review{
       text-align : left;
-      width : 900px;
+      width : 700px;
       font-size : 120%;
       line-height : 100%;
-      margin : 0px 50px 0px 50px;
+      margin : 0px 600px 0px 150px;
    }
    
    .writeuser{
@@ -171,11 +175,31 @@ ul,li {
       padding : 0 10px 0 0;
    }
 
+   #btn-modify-agree{
+      object-fit: cover;
+      text-align:right;
+      float:right;
+      color:#b5b5b5;
+   }
+   
+   #btn-modify-agree:hover{
+      color:#FF4A4A;
+   }
+
+   #agree_num_text{
+      padding-top : 11px;
+      color:#8e8e8e;
+   }
+
+   .btn_agree_img{
+      font-size : 140%;
+      text-align: center;
+      padding-bottom: 10px;
+   }
 
    .agree{
       display:flex;
-      flex-direction:column;
-      height : 100%;
+      flex-direction: row-reverse;
    }
 
    hr{

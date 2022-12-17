@@ -3,16 +3,30 @@
 {% block main %}
 <div class="menus">
     <div id="guide-phrase">
-        <span id="restaurant-info">{{name}}</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
+        <span id="restaurant-info">음식점이름</span><sapn> 의 대표메뉴를 등록해주세요</sapn>
     </div>  
 
-    {% if total>0 %} 
-    {% for data in datas %}
-    {% else %}
-    <p>아직 등록된 대표메뉴가 없어요. 대표메뉴를 등록해 주세요!</p>
-    {% endif %}
     <form action="/submit_menuData_post" method="post" enctype="multipart/form-data">
         <div id="menu-box">
+            <div class="menu-item">
+                <div class="menu-img">
+                    <div class>이미지</div>
+                </div>
+                <div class="menu-info">
+                    <div class="menu-name">음식명 : _____________</div>
+                    <div class="menu-price">가격 : __________</div>
+
+                    <div class="menu-info-signicant">
+                        <div>
+                            ■ vegetarian                               
+                        </div>
+                        <div>
+                            ■ allergy                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="menu-item">
                 <div class="menu-img">
                     <div class>이미지</div>
