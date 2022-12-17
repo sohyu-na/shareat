@@ -155,6 +155,14 @@ class DBhandler:
             if res.key() == name:
                 target_value = value
         return target_value
+    
+    # 가게 이름으로 가게 이미지 가져오기
+    def get_restaurant_imgs_byname(self, name):
+        imgs = self.db.child("restaurant").child(name).child("info").child("img_path").get()
+        img_paths=[]
+        for img in imgs.each():
+            img_paths.append(img.val())
+        return img_paths
 
     # 리뷰 목록 가져오기
     def get_reviews_byname(self, name):
