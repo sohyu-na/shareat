@@ -14,38 +14,87 @@
     </div>
 
 
-  {% if session['id'] %}
- <!--로그인 상태 대표메뉴 추가하기 버튼-->
+    {% if session['id'] %}
+    <!--로그인 상태 대표메뉴 추가/삭제 버튼-->
     <div>
         <a href="/add-menu/{{name}}" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
     </div>
- <!--<form action="/modifyMenu_storeName_post" method="post">
-    <input type="hidden" name="store_name" value="{{name}}">
-    <button type="submit">
+
+    {% if total>0 %}
+    {% for menu in menu_data %}
+    <div id="menu-box">
+        <div class="menu-item">
+            <form action="/submit_remove_post" method="post">
+                <input type="hidden" name="store_name" value="{{name}}">
+                <input type="hidden" name="menu_name" value="{{menu.menu_name}}">
+                <button id="removebutton" type="submit" formethod="POST">
+                    <div id="btn-modify-menu">
+                        <a href="" class="modifylink"><h3><i class="fa-solid fa-trash"></i></h3></a>
+                    </div>
+                </button>
+            </form>
+                <div class="menu-img">
+                    <!-- <img src="/{{menu.menuImg_path}}"> -->
+                </div>
+                <div class="menu-info">
+                    <div class="menu-name">음식명 : {{menu.menu_name}}</div>
+                    <div class="menu-price">가격 : {{menu.menu_price}}</div>
+
+                    <div class="menu-info-signicant">
+                        <div>
+                            ■ vegetarian                               
+                        </div>
+                        <p>
+                            {% if menu['extra_ve'] == "y" %}
+                            vegetarian friendly
+                            {% endif %}
+                            {% if menu['extra_ve'] == "n" %}
+                            NOT vegetarian friendly
+                            {% endif %}
+                        </p>
+                        <div>
+                            ■ allergy                               
+                        </div>
+                        <p>
+                            {% if menu['extra_al'] == "y" %}
+                            allergic food
+                            {% endif %}
+                            {% if menu['extra_al'] == "n" %}
+                            non-allergic food
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+    <p style="height: 117px">아직 등록된 메뉴가 없어요. 메뉴를 등록해 주세요!</p>
+    {% endif %}
+ 
+    {% else %}
+    <!--로그아웃 상태 대표메뉴 추가/삭제 버튼-->
+    <button onclick="alertDialogBox()">
         <div id="btn-modify-menu">
-            <a><i class="fa-solid fa-pencil"></i><b>&nbsp;대표메뉴 추가하기</b></a>
+            <a href="" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
         </div>
     </button>
-  </form>-->
-  {% else %}
-  <!--로그아웃 상태 대표메뉴 추가하기 버튼-->
-  <button onclick="alertDialogBox()">
-    <div id="btn-modify-menu">
-        <a href="" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
-    </div>
-  </button>
-  <script>
-    function alertDialogBox() {alert("로그인 후 메뉴 수정이 가능합니다. 로그인을 해주세요!");}
-  </script> 
-  {% endif %}
+    <script>
+        function alertDialogBox() {alert("로그인 후 메뉴 추가가 가능합니다. 로그인을 해주세요!");}
+    </script> 
 
-  {% if total>0 %}
-  {% for menu in menu_data %}
-  <div id="menu-box">
-      <div class="menu-item">
-            <button onchange="location=this.value">
-                <option value="{{url_for('list_restaurants')}}"> 삭제 </option>
+    {% if total>0 %}
+    {% for menu in menu_data %}
+    <div id="menu-box">
+        <div class="menu-item">
+            <button onclick="alertDialogBoxPLUS()">
+                <div id="btn-modify-menu">
+                    <a href="" class="modifylink"><h3><i class="fa-solid fa-trash"></i></h3></a>
+                </div>
             </button>
+            <script>
+                function alertDialogBoxPLUS() {alert("로그인 후 메뉴 삭제가 가능합니다. 로그인을 해주세요!");}
+            </script> 
             <div class="menu-img">
                 <!-- <img src="/{{menu.menuImg_path}}"> -->
             </div>
@@ -80,10 +129,10 @@
             </div>
         </div>
     </div>
-  {% endfor %}
- 
-  {% else %}
-  <p style="height: 117px">아직 등록된 메뉴가 없어요. 메뉴를 등록해 주세요!</p>
+    {% endfor %}
+    {% else %}
+    <p style="height: 117px">아직 등록된 메뉴가 없어요. 메뉴를 등록해 주세요!</p>
+    {% endif %}
   {% endif %}
 
 

@@ -116,7 +116,6 @@ def submit_like_post():
         flash("이미 찜한 맛집입니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
 
-
 # 메뉴 상세 정보 페이지
 @app.route("/detail-menu/<name>")
 def goTo_detailMenu(name):
@@ -134,6 +133,17 @@ def goTo_detailMenu(name):
         # total=count
         return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
 
+# 대표메뉴 삭제 버튼 누르면 데베에서 삭제하고 다시 대표메뉴 페이지로 이동
+@app.route("/submit_remove_post", methods=['POST'])
+def submit_remove_post():
+    data = request.form
+    name = data["store_name"]
+    menu = data["menu_name"]
+    print(name)
+    print(menu)
+    if DB.remove_menu(name, menu):
+        flash("대표 메뉴가 삭제되었습니다.")
+        return redirect(url_for("goTo_detailMenu", name=name, menu=menu))
 
 # 리뷰 상세 정보 페이지
 @app.route("/detail-review/<name>")
