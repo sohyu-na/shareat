@@ -308,6 +308,11 @@ class DBhandler:
             name).child("menu").get().val()
         return reviews
 
+    #메뉴 삭제하기 
+    def remove_menu(self, name, menu):
+        self.db.child("restaurant").child(name).child("menu").child(menu).remove()
+        return True
+
     # ===== 3) 리뷰 데이터 ======
     def insert_review(self, name, data, reviewImg_path, userID):
         # 리뷰 등록 시간 DB에 저장
