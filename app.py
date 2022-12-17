@@ -172,10 +172,6 @@ def goTo_registerMenu():
 def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
-@app.route("/modify-info/<name>")
-def goTo_modifyInfo(name):
-    data = DB.get_restaurant_byname(str(name))
-    return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
 # 메뉴 추가 페이지
 
