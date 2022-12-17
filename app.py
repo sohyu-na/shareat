@@ -221,25 +221,30 @@ def goTo_signup():
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
-    image_file = request.files["file"]
-    if image_file.filename != '':
-        image_file.save("./static/image/{}".format(image_file.filename))
-        image_path = "./static/image/{}".format(image_file.filename)
-        print(image_path)
-    else:
-        image_path = "./static/image_slides/default_image.png"
-        image_file.filename = "default_image.png"
-        print(image_path)
-
+    files = request.files.getlist("file[]")
     data = request.form
-
-    if DB.insert_restaurant(data['store_name'], data, image_path):
+    img_paths=[]
+    #image_file = request.files["file"]
+    print(files)
+    for fil in files:
+        if fil.filename == '':
+            image_path = "./static/image_slides/default_image.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "./static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
+        
+    if DB.insert_restaurant(data['store_name'], data, img_paths):
         return redirect(url_for("list_restaurants"))
     else:
-        return "Restaurant name already exists!"
+        flash("Restaurant name already exists!")
+        return render_template("registerRestaurantInfo.html")
+
+
 
 # 가게정보 수정
-
 
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():
@@ -260,8 +265,8 @@ def mod_restaurantData_submit_post():
     if DB.modify_restaurant(data['store_name'], data, image_path):
         return redirect(url_for("goTo_detailInfo", name=name))
     else:
-        # flash("가게 이름을 변경 할 수 없습니다 !") 가게 수정시 가게 이름 바꿀라 하면 어떡할지
-        return "Restaurant name already exists!"
+        flash("가게 이름을 변경 할 수 없습니다 !")
+        return render_template("modifyRestaurantInfo.html")
 
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
