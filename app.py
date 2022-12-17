@@ -234,8 +234,6 @@ def reg_restaurantData_submit_post():
     files = request.files.getlist("file[]")
     data = request.form
     img_paths=[]
-    #image_file = request.files["file"]
-    print(files)
     for fil in files:
         if fil.filename == '':
             image_path = "./static/image_slides/default_image.png"
@@ -255,23 +253,23 @@ def reg_restaurantData_submit_post():
 
 
 # 가게정보 수정
-
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():
     global idx
-    image_file = request.files["file"]
-    if image_file.filename != '':
-        image_file.save("./static/image/{}".format(image_file.filename))
-        image_path = "./static/image/{}".format(image_file.filename)
-        print(image_path)
-    else:
-        image_path = "./static/image/grey.png"
-        image_file.filename = "grey.png"
-        print(image_path)
-
+    files = request.files.getlist("file[]")
     data = request.form
     name = data["store_name"]
-
+    img_paths=[]
+    for fil in files:
+        if fil.filename == '':
+            image_path = "./static/image_slides/default_image.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "./static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
+            
     if DB.modify_restaurant(data['store_name'], data, image_path):
         return redirect(url_for("goTo_detailInfo", name=name))
     else:
