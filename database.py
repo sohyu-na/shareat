@@ -266,20 +266,18 @@ class DBhandler:
 
     # ===== 2) 메뉴 data ======
 
-    def insert_menu(self, name, data, menuImg_path):
+    def insert_menu(self, name, data, img_paths):
         menu_info = {
-            "menuImg_path": menuImg_path,
+            "img_path": "",
             "menu_name": data['menu_name'],
             "menu_price": data['menu_price'],
             "extra_ve": data['extra_ve'],
             "extra_al": data['extra_al']
         }
-        # self.db.child("restaurant").child(name).child("menu").child('menu_name').set(menu_info)
-        # return True
         if self.menu_duplicate_check(name, data['menu_name']):
-            self.db.child("restaurant").child(name).child(
-                "menu").child(data['menu_name']).set(menu_info)
-            print(data, menuImg_path)
+            self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).set(menu_info)
+            for path in img_paths:
+                self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).child("img_path").push(path)
             return True
         else:
             return False
