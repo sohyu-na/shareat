@@ -29,6 +29,12 @@ h4 {
     border: 1px solid #a7a7a7;
 }
 
+#image-box{
+    border: 1px solid #a7a7a7;
+    height: auto;
+    min-height: 250px;
+}
+
 ::placeholder,p {
     color: #a7a7a7;
 }
@@ -40,6 +46,7 @@ li {
 img {
     width: 200px;
     height: 200px;
+    margin: 10px;
 }
 
 .real-upload {
@@ -47,7 +54,6 @@ img {
 }
 
 .upload {
-    border: 1px solid #a7a7a7;
     color: #a7a7a7;
     font-size: 13px;
     text-align: center;
@@ -55,6 +61,7 @@ img {
 
 .image-preview {
     gap: 10px;
+
 }
 
 .goMenubutton {

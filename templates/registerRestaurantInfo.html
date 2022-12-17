@@ -1,6 +1,11 @@
 {% extends "common.html" %}
 
 {% block main %}
+{% with mesg = get_flashed_messages() %}
+    {% if mesg !=[] %}
+        <script>alert("{{ mesg[0] }}")</script>
+    {% endif %}
+{% endwith %}
 <h4>공유하고 싶은 맛집의 정보를 입력해 주세요</h4>
     <form action="/submit_restaurantData_post" method="post" enctype="multipart/form-data">
         <table class="tabel_registerRestaurantInfo">
@@ -59,16 +64,16 @@
             <tr>
                 <td class="td1">가격대</td>
                 <td>
-                    <input type="text" class="text-area" name="store_cost_min" size="33" />원 &nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" class="text-area" name="store_cost_max" size="33" />원 &nbsp;이하
+                    <input type="text" class="text-area" name="store_cost_min" size="30" />원 &nbsp;이상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="text-area" name="store_cost_max" size="30" />원 &nbsp;이하
                 </td>
             </tr>
             <tr> 
                 <td class="td1" valign="top">식당의 사진</td>
-                <td >
-                    <input type="file" class="real-upload" name="file" accept="image/*" multiple />
+                <td id="image-box">
+                    <input type="file" class="real-upload" name="file[]" accept="image/*" multiple />
                     <div class="upload">
-                        <p>가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
+                        <p style="padding-top: 5px;">가게의 외부 혹은 내부의 사진을 업로드해 주세요</p>
                         <ul class="image-preview"></ul>
                     </div>
                     <script>
