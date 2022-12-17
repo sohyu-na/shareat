@@ -33,6 +33,7 @@ h4 {
     border: 1px solid #a7a7a7;
     height: auto;
     min-height: 250px;
+    margin-bottom: 10px;
 }
 
 ::placeholder,p {
@@ -61,7 +62,6 @@ img {
 
 .image-preview {
     gap: 10px;
-
 }
 
 .goMenubutton {
