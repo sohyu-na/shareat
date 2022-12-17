@@ -13,7 +13,7 @@ class DBhandler:
     # ===== 1) 맛집 data =====
 
     # DB에 저장
-    def insert_restaurant(self, name, data, img_path):
+    def insert_restaurant(self, name, data, img_paths):
         # 맛집 등록 시간 DB에 저장
         now = datetime.now()
         str_year = now.strftime("%Y")
@@ -47,7 +47,6 @@ class DBhandler:
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
             "store_cost_max": data['store_cost_max'],
-            "img_path": img_path,
             "store_grade": 0,
             "store_taste": 0,
             "store_cost": 0,
@@ -55,13 +54,15 @@ class DBhandler:
             "store_cleanliness": 0,
             "store_atmosphere": 0,
             "store_revisit": 0,
-            "store_reviewCount": 0
+            "store_reviewCount": 0,
+            "img_path": ""
         }
-        # self.db.child("restaurant").child(name).set(restaurant_info)
-        # return True
+        #가게이름 중복체크 후 데이터 삽입.
         if self.restaurant_duplicate_check(name):
             self.db.child("restaurant").child(name).child("info").set(restaurant_info)
             self.db.child("restaurant").child(name).child("time").set(restaurant_time)
+            for path in img_paths:
+                self.db.child("restaurant").child(name).child("info").child("img_path").push(path)
             return True
         else:
             return False
