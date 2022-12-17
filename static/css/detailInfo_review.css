@@ -3,6 +3,7 @@ ul,li {
  }
  a {
     text-decoration: none;
+    color: inherit;
  }
  img {
     max-width: 100%;
@@ -175,4 +176,8 @@ ul,li {
       display:flex;
       flex-direction:column;
       height : 100%;
+   }
+
+   hr{
+      width : 900px;
    }

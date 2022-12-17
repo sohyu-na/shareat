@@ -1,12 +1,6 @@
 {% extends "detailnavbar.html" %}
 
 {% block main %}
-{% with mesg = get_flashed_messages() %}
-    {% if mesg !=[] %}
-        <script>alert("{{ mesg[0] }}")</script>
-    {% endif %}
-{% endwith %}
-        
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="main-wrap">
@@ -15,7 +9,14 @@
         <div class="midnav"><a href="/detail-menu/{{name}}">대표메뉴</a></div> 
         <div class="midnav"><a href="/detail-review/{{name}}">리뷰조회</a></div> 
     </div>
-    {% if session['id'] %}
+
+    <div>
+        {% with mesg = get_flashed_messages() %}
+        {% if mesg !=[] %}
+            <script>alert("{{ mesg[0] }}")</script>
+        {% endif %}
+        {% endwith %}
+        {% if session['id'] %}
         <form action="/submit_like_post" method="post">
             <div class="like">
                 <input type="hidden" name="store_name" value="{{name}}">
@@ -24,7 +25,9 @@
             </div>
         </form> 
         <script>
+            //가게리스트에 없을 때 아직 미완.
             window.onload=function(){
+                //var bool=Boolean("{{likechecked}}")
                 if ("{{session['id']}}"!=" "){
                     if ({{likechecked}}){
                         document.getElementById("likebutton").style.color = "#FF4A4A";
@@ -37,48 +40,49 @@
                 }
             }
         </script>
-    {% else %}
+        {% else %}
         <div class="like">
             <button id="likebutton" onclick="alertDialogBox()"><i class="fa-solid fa-heart fa-3x"></i><br>찜하기</button>
         </div>
         <script>
             function alertDialogBox() {alert("로그인 후 사용 가능합니다. 로그인을 해주세요!");}
         </script> 
-    {% endif %}
-    <div class="rader-chart">            
-        <canvas id="myRaderChart"></canvas>
-        <script>
-            var ctx = document.getElementById("myRaderChart");
-            var myRadarChart = new Chart(ctx, {
-                type: 'radar', 
-                data: { 
-                    labels: ["맛", "가성비", "서비스", "분위기", "위생"],
-                    datasets: [{
-                        data: [{{data.info.store_taste}}, {{data.info.store_cost}}, {{data.info.store_service}}, {{data.info.store_atmosphere}}, {{data.info.store_cleanliness}}],
-                        backgroundColor: 'rgba(255, 74, 74, 0.45)',
-                        borderColor: '#fe2120',
-                        borderWidth: 1,
-                        pointBackgroundColor: '#fe2120'
-                    }]
-                },
-                options: {
-                    scale:{
-                        ticks:{
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            display : false,
-                            maxTicksLimit: 3
-                        },
-                        pointLabels:{
-                            fontSize:12
+        {% endif %}
+
+        <div class="rader-chart">            
+            <canvas id="myRaderChart"></canvas>
+            <script>
+                var ctx = document.getElementById("myRaderChart");
+                var myRadarChart = new Chart(ctx, {
+                    type: 'radar', 
+                    data: { 
+                        labels: ["맛", "가성비", "서비스", "분위기", "위생"],
+                        datasets: [{
+                            data: [{{data.info.store_taste}}, {{data.info.store_cost}}, {{data.info.store_service}}, {{data.info.store_atmosphere}}, {{data.info.store_cleanliness}}],
+                            backgroundColor: 'rgba(255, 74, 74, 0.45)',
+                            borderColor: '#fe2120',
+                            borderWidth: 1,
+                            pointBackgroundColor: '#fe2120'
+                        }]
+                    },
+                    options: {
+                        scale:{
+                            ticks:{
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                display : false,
+                                maxTicksLimit: 3
+                            },
+                            pointLabels:{
+                                fontSize:12
+                            }
                         }
                     }
-                }
-            },
-        );
-        myRadarChart.options.legend.display = false;
-        </script>
-    </div>
+                },
+            );
+            myRadarChart.options.legend.display = false;
+            </script>
+        </div>
     <br>
     <br>
     <br>
@@ -157,17 +161,16 @@
     <br>
     <hr>
     <br>
-    <div id="image-text">
-            <div><b>사진</b></div><div id="more"><h3 href="#">더보기+</h3></div>
-        </div>
-    <div class="image-wrap">
-        <br>
-        <br>
-        <div class="food-images">
-            {%for img in img_paths%}
-                <img src=".{{img}}">
-            {% endfor %}
-        </div>
+    <br>
+    <p class = "image"><b>사진</b></p>
+            <a href="#" class="more"><h3><b>더보기+</b></h3></a>
+    <br>
+    <br>
+    <div class="food-images">
+        <div style="width : 160px; height : 160px; margin: 10px 15px 20px 0px; background-color: rgb(170, 170, 170);">이미지</div>
+        <!-- <img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)"> -->
+
     </div>
-</div>   
+    
+</div>
 {% endblock main %}

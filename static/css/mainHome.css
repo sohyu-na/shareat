@@ -15,16 +15,14 @@ a, a:visited{
 /*=================Header Styling=================*/
 
 #logo {
-  font-size: 30px;
+  font-size: 25px;
+  font-weight: bold;
   line-height: 60px;
 }
 
 .navbar{
-  display: flex;
   width: 100%;
-  height: 70px;
-  align-items: center;
-  justify-content: space-between;
+  height: 80px;
 }
 
 .navbar>a {
@@ -40,14 +38,14 @@ a, a:visited{
 
 .navbar>ul li {
   float: left;
-  padding: 10px;
+  padding: 5px 5px;
   line-height: 30px;
 }
 
 #login-or-signup {
   position: relative;
-  font-size: 15px;
-  margin: 20px;
+  font-size: 13px;
+  margin-right: 40px;
 }
 
 #profile-logo{
@@ -61,23 +59,24 @@ a, a:visited{
   position: absolute;
   width: 130px;
   padding: 8px;
-  left: -200%;
+  left: -132%;
   top:90%;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;  
   border-radius: 8px;
   background: #ffffff;
   color: rgb(15, 15, 15);
-  font-size: 15px;
+  font-size: 14px;
   text-align: center;
 }
 
 #popup_myMenu:after {
   position: absolute;
   bottom: 100%;
-  left: 78%;
+  left: 50%;
   width: 0;
   height: 0;
+  margin-left: -10px;
   border: solid transparent;
   border-color: rgba(255, 255, 255, 0);
   border-bottom-color: #ffffff;
@@ -88,18 +87,16 @@ a, a:visited{
 }
 
 #popup_myMenu > li{
-  display: inline-block;
+  display:inline-block;
 }
 
 #myMenu_1{
   color:#FF4A4A;
   font-weight: bolder;
-  text-align: center;
 }
 
 #myMenu_2 {
-  font-size: 15px;
-  text-align: center;
+  font-size: 12px;
 }
 
 #profile-logo:hover #popup_myMenu
@@ -116,12 +113,17 @@ header{
   display: flex;
   flex-direction: column;
   background-color: #FF4A4A;
-  height: 430px;
+  height: 420px;
   color:white;
 }
 
+#header-top {
+  display: flex;
+  height: 70px;
+}
+
 #header-content {
-  height: 100%;
+  flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -129,50 +131,44 @@ header{
   margin-right: 80px;
   margin-top: 20px;
   margin-bottom: 50px;
+  
 }
 
 #header-left-side{
   margin-top: -30px;
-  width: 50%;
+  flex-basis: 50%;
 }
 
 #header-right-side{
-  margin-right: auto;
-  width: 40%;
+  margin:auto;
+  margin-right: 20px;
 }
 
 #header-right-side .slide {
   /* background-color: rgb(220,220,220); */
+  width: 450px;
   height: 260px;
   text-align: center;
   line-height : 230px;
   border-radius: 3px;
 }
-.slide{
-  width: 100%;
-}
-
 
 #slogan{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-size: 1.9rem;
-  margin-bottom: 15px;
-  line-height: 3rem;
-  text-align: center;
 }
 
+#slogan div{
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 15px;
+}
 
 #btn-register-restaurant{
   /* display: flex;
   justify-content: center; */
-  width: 100%;
-  height: auto;
   margin-top: 30px;
-  margin-left: 10%;
-  margin-right: 70%;
   position: relative;
 }
 
@@ -186,13 +182,13 @@ header{
   line-height: 40px;
   position: absolute;
   top: 0px;
-  left: 130px;
+  left: 110px;
   width: 250px;
   height: 40px;
   background: #ffffff;
   z-index: 10;
   transition: all 0.2s ;
-  border: 1px inset #ffffff;
+  border: 3px inset #ffffff;
   border-radius: 5px;
   color:#FF4A4A;
   font-size: 17px;
@@ -204,7 +200,7 @@ header{
   line-height: 40px;
   position: absolute;
   top: 0;
-  left: 130px;
+  left: 110px;
   width: 250px;
   height: 40px;
   color: rgb(255, 255, 255);
