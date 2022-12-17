@@ -330,11 +330,15 @@ class DBhandler:
         self.update_storeScore_byname(name)
         
         
-    #리뷰 동의 유저 아이디 저장 
+     #리뷰 동의 유저 아이디 저장 
     def insert_review_agree_userId(self, name, userID, review_agree_userId):
-        self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").push(review_agree_userId)
-        #리뷰 동의한 사람 수 저장
-        self.update_agreeNum_byname(name, userID)
+        if self.review_agree_duplicate_check(name, userID, review_agree_userId):
+            self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").push(review_agree_userId)
+            #리뷰 동의한 사람 수 저장
+            self.update_agreeNum_byname(name, userID)
+            return True
+        else:
+            return False
      
     #각 리뷰에 동의한 사람 수 구하고 저장
     def update_agreeNum_byname(self, name, userID):
@@ -345,6 +349,16 @@ class DBhandler:
             num.append(value)
         agreeUsers_num = len(num)
         self.db.child("restaurant").child(name).child("review").child(userID).update({"agreeUsers_num": agreeUsers_num})
+        
+    # 이미 동의한 리뷰인지 확인하는 함수
+    def review_agree_duplicate_check(self, name, userID, review_agree_userId):
+        lists = self.db.child("restaurant").child(name).child("review").child(userID).child("agree_users").get()
+        if lists.each() == None:
+            return True
+        for res in lists.each():
+            if res.val() == review_agree_userId:
+                return False
+        return True
 
 
     def get_review_byname(self, name):

@@ -4,7 +4,6 @@ import math
 import hashlib
 import sys
 from urllib import parse
-import math
 
 app = Flask(__name__)
 
@@ -24,6 +23,9 @@ def goTo_mainHome():
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
+    sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
+
     category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
     sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
 
@@ -166,6 +168,10 @@ def goTo_registerMenu():
 
 
 # 맛집 수정 페이지
+@app.route("/modify-info/<name>")
+def goTo_modifyInfo(name):
+    data = DB.get_restaurant_byname(str(name))
+    return render_template("modifyRestaurantInfo.html", data=data, name=name)
 @app.route("/modify-info/<name>")
 def goTo_modifyInfo(name):
     data = DB.get_restaurant_byname(str(name))
