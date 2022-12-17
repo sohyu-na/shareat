@@ -97,12 +97,12 @@ def goTo_myRestaurantList():
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
+    img_paths=DB.get_restaurant_imgs_byname(str(name))
     if session:
-        likechecked = DB.res_in_myRestaurantlist_check(
-            name=name, userId=session['id'])
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked)
+        likechecked = DB.res_in_myRestaurantlist_check(name=name, userId=session['id'])
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked, img_paths=img_paths)
     else:
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, img_paths=img_paths)
 
 
 # 찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
