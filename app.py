@@ -275,7 +275,7 @@ def mod_restaurantData_submit_post():
             image_path = "./static/image/{}".format(fil.filename)
             img_paths.append(image_path)
             
-    if DB.modify_restaurant(data['store_name'], data, image_path):
+    if DB.modify_restaurant(data['store_name'], data, img_paths):
         return redirect(url_for("goTo_detailInfo", name=name))
     else:
         flash("가게 이름을 변경 할 수 없습니다 !")

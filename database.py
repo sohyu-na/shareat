@@ -68,7 +68,7 @@ class DBhandler:
             return False
     
     # DB에 수정
-    def modify_restaurant(self, name, data, img_path):
+    def modify_restaurant(self, name, data, img_paths):
         # 맛집 등록 시간 DB에 저장
         now = datetime.now()
         str_year = now.strftime("%Y")
@@ -101,18 +101,17 @@ class DBhandler:
             "store_reservation_link": data['store_reservation_link'],
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
-            "store_cost_max": data['store_cost_max'],
-            "img_path": img_path
+            "store_cost_max": data['store_cost_max']
         }
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
         if self.restaurant_duplicate_check(name):
             return False
         else:
-            self.db.child("restaurant").child(
-                name).child("info").update(restaurant_info)
-            self.db.child("restaurant").child(
-                name).child("time").update(restaurant_time)
+            self.db.child("restaurant").child(name).child("info").update(restaurant_info)
+            self.db.child("restaurant").child(name).child("time").update(restaurant_time)
+            for path in img_paths:
+                self.db.child("restaurant").child(name).child("info").child("img_path").push(path)
             return True
 
     # 맛집 등록 시 중복 체크
@@ -160,6 +159,8 @@ class DBhandler:
     def get_restaurant_imgs_byname(self, name):
         imgs = self.db.child("restaurant").child(name).child("info").child("img_path").get()
         img_paths=[]
+        if imgs.each() == None:
+            return img_paths
         for img in imgs.each():
             img_paths.append(img.val())
         return img_paths
