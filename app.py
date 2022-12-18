@@ -242,12 +242,12 @@ def reg_restaurantData_submit_post():
     img_paths=[]
     for fil in files:
         if fil.filename == '':
-            image_path = "./static/image_slides/default_image.png"
+            image_path = "../static/image_slides/default_image.png"
             img_paths.append(image_path)
             break
         else:
             fil.save("./static/image/{}".format(fil.filename))
-            image_path = "./static/image/{}".format(fil.filename)
+            image_path = "../static/image/{}".format(fil.filename)
             img_paths.append(image_path)
         
     if DB.insert_restaurant(data['store_name'], data, img_paths):
@@ -257,7 +257,6 @@ def reg_restaurantData_submit_post():
         return redirect(url_for("list_restaurants"))
 
 # 가게정보 수정
-
 
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():
@@ -335,17 +334,21 @@ def logout_user():
 @ app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
     global idx
-    image_file = request.files["menu_pic"]
-    if image_file.filename != '':
-        image_file.save("static/image/"+image_file.filename)
-        menuImg_path = "static/image/"+image_file.filename
-    else:
-        menuImg_path = "./static/image/grey.png"
-
+    files = request.files.getlist("file[]")
     data = request.form
     name = data['store_name']
+    img_paths=[]
+    for fil in files:
+        if fil.filename == '':
+            image_path = "../static/image/grey.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "../static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
 
-    if DB.insert_menu(name, data, image_file.filename):
+    if DB.insert_menu(name, data, img_paths):
         flash("대표 메뉴가 등록이 완료되었습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
     else:

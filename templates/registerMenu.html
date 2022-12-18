@@ -7,16 +7,67 @@
 	</div>
 	<form action="/submit_menuData_post" method="post"enctype="multipart/form-data">
 		<input type="hidden" name="store_name" value="{{name}}">
-		<div class="menu-upload">
-			<span id=pic> 사진 </span><br>
-			<div class="picbox"><label for="menu-pic">  - 대표메뉴의 사진을 등록해주세요. </label></div>
-			<input type="file" id="menu-pic" name="menu_pic"  accept="image/*" onchange="addImg()"/>
-			<span id="img-name"></span>
-		</div>	
+		<div id="image-box">
+			<input type="file" class="real-upload" name="file[]" accept="image/*" multiple />
+			<div class="upload"><p style="padding-top:5px">대표메뉴 사진을 업로드해 주세요</p>
+				<ul class="image-preview"></ul>
+			</div>
+			<script>
+				const realUpload = document.querySelector('.real-upload');
+				const upload = document.querySelector('.upload');
+
+				upload.addEventListener('click', () => realUpload.click());
+
+				realUpload.addEventListener('change', getImageFiles);
+
+				function getImageFiles(e) {
+				const uploadFiles = [];
+				const files = e.currentTarget.files;
+				const imagePreview = document.querySelector('.image-preview');
+				const docFrag = new DocumentFragment();
+
+				if ([...files].length >= 7) {
+					alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
+					return;
+				}
+
+				// 파일 타입 검사
+				[...files].forEach(file => {
+					if (!file.type.match("image/.*")) {
+						alert('이미지 파일만 업로드가 가능합니다.');
+						return
+					}
+
+					// 파일 갯수 검사
+					if ([...files].length < 7) {
+						uploadFiles.push(file);
+						const reader = new FileReader();
+						reader.onload = (e) => {
+							const preview = createElement(e, file);
+							imagePreview.appendChild(preview);
+						};
+						reader.readAsDataURL(file);
+						}
+				});
+				}
+
+				function createElement(e, file) {
+					const li = document.createElement('li');
+					const img = document.createElement('img');
+					img.setAttribute('src', e.target.result);
+					img.setAttribute('data-file', file.name);
+					li.appendChild(img);
+
+					return li;
+				}
+			</script>
+		</div>
 		<div class="menu-textbox">
-			<label for="menu-name"> 음식명 *</label>
+			<label for="menu_name"> 음식명 *</label>
 			<input type="text" class="menu-text" name="menu_name" placeholder="  대표메뉴명을 입력 해주세요." required><br>
-			<label for="menu-price"> 가격</label>
+		</div>
+		<div class="menu-textbox">
+			<label for="menu_price"> 가격</label>
 			<input type="text" class="menu-text" name="menu_price" placeholder="  대표메뉴의 가격을 입력 해주세요."><br>
 		</div>	
 		

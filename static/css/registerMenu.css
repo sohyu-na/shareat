@@ -18,52 +18,32 @@ section{
    line-height:1.45;
    letter-spacing:-1px;
 }
-.menu-upload{
-   height:400px;
-   width: 700px;
-}
-#pic{
-   font-size:20px;
-   font-style:bold;
-   letter-spacing:-0.5px;
-}
-.picbox {
-   border: 1px solid #857F7F;
-   cursor: pointer;
-   margin:30px 30px 30px 0px;
-   background-color:rgba(255, 74, 74,0.1);
-   color:#857F7F;
-   padding: 15px;
-   height:300px;
-}
-.menu-upload input[type="file"] {
-   position: absolute;
-   width: 0;
-   height: 0;
-   padding: 0;
-   overflow: hidden;
-   border: 0;
-}
+
 .menu-textbox{
-   margin-top:20px;
-   width: 700px;
+   margin-top: 20px;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 .menu-textbox label{
-   width:100px;
+   width:15%;
    display: inline-block;
    font-size:20px;
    font-style:bold;
    letter-spacing:-1px;
+   padding-left: 10px;
 }
 .menu-text{
-   border: 1px solid #857F7F;
-   margin-top: 20px;
+   border: 1px solid #a7a7a7;
    height:35px;
-   width:550px;
+   width: 85%;
    font-size:15px;
+   margin:auto;
 }
 .extra-checkbox{
    margin-top:20px;
+   padding-left: 10px;
 }
 input[type="checkbox"]{
    padding-top:10px;

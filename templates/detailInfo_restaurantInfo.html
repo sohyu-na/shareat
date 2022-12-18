@@ -152,16 +152,17 @@
     <br>
     <hr class="hr">
     <br>
-    <br>
-    <p class = "image"><b>사진</b></p>
-            <a href="#" class="more"><h3><b>더보기</b></h3></a>
-    <br>
-    <br>
-    <div class="food-images">
-        <div style="width : 160px; height : 160px; margin: 10px 15px 20px 0px; background-color: rgb(170, 170, 170);">이미지</div>
-        <!-- <img src="{{ url_for('static', filename='image/tokyo1.jpg')}}" alt=Tokyo style="width : 160px; height : 160px; margin: 10px 15px 20px 0px" onclick= "window.open(this.src)"> -->
-
+    <div id="image-text">
+            <div><b>사진</b></div><div id="more"><h3 href="#">더보기+</h3></div>
+        </div>
+    <div class="image-wrap">
+        <br>
+        <br>
+        <div class="food-images">
+            {%for img in img_paths%}
+                <img src="{{img}}">
+            {% endfor %}
+        </div>
     </div>
-    
-</div>
+</div>   
 {% endblock main %}
