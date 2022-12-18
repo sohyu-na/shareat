@@ -30,6 +30,11 @@
   </script> 
   {% endif %}
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   {% if total>0 %}
 
   {% for review in review_data %}
@@ -37,7 +42,7 @@
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
         <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
-        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - - - - - - - - -</th>
+        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - - - - - - -</th>
         <th class="writedate">{{review.timestamp}}</th>
     </tr>
 
@@ -47,12 +52,6 @@
               <input type="hidden" name="store_name" value="{{name}}">
               <input type="hidden" name="userID" value="{{review.userID}}">
             </form>
-            {% if review.agreeUsers_num %}
-            <div>{{review.userID}}이 작성한 리뷰입니다.</div>
-            <div>{{review.agreeUsers_num}}명이 동의한 리뷰입니다.</div>
-            {% else %}
-            <div>0명이 동의한 리뷰입니다.</div>
-            {% endif %}
         </td>
     </tr>
 
@@ -60,7 +59,7 @@
       <td></td>
         <td colspan="3">
           <div class="reviewImage">
-            <img src="/{{review.reviewImg_path}}">
+            <img src="{{review.reviewImg_path}}">
           </div>
         </td>
     </tr>
@@ -72,17 +71,25 @@
       <td></td>
         <td colspan="3">
           <div class="agree">
-            <!--동의 버튼 한번만 누를 수 있음-->
             
-
-
             <!--리뷰 동의한 유저 저장-->
-              <form action="/submit_review_agree_userId" method="post">
+              <form  class="btn_agree" action="/submit_review_agree_userId" method="post">
                 <input type="hidden" name="store_name" value="{{name}}">
                 <input type="hidden" name="userID" value="{{review.userID}}">
                 <input type="hidden" name="review_agree_userId" value="{{session['id']}}">
-                <button type="submit" formmethod="POST" style = "margin-top:auto;"> 동의</button>
+
+                <button class="btn_agree_img" id="btn-modify-agree" type="submit" formmethod="POST" style = "margin-top:auto;">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                </button>
               </form>
+
+              {% if review.agreeUsers_num %}
+              <!--<div>{{review.userID}}이 작성한 리뷰입니다.</div>-->
+              <div id="agree_num_text">{{review.agreeUsers_num}}명이 동의한 리뷰입니다.</div>
+              {% else %}
+              <div id="agree_num_text">0명이 동의한 리뷰입니다.</div>
+              {% endif %}
+
           </div>
           <div class="comment">  
             <blockquote>{{review.detail_review}}</blockquote>
@@ -92,7 +99,7 @@
   {% endfor %}
 
 {% else %}
-<p style="height: 117px">아직 등록된 리뷰가 없어요. 리뷰를 등록해 주세요!</p>
+<p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
 {% endif %}
 
 </div>
