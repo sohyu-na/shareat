@@ -106,14 +106,10 @@ function menucancelBox(){
 		window.location.href = "detailInfo_menu.html";
 	}
 }
-/*function menusubmitBox(){
-	var result= confirm("대표메뉴 등록을 하시겠습니까?")
-	if(result == true) {
-		window.location.href = "detailInfo_menu.html";
-	}
-	//alert("대표메뉴 등록이 완료되었습니다.");
+function menusubmitBox(){
+	alert("대표메뉴 등록이 완료되었습니다.");
 	window.location.href = "detailInfo_menu.html";
-}*/
+}
 
 function report(box) {
 	let result=''
