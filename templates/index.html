@@ -19,6 +19,11 @@
   </head>
 
   <body>
+    {% with mesg = get_flashed_messages() %}
+    {% if mesg !=[] %}
+        <script>alert("{{ mesg[0] }}")</script>
+    {% endif %}
+    {% endwith %}
 
     <script>
         //[카테고리 선택 체크박스]
@@ -46,18 +51,17 @@
 
         <ul id="login-or-signup">
           {% if session['id'] %}
+          <li><a>{{session['id']}}님 </a></li>
           <li id="profile-logo">
               <a href="#"><i id="profile_icon" class="fas fa-light fa-circle-user fa-1x"></i></a>
               <ul id="popup_myMenu">
                 <li id="myMenu_1"><a href="/myRestaurantList">내가 찜한 맛집♥</a></li>
-                <li id="myMenu_2"><a href="/logout">logout</a></li>
+                <li id="myMenu_2"><a href="/logout">로그아웃</a></li>
               </ul>
           </li>
 
-          <li><b>{{session['id']}}님 </b></li>
-
           {% else %}
-          <li style="margin-right: 10px;"><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>
+          <!--<li style="margin-right: 10px;"><a href="/" onclick="alertDialogBox_like()">내가 찜한 맛집</a></li>-->
           <li><a href="/login">로그인</a></li>
           <li>|</li>
           <li><a href="/signup">회원가입</a></li>
@@ -74,7 +78,6 @@
             <div>나 만 의&emsp;맛 집 을&emsp;공 유 하 는</div>
             <div>우 리 들 만 의&emsp;맛 집 백 과</div>
           </div>
-
           {% if session['id'] %}
           <!--맛집 등록 버튼-->
           <div id="btn-register-restaurant">
@@ -97,7 +100,7 @@
           {% endif %}
         </div>
 
-        <!--자동 사진 슬라이드--->
+        <!--자동 사진 슬라이드-->
         <script>
           var index = 0;   //이미지에 접근하는 인덱스
           window.onload = function(){
@@ -117,8 +120,8 @@
           x[index-1].style.display = "block";  //해당 인덱스는 block으로
           setTimeout(slideShow, 3000);   //함수를 3초마다 호출
       
-      }
-    </script>
+          }
+        </script>
         <div id="header-right-side">
           <img class="slide" src="../static/image_slides/미세기텐동.jpg" >
           <img class="slide" src="../static/image_slides/반서울.png" >

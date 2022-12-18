@@ -5,6 +5,7 @@ hr{
 .main-wrap{
     margin: 0px 220px 50px 220px;
     align-items: center;
+	font-family: sans-serif;
 }
 
 .main_image {
@@ -20,21 +21,17 @@ hr{
 	transform: translate( -50%, -50% );
 	color: #000000;
 	font-size : 50px;
-	  }
+}
 
 .now{
 	color : #FF4A4A;
-}
-
-a:link {
-	  color : #b5b5b5;
 }
 
 a:hover{
 	  color : #FF4A4A;
 }
 
-like:clicked{
+.like:clicked{
 	color : #FF4A4A;
 }
 
@@ -66,16 +63,17 @@ html,body,h1,h2,p,dl,dt,dd {
 	padding: 30;
 	line-height: 1.0;
 	box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: sans-serif;
 }
 
 ul,li {
 	list-style: none;
 }
-
+canvas{
+	margin: auto;
+}
 a {
 	text-decoration: none;
-	color: inherit;
 }
 
 img {
@@ -84,9 +82,8 @@ img {
 }
 
 .rader-chart {
-	margin: 0 auto;
-	float : left;
 	width : 50%;
+	float : left;
 	margin-bottom:20px;
 	margin-left:40px;
 	height : 320px;
@@ -329,14 +326,22 @@ td{
 	width : 70%;
 }
 
-.image{
-	font-size : 150%;
+#image-text{
+	width: 95%;
+	display: flex;
+	font-size: 20px;
+	color: #a7a7a7;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: auto;
 }
 
-.more{
-	float : right;
-	width : 10%;
+#more{
+	display: block;
 	font-size : 13px;
+	color:#b5b5b5;
+	text-align: right;
+
 }
 
 .food-images{
@@ -349,11 +354,11 @@ td{
 }
 
 .food-images img{
-	width : 160px; height : 160px;
+	width : 160px;
+	height : 160px;
 }
 
 .image-wrap{
-	width:1000px;
-	padding-left: 150px;
-	padding-bottom : 50px;
+	width: 90%;
+	margin: auto;
 }

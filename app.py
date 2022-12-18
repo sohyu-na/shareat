@@ -4,7 +4,6 @@ import math
 import hashlib
 import sys
 from urllib import parse
-import math
 
 app = Flask(__name__)
 
@@ -24,6 +23,9 @@ def goTo_mainHome():
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
+    sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
+
     category = request.args.get("category", "all")  # 선택한 맛집 카테고리 값
     sort = request.args.get("sort", "grade")   # 선택한 목록 정렬 순서 기준
 
@@ -95,12 +97,12 @@ def goTo_myRestaurantList():
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
+    img_paths=DB.get_restaurant_imgs_byname(str(name))
     if session:
-        likechecked = DB.res_in_myRestaurantlist_check(
-            name=name, userId=session['id'])
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked)
+        likechecked = DB.res_in_myRestaurantlist_check(name=name, userId=session['id'])
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, likechecked=likechecked, img_paths=img_paths)
     else:
-        return render_template("detailInfo_restaurantInfo.html", data=data, name=name)
+        return render_template("detailInfo_restaurantInfo.html", data=data, name=name, img_paths=img_paths)
 
 
 # 찜하기 버튼누르면 데베에 추가하고 다시 맛집 상세정보 페이지로 이동
@@ -115,7 +117,6 @@ def submit_like_post():
     else:
         flash("이미 찜한 맛집입니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
-
 
 # 메뉴 상세 정보 페이지
 @app.route("/detail-menu/<name>")
@@ -134,6 +135,17 @@ def goTo_detailMenu(name):
         # total=count
         return render_template("detailInfo_menu.html", menu_data=menu_data, data=data, name=name, total=count)
 
+# 대표메뉴 삭제 버튼 누르면 데베에서 삭제하고 다시 대표메뉴 페이지로 이동
+@app.route("/submit_remove_post", methods=['POST'])
+def submit_remove_post():
+    data = request.form
+    name = data["store_name"]
+    menu = data["menu_name"]
+    print(name)
+    print(menu)
+    if DB.remove_menu(name, menu):
+        flash("대표 메뉴가 삭제되었습니다.")
+        return redirect(url_for("goTo_detailMenu", name=name, menu=menu))
 
 # 리뷰 상세 정보 페이지
 @app.route("/detail-review/<name>")
@@ -225,47 +237,49 @@ def goTo_signup():
 @app.route("/submit_restaurantData_post", methods=['POST'])
 def reg_restaurantData_submit_post():
     global idx
-    image_file = request.files["file"]
-    if image_file.filename != '':
-        image_file.save("./static/image/{}".format(image_file.filename))
-        image_path = "./static/image/{}".format(image_file.filename)
-        print(image_path)
-    else:
-        image_path = "./static/image_slides/default_image.png"
-        image_file.filename = "default_image.png"
-        print(image_path)
-
+    files = request.files.getlist("file[]")
     data = request.form
-
-    if DB.insert_restaurant(data['store_name'], data, image_path):
+    img_paths=[]
+    for fil in files:
+        if fil.filename == '':
+            image_path = "../static/image_slides/default_image.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "../static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
+        
+    if DB.insert_restaurant(data['store_name'], data, img_paths):
         return redirect(url_for("list_restaurants"))
     else:
-        return "Restaurant name already exists!"
+        flash ("이미 존재하는 가게입니다")
+        return redirect(url_for("list_restaurants"))
 
 # 가게정보 수정
-
 
 @app.route("/modify_restaurantData_post", methods=['POST'])
 def mod_restaurantData_submit_post():
     global idx
-    image_file = request.files["file"]
-    if image_file.filename != '':
-        image_file.save("./static/image/{}".format(image_file.filename))
-        image_path = "./static/image/{}".format(image_file.filename)
-        print(image_path)
-    else:
-        image_path = "./static/image/grey.png"
-        image_file.filename = "grey.png"
-        print(image_path)
-
+    files = request.files.getlist("file[]")
     data = request.form
     name = data["store_name"]
-
+    img_paths=[]
+    for fil in files:
+        if fil.filename == '':
+            image_path = "./static/image_slides/default_image.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "./static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
+            
     if DB.modify_restaurant(data['store_name'], data, image_path):
         return redirect(url_for("goTo_detailInfo", name=name))
     else:
-        # flash("가게 이름을 변경 할 수 없습니다 !") 가게 수정시 가게 이름 바꿀라 하면 어떡할지
-        return "Restaurant name already exists!"
+        flash("가게 이름을 변경 할 수 없습니다 !")
+        return render_template("modifyRestaurantInfo.html")
 
 
 @app.route("/submit_storeName_post", methods=['POST'])  # 가게 이름
@@ -320,17 +334,21 @@ def logout_user():
 @ app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
     global idx
-    image_file = request.files["menu_pic"]
-    if image_file.filename != '':
-        image_file.save("static/image/"+image_file.filename)
-        menuImg_path = "static/image/"+image_file.filename
-    else:
-        menuImg_path = "./static/image/grey.png"
-
+    files = request.files.getlist("file[]")
     data = request.form
     name = data['store_name']
+    img_paths=[]
+    for fil in files:
+        if fil.filename == '':
+            image_path = "../static/image/grey.png"
+            img_paths.append(image_path)
+            break
+        else:
+            fil.save("./static/image/{}".format(fil.filename))
+            image_path = "../static/image/{}".format(fil.filename)
+            img_paths.append(image_path)
 
-    if DB.insert_menu(name, data, image_file.filename):
+    if DB.insert_menu(name, data, img_paths):
         flash("대표 메뉴가 등록이 완료되었습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
     else:
