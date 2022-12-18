@@ -55,7 +55,9 @@ class DBhandler:
             "store_atmosphere": 0,
             "store_revisit": 0,
             "store_reviewCount": 0,
+            "main_image" : img_paths[0],
             "img_path": ""
+            
         }
         #가게이름 중복체크 후 데이터 삽입.
         if self.restaurant_duplicate_check(name):
@@ -101,7 +103,9 @@ class DBhandler:
             "store_reservation_link": data['store_reservation_link'],
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
-            "store_cost_max": data['store_cost_max']
+            "store_cost_max": data['store_cost_max'],
+            "main_image" : img_paths[0],
+            "img_path": ""
         }
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
@@ -270,6 +274,7 @@ class DBhandler:
     def insert_menu(self, name, data, img_paths):
         menu_info = {
             "img_path": "",
+            "main_image" : img_paths[0],
             "menu_name": data['menu_name'],
             "menu_price": data['menu_price'],
             "extra_ve": data['extra_ve'],
