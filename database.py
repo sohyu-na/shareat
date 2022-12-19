@@ -219,55 +219,70 @@ class DBhandler:
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         taste_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['taste'] == 'y'):
-                taste_count += 1
-        return int(taste_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['taste'] == 'y'):
+                    taste_count += 1
+            return int(taste_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         cost_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['cost'] == 'y'):
-                cost_count += 1
-        return int(cost_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['cost'] == 'y'):
+                    cost_count += 1
+            return int(cost_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-service
     def get_serviceScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         service_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['service'] == 'y'):
-                service_count += 1
-        return int(service_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['service'] == 'y'):
+                    service_count += 1
+            return int(service_count/respondent*100)
 
      # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cleanliness
     def get_cleanlinessScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         cleanliness_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['cleanliness'] == 'y'):
-                cleanliness_count += 1
-        return int(cleanliness_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['cleanliness'] == 'y'):
+                    cleanliness_count += 1
+            return int(cleanliness_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-atmosphere
     def get_atmosphereScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         atmosphere_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['atmosphere'] == 'y'):
-                atmosphere_count += 1
-        return int(atmosphere_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['atmosphere'] == 'y'):
+                    atmosphere_count += 1
+            return int(atmosphere_count/respondent*100)
 
     # ===== 2) 메뉴 data ======
 
