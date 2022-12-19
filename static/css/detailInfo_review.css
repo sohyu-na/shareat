@@ -141,7 +141,7 @@ ul,li {
       width : 700px;
       font-size : 120%;
       line-height : 100%;
-      margin : 0px 600px 0px 150px;
+      /* margin : 0px 600px 0px 150px; */
    }
    
    .writeuser{
@@ -170,7 +170,7 @@ ul,li {
    }
    /* 내부 이미지는 170*170 최대 3개*/
    .reviewImage img{
-      width : 170px;
+      width : 250px;
       height : 170px;
       padding : 0 10px 0 0;
    }
