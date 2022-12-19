@@ -18,8 +18,6 @@ def goTo_mainHome():
     return redirect(url_for("list_restaurants"))
 
 # 메인홈(맛집 리스트)
-
-
 @app.route("/shareat")
 def list_restaurants():
     page = request.args.get("page", 0, type=int)
@@ -47,18 +45,6 @@ def list_restaurants():
         data = dict(
             sorted(data.items(), key=lambda x: x[1]['time']['timestamp'], reverse=True))
 
-    # 평점순 정렬
-    # data = dict(
-    #     sorted(data.items(), key=lambda x: x[1]['info']['store_grade'], reverse=True))
-
-    # 최신순 정렬
-    # data = dict(
-    #     sorted(data.items(), key=lambda x: x[1]['time']['timestamp'], reverse=False))
-
-    # 선택한 목록 순서 기준으로 맛집 목록 정렬
-    # if sort == "grade":
-    #     data = dict(sorted(data.items(), key=lambda x: x[1]['info']['store_grade']))
-
     if data == None:
         count = 0    # 등록된 맛집 개수
         return render_template("index.html", total=count, page=page)
@@ -70,8 +56,6 @@ def list_restaurants():
         return render_template("index.html", datas=data.items(), total=count, limit=limit, page=page, page_count=math.ceil(count/9), category=category, sort=sort)
 
 # 내찜맛 화면 출력
-
-
 @app.route("/myRestaurantList")
 def goTo_myRestaurantList():
     userId = session['id']
@@ -83,7 +67,7 @@ def goTo_myRestaurantList():
     data = []
 
     if DB.check_mylist_is_empty(userId):
-        count = 0    # 등록된 맛집 개수
+        count = 0
         return render_template("myRestaurantList.html", datas=data, total=count, limit=limit, page=page, page_count=int((count/9)+1))
     else:
         data = DB.get_mylist(userId)  # 찜한 맛집 리스트 데이터
@@ -92,8 +76,6 @@ def goTo_myRestaurantList():
         return render_template("myRestaurantList.html", datas=list_data.items(), total=count, limit=limit, page=page, page_count=int((count/9)+1))
 
 # 맛집 상세정보 페이지
-
-
 @app.route("/detail-info/<name>")
 def goTo_detailInfo(name):
     data = DB.get_restaurant_byname(str(name))
@@ -184,38 +166,21 @@ def goTo_modifyInfo(name):
     return render_template("modifyRestaurantInfo.html", data=data, name=name)
 
 # 메뉴 추가 페이지
-
-
 @app.route("/add-menu/<name>")
 def goTO_addMenu(name):
     return render_template("registerMenu.html", name=name)
 
-# 메뉴 수정 페이지s
-# @app.route("/modify-menu/<name>")
-# def goTo_modifyMenu(name):
-#    data = DB.get_menu_byname(str(name))
-#    return render_template("modifyMenu.html", data=data, name=name)
-
-
-# 메뉴 수정 - 가게 이름 받아오기
-# @app.route("/modifyMenu_storeName_post", methods=['POST'])
-# def reg_storeName_modifyMenu_post():
-#    data = request.form['store_name']
-#    print(data)
-#    return render_template("modifyMenu.html", name=data)
 
 # 리뷰 등록 페이지
 @app.route("/review")
 def goTo_writeReview():
     return render_template("writeReview.html")
 
+
 # 리뷰 등록 - 가게 이름 받아오기
-
-
 @app.route("/review_storeName_post", methods=['POST'])
 def reg_storeName_review_post():
     data = request.form['store_name']
-    print(data)
     return render_template("writeReview.html", name=data)
 
 
@@ -382,19 +347,12 @@ def submit_review_agree_userId():
     return redirect(url_for("goTo_detailReiview", name=name))
 
 
-@app.route("/submit_review_userID", methods=['POST'])  # 리뷰 작성한 유저의 userID 넘겨줌
+@app.route("/submit_review_userID", methods=['POST'])
 def submit_review_userID():
     data = request.form
     name = data['store_name']
     userID = data['userID']
-    # agreeUsers_num = DB.get_agreeNum_byname(name, userID)
     return redirect(url_for("goTo_detailReiview", name=name))
-
-# #동의 버튼 누를 시에 동의한 사람 수 새로고침
-# @app.route("/", methods=['POST'])
-# def submit_review_userID():
-
-#     return redirect(url_for("goTo_detailReiview", name=name))
 
 
 app.secret_key = 'super secret key'
@@ -403,5 +361,4 @@ if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
 if __name__ == "__main__":
-    # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
