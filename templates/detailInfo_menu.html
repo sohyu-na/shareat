@@ -23,7 +23,7 @@
     {% if total>0 %}
     {% for menu in menu_data %}
     <div id="menu-box">
-        <div class="menu-item">
+        <div class="menu-item-box">
             <form action="/submit_remove_post" method="post">
                 <input type="hidden" name="store_name" value="{{name}}">
                 <input type="hidden" name="menu_name" value="{{menu.menu_name}}">
@@ -33,7 +33,7 @@
                     </div>
                 </button>
             </form>
-                <img class="menu-img" src="{{menu.img_path}}"> 
+                <img class="menu-image-box" src="{{menu.img_path}}"> 
                 <div class="menu-info">
                     <div class="menu-name">음식명 : {{menu.menu_name}}</div>
                     <div class="menu-price">가격 : {{menu.menu_price}}</div>

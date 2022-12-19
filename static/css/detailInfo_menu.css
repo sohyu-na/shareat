@@ -46,18 +46,19 @@ button{
 	margin-bottom: 50px;
 }
 
-.menu-item{
+.menu-item-box{
 	display: flex;
 	align-items: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 20px 50px;
+	margin:0px 125px;
 	border-bottom: 1.5px solid #a5a5a5;
-	width:100%;
+	width:700px;
 }
 
-.menu-img{
-	width: 500px;
-	height: 150px;
+.menu-image-box{
+	width: 200px;
+	height: 200px;
+	margin:20px;
 	background-color: #cccccc;
 }
 
@@ -67,7 +68,15 @@ button{
 	font-size: 13px;
 }
 
-.menu-name, .menu-price, .menu-info-signicant div{
+.menu-name, .menu-price {
+	font-size : 17px;
+	line-height : 100%;
+	font-weight :300;
+	padding:5px;
+}
+.menu-info-signicant div{
+	font-size : 17px;
+	line-height : 100%;
 	padding:5px;
 }
 
