@@ -112,10 +112,10 @@ def submit_like_post():
     name = data["store_name"]
     userId = data["userId"]
     if DB.insert_mylist(name, userId):
-        flash("내가 찜한 맛집 리스트에 추가 되었습니다.")
+        #flash("내가 찜한 맛집 리스트에 추가 되었습니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
-    else:
-        flash("이미 찜한 맛집입니다.")
+    elif DB.delete_mylist(name, userId):
+        #flash("내가 찜한 맛집 리스트에서 삭제 되었습니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
 
 # 메뉴 상세 정보 페이지
@@ -334,21 +334,16 @@ def logout_user():
 @ app.route("/submit_menuData_post", methods=['POST'])
 def reg_menuData_submit_post():
     global idx
-    files = request.files.getlist("file[]")
     data = request.form
+    image_file = request.files["file"]
     name = data['store_name']
-    img_paths=[]
-    for fil in files:
-        if fil.filename == '':
-            image_path = "../static/image/grey.png"
-            img_paths.append(image_path)
-            break
-        else:
-            fil.save("./static/image/{}".format(fil.filename))
-            image_path = "../static/image/{}".format(fil.filename)
-            img_paths.append(image_path)
-
-    if DB.insert_menu(name, data, img_paths):
+    if image_file.filename != '':
+        image_file.save("./static/image/"+image_file.filename)
+        img_path = "../static/image/"+image_file.filename
+    else:
+        img_path = "../static/image/grey.png"
+        
+    if DB.insert_menu(name, data, img_path):
         flash("대표 메뉴가 등록이 완료되었습니다")
         return redirect(url_for("goTo_detailMenu", name=name))
     else:

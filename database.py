@@ -286,10 +286,9 @@ class DBhandler:
 
     # ===== 2) 메뉴 data ======
 
-    def insert_menu(self, name, data, img_paths):
+    def insert_menu(self, name, data, img_path):
         menu_info = {
-            "img_path": "",
-            "main_image" : img_paths[0],
+            "img_path": img_path,
             "menu_name": data['menu_name'],
             "menu_price": data['menu_price'],
             "extra_ve": data['extra_ve'],
@@ -297,8 +296,6 @@ class DBhandler:
         }
         if self.menu_duplicate_check(name, data['menu_name']):
             self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).set(menu_info)
-            for path in img_paths:
-                self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).child("img_path").push(path)
             return True
         else:
             return False
@@ -488,6 +485,16 @@ class DBhandler:
             return True
         else:
             return False
+        
+    # 찜하기 버튼으로 마이리스트에 삭제하기
+    def delete_mylist(self, name, userId):
+        lists = self.db.child("member").child(userId).child("myRestaurantList").get()
+        for res in lists.each():
+            if res.val() == name:
+                key=res.key()
+                self.db.child("member").child(userId).child("myRestaurantList").child(key).remove()
+                break
+        return True
 
     # 이미 찜리스트에 있는 가게인지 확인하는 함수
     def mylist_duplicate_check(self, name, userId):

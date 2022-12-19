@@ -8,7 +8,7 @@
 	<form action="/submit_menuData_post" method="post"enctype="multipart/form-data">
 		<input type="hidden" name="store_name" value="{{name}}">
 		<div id="image-box">
-			<input type="file" class="real-upload" name="file[]" accept="image/*" multiple />
+			<input type="file" class="real-upload" name="file" accept="image/*" />
 			<div class="upload"><p style="padding-top:5px">대표메뉴 사진을 업로드해 주세요</p>
 				<ul class="image-preview"></ul>
 			</div>
@@ -82,7 +82,7 @@
 		
 		<div class="menu-button">
 			<input type="button" class="cancelbutton" value="취소" onclick=menucancelBox()>
-			<input type="submit" class="submitbutton" value="등록" onclick=menusubmitBox()>
+			<input type="submit" class="submitbutton" value="등록">
 		</div>
 		
 	</form>
