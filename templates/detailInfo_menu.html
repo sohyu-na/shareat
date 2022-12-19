@@ -17,7 +17,7 @@
     {% if session['id'] %}
     <!--로그인 상태 대표메뉴 추가/삭제 버튼-->
     <div>
-        <a href="/add-menu/{{name}}" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
+        <a href="/add-menu/{{name}}" class="modifylink"><i class="fa-solid fa-pencil"></i>&nbsp;대표 메뉴 추가하기</a>
     </div>
 
     {% if total>0 %}
@@ -74,7 +74,7 @@
     <!--로그아웃 상태 대표메뉴 추가/삭제 버튼-->
     <button onclick="alertDialogBox()">
         <div id="btn-modify-menu">
-            <a href="" class="modifylink"><h3><i class="fa-solid fa-pencil"></i><b>&nbsp;대표 메뉴 추가하기</b></h3></a>
+            <a href="" class="modifylink"><i class="fa-solid fa-pencil"></i>&nbsp;대표 메뉴 추가하기</a>
         </div>
     </button>
     <script>
