@@ -55,7 +55,9 @@ class DBhandler:
             "store_atmosphere": 0,
             "store_revisit": 0,
             "store_reviewCount": 0,
+            "main_image" : img_paths[0],
             "img_path": ""
+            
         }
         #가게이름 중복체크 후 데이터 삽입.
         if self.restaurant_duplicate_check(name):
@@ -101,7 +103,9 @@ class DBhandler:
             "store_reservation_link": data['store_reservation_link'],
             "store_category": data['store_category'],
             "store_cost_min": data['store_cost_min'],
-            "store_cost_max": data['store_cost_max']
+            "store_cost_max": data['store_cost_max'],
+            "main_image" : img_paths[0],
+            "img_path": ""
         }
         # self.db.child("restaurant").child(name).set(restaurant_info)
         # return True
@@ -215,61 +219,76 @@ class DBhandler:
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         taste_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['taste'] == 'y'):
-                taste_count += 1
-        return int(taste_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['taste'] == 'y'):
+                    taste_count += 1
+            return int(taste_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cost
     def get_costScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         cost_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['cost'] == 'y'):
-                cost_count += 1
-        return int(cost_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['cost'] == 'y'):
+                    cost_count += 1
+            return int(cost_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-service
     def get_serviceScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         service_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['service'] == 'y'):
-                service_count += 1
-        return int(service_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['service'] == 'y'):
+                    service_count += 1
+            return int(service_count/respondent*100)
 
      # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-cleanliness
     def get_cleanlinessScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         cleanliness_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['cleanliness'] == 'y'):
-                cleanliness_count += 1
-        return int(cleanliness_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['cleanliness'] == 'y'):
+                    cleanliness_count += 1
+            return int(cleanliness_count/respondent*100)
 
     # 리뷰에 접근하여 다섯가지 키워드 별 계산하기-atmosphere
     def get_atmosphereScore_byname(self, name):
         reviews = self.db.child("restaurant").child(name).child("review").get()
         respondent = self.review_keyword_respondent_check(name)
         atmosphere_count = 0
-        for rev in reviews.each():
-            value = rev.val()
-            if (value['atmosphere'] == 'y'):
-                atmosphere_count += 1
-        return int(atmosphere_count/respondent*100)
+        if (respondent == 0):
+            return 0
+        else:
+            for rev in reviews.each():
+                value = rev.val()
+                if (value['atmosphere'] == 'y'):
+                    atmosphere_count += 1
+            return int(atmosphere_count/respondent*100)
 
     # ===== 2) 메뉴 data ======
 
-    def insert_menu(self, name, data, img_paths):
+    def insert_menu(self, name, data, img_path):
         menu_info = {
-            "img_path": "",
+            "img_path": img_path,
             "menu_name": data['menu_name'],
             "menu_price": data['menu_price'],
             "extra_ve": data['extra_ve'],
@@ -277,8 +296,6 @@ class DBhandler:
         }
         if self.menu_duplicate_check(name, data['menu_name']):
             self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).set(menu_info)
-            for path in img_paths:
-                self.db.child("restaurant").child(name).child("menu").child(data['menu_name']).child("img_path").push(path)
             return True
         else:
             return False
@@ -468,6 +485,16 @@ class DBhandler:
             return True
         else:
             return False
+        
+    # 찜하기 버튼으로 마이리스트에 삭제하기
+    def delete_mylist(self, name, userId):
+        lists = self.db.child("member").child(userId).child("myRestaurantList").get()
+        for res in lists.each():
+            if res.val() == name:
+                key=res.key()
+                self.db.child("member").child(userId).child("myRestaurantList").child(key).remove()
+                break
+        return True
 
     # 이미 찜리스트에 있는 가게인지 확인하는 함수
     def mylist_duplicate_check(self, name, userId):
