@@ -112,10 +112,10 @@ def submit_like_post():
     name = data["store_name"]
     userId = data["userId"]
     if DB.insert_mylist(name, userId):
-        flash("내가 찜한 맛집 리스트에 추가 되었습니다.")
+        #flash("내가 찜한 맛집 리스트에 추가 되었습니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
-    else:
-        flash("이미 찜한 맛집입니다.")
+    elif DB.delete_mylist(name, userId):
+        #flash("내가 찜한 맛집 리스트에서 삭제 되었습니다.")
         return redirect(url_for("goTo_detailInfo", name=name))
 
 # 메뉴 상세 정보 페이지
