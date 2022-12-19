@@ -59,7 +59,7 @@ a, a:visited{
 #popup_myMenu{
   display: none;
   position: absolute;
-  width: 130px;
+  width: 140px;
   padding: 8px;
   left: -200%;
   top:90%;
@@ -75,7 +75,7 @@ a, a:visited{
 #popup_myMenu:after {
   position: absolute;
   bottom: 100%;
-  left: 78%;
+  left: 73%;
   width: 0;
   height: 0;
   border: solid transparent;
@@ -125,6 +125,7 @@ header{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   margin-left: 80px;
   margin-right: 80px;
   margin-top: 20px;
@@ -137,7 +138,7 @@ header{
 }
 
 #header-right-side{
-  margin-right: auto;
+  margin : auto;
   width: 40%;
 }
 
@@ -170,9 +171,8 @@ header{
   justify-content: center; */
   width: 100%;
   height: auto;
-  margin-top: 30px;
-  margin-left: 10%;
-  margin-right: 70%;
+  padding-top: 30px;
+  margin : auto;
   position: relative;
 }
 

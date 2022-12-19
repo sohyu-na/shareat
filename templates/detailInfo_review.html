@@ -36,13 +36,12 @@
   <br>
   <br>
   {% if total>0 %}
-
   {% for review in review_data %}
   <table class="table_review">
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
         <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
-        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - - - - - - -</th>
+        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - -</th>
         <th class="writedate">{{review.timestamp}}</th>
     </tr>
     <tr>
