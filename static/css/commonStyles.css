@@ -69,6 +69,9 @@ button, a{
 
 /* 가게정보-대표매뉴-리뷰조회 네비게이션 바 */
 /*코드*/
+main{
+  margin-bottom: 100px;
+}
 
 .main_image {
   position: relative;
@@ -192,7 +195,7 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
-  height:70px;
+  height:100px;
   /* background-color: #fafafa99; */
   background-color: #2c2c33;
   border-top: 0.5px solid #c4c4c4;
