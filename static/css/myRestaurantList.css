@@ -45,7 +45,7 @@ main nav{
     justify-content: center;
 }
     
-section{
+#like_list{
     width:75%;
     position: relative;
     display: flex;
@@ -53,6 +53,7 @@ section{
     justify-content: space-between;
     margin:0;
     margin-top:15px;
+    padding: auto;
 }
     
 .restaurant-item-box{
