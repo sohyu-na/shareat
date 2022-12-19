@@ -138,14 +138,14 @@ ul,li {
 
    .table_review{
       text-align : left;
-      width : 700px;
+      width : 750px;
       font-size : 120%;
       line-height : 100%;
       /* margin : 0px 600px 0px 150px; */
    }
    
    .writeuser{
-      width : 100px;
+      width : 150px;
    }
 
    .writestar{
