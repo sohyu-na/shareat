@@ -14,7 +14,7 @@ h4 {
 }
 
 .tabel_registerRestaurantInfo {
-    width: 55%;
+    width: 60%;
     border-collapse: separate;
     border-spacing: 25px 25px;
     margin-left: auto;;
@@ -22,7 +22,7 @@ h4 {
 }
 
 .td1 {
-    width: 150px;
+    width: 140px;
 }
 
 .text-area {

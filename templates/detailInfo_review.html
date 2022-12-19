@@ -14,7 +14,7 @@
     <input type="hidden" name="store_name" value="{{name}}">
     <button type="submit">
       <div id="btn-modify-menu">
-        <a><i class="fa-solid fa-pencil"></i><b>&nbsp;리뷰 등록하기</b></a>
+        <a class="modifylink"><i class="fa-solid fa-pencil"></i>&nbsp;리뷰 등록하기</a>
       </div>
     </button>
   </form>
@@ -22,7 +22,7 @@
   <!--리뷰 등록하기 버튼-->
   <button onclick="alertDialogBox()">
     <div id="btn-modify-menu">
-      <a><i class="fa-solid fa-pencil"></i><b>&nbsp;리뷰 등록하기</b></a>
+      <a class="modifylink"><i class="fa-solid fa-pencil"></i>&nbsp;리뷰 등록하기</a>
     </div>
   </button>
   <script>
@@ -36,25 +36,23 @@
   <br>
   <br>
   {% if total>0 %}
-
   {% for review in review_data %}
   <table class="table_review">
     <tr>
         <th class="writeuser">{{review.nickname}}</th>
         <th class="writestar"><div class="stars" data-percent={{review.review_grade}}></div></th>
-        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - - - - - - -</th>
+        <th class="writescore">{{review.review_grade}} &nbsp;- - - - - - - - - - - - - - - - -</th>
         <th class="writedate">{{review.timestamp}}</th>
     </tr>
-
     <tr>
-        <td>
-            <form action="/submit_review_userID" method="post">
-              <input type="hidden" name="store_name" value="{{name}}">
-              <input type="hidden" name="userID" value="{{review.userID}}">
-            </form>
-        </td>
-    </tr>
-
+      <td>
+          <form action="/submit_review_userID" method="post">
+            <input type="hidden" name="store_name" value="{{name}}">
+            <input type="hidden" name="userID" value="{{review.userID}}">
+          </form>
+      </td>
+  </tr>
+    {%if review.reviewImg_path != "../static/image/grey.png"%}
     <tr>
       <td></td>
         <td colspan="3">
@@ -63,10 +61,15 @@
           </div>
         </td>
     </tr>
-    <form action="/submit_review_agree_userId" method="post">
-      <input type="hidden" name="store_name" value="{{name}}">
-      <input type="hidden" name="userID" value="{{review.userID}}">
-    </form>
+    {%else%}
+    <tr>
+      <td style="height: 0px;"></td>
+        <td colspan="3">
+          <div class="reviewImage" style="height: 0px;">
+          </div>
+        </td>
+    </tr>
+    {%endif%}
     <tr>
       <td></td>
         <td colspan="3">
@@ -99,7 +102,7 @@
   {% endfor %}
 
 {% else %}
-<p>아직 등록된 맛집이 없어요. 맛집을 등록해 주세요!</p>
+<p>아직 등록된 리뷰가 없어요. 리뷰를 등록해 주세요!</p>
 {% endif %}
 
 </div>
