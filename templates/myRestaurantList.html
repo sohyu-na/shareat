@@ -7,52 +7,48 @@
         <div class="mainavti">내가 찜한 맛집</div>
         <br><br>
         <div class="mainavsu">맛집 상세 페이지에서 찜하기 버튼을 누르면 내가 찜한 맛집 리스트에 추가됩니다.
-            <br><br>맛집 사진을 누르면 상세 정보 페이지로 이동할 수 있습니다.
+            <br><br>맛집 사진을 누르면 해당 사이트로 이동할 수 있습니다.
         </div>
         <div class="mainavfon">
             찜한 맛집 총 <b>{{total}}</b>개
         </div>
     </div>
-
-    <div id="myList-content">
-        <section id="like_list">
-            <!---->
-            {% if total>0 %}
-                {% for data in datas %}
-                <div class="restaurant-item">
-                    <a href="/detail-info/{{data[1].info.store_name}}">
-                        <div class="restaurant-item-box">
-                            <figure>
-                                <img class="temp restaurant-img" src="{{data[1].info.main_image}}">
-                                <!-- <div class="">이미지</div> -->
-                            </figure>
-                            <figcaption>                       
-                                <div class="restaurant-names">{{data[1].info.store_name}}</div>
-                                <div class="restaurant-category">{{data[1].info.store_category}}</div>
-                                <div class="restaurant-point">{{data[1].info.store_grade}}</div>
-                            </figcaption>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
-                <div class="page-wraps">
-                    <div class="page-nations">
-                        <div>
-                        <ul>
-                            <li>
-                                {% for i in range(page_count) %}
-                                <a href="{{url_for('goTo_myRestaurantList',page=i)}}#list-location">{{i+1}}</a>
-                                {% endfor %}
-                            </li>
-                        </ul>
+    <section>
+        <!---->
+        {% if total>0 %}
+            {% for data in datas %}
+            <div class="restaurant-item">
+                <a href="/detail-info/{{data[1].info.store_name}}">
+                    <div class="restaurant-item-box">
+                        <figure>
+                            <img class="temp restaurant-img" src="{{data[1].info.main_image}}">
+                            <!-- <div class="">이미지</div> -->
+                        </figure>
+                        <figcaption>                       
+                            <div class="restaurant-names">{{data[1].info.store_name}}</div>
+                            <div class="restaurant-category">{{data[1].info.store_category}}</div>
+                            <div class="restaurant-point">{{data[1].info.store_grade}}</div>
+                        </figcaption>
                     </div>
-                {% else %}
-                <p>아직 찜한 맛집이 없어요. 원하는 맛집의 찜하기 버튼을 눌러 주세요!</p>
-                {% endif %}
-            </section>
-    </div>
-
-    </div>
-
+                </a>
+            </div>
+            {% endfor %}
+            <div class="page-wraps">
+                <div class="page-nations">
+                    <div>
+                    <ul>
+                        <li>
+                            {% for i in range(page_count) %}
+                            <a href="{{url_for('goTo_myRestaurantList',page=i)}}#list-location">{{i+1}}</a>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        {% else %}
+        <p>아직 찜한 맛집이 없어요. 원하는 맛집의 찜하기 버튼을 눌러 주세요!</p>
+        {% endif %}
+    </section>  
 </main>
 {% endblock main %}
