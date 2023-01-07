@@ -107,5 +107,5 @@
 - 팁/디버깅: https://gmlwo810.tistory.com/106
 - 가이드: https://aj-tech.tistory.com/2
 - 해설1: https://velog.io/@ccomi/%EC%9B%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%ED%95%91-%EB%82%B4%EA%B0%80-%EC%B0%9C%ED%95%9C-%EB%A7%9B%EC%A7%91-%EA%B5%AC%ED%98%84
--해설2: https://velog.io/@sha0809/%EC%9B%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%A0%88%EC%9D%B4%EB%8D%94-%EC%B0%A8%ED%8A%B8-%EA%B5%AC%ED%98%84
+- 해설2: https://velog.io/@sha0809/%EC%9B%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%A0%88%EC%9D%B4%EB%8D%94-%EC%B0%A8%ED%8A%B8-%EA%B5%AC%ED%98%84
 
