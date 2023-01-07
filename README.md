@@ -1,4 +1,4 @@
-오픈SW플랫폼 맛집추천 웹 어플리케이션 팀 프로젝트 [어서오소 ]
+오픈SW플랫폼 맛집추천 웹 어플리케이션 팀 프로젝트 [어서오소 팀]
 #  SharEat 
 : Web pages to share your favorite restaurant with others <br>
 
