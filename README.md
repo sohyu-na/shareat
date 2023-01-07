@@ -48,38 +48,47 @@
 
 ### [ 회원가입 & 로그인 & 로그아웃 ]
 <img width="947" alt="로그인" src="https://user-images.githubusercontent.com/79395147/211155418-1d2dd438-b3b6-47f5-8f67-b0475d53162f.png">
+
 - 로그인 페이지에서 회원가입 페이지로 바로 이동 가능
 
 <img width="947" alt="로그아웃" src="https://user-images.githubusercontent.com/79395147/211155424-d5022f01-fa0c-47bd-a320-3897bd36249e.png">
+
 - logout 버튼을 통해 바로 로그아웃 가능
 
 <img width="938" alt="로그인 화면" src="https://user-images.githubusercontent.com/79395147/211155430-cbdb5f17-2fe6-45ab-9119-65a470278902.png">
+
 - 회원가입 시 입력한 아이디와 비밀번호를 통해 로그인
 
 <img width="960" alt="회원가입" src="https://user-images.githubusercontent.com/79395147/211155463-06c0ccbb-757a-4102-a039-40f7a7106cfc.png">
+
 - 본인이 직접 아이디 와 비밀번호를 설정
 - 이미 등록된 아이디일 경우 중복임을 알려줌
 - 이름, 성별, 생년월일을 입력
 
 ### [ 맛집 등록 화면 ]
 <img width="960" alt="맛집 등록" src="https://user-images.githubusercontent.com/79395147/211155398-b42a2dff-6310-4a33-a802-ead29aa326da.png">
+
 - 공유를 원하는 맛집의 상호명, 전화번호, 주소, 사이트, 영업시간, 주차 및 예약 가능 여부, 카테고리, 가격대 와 식당의 사진을 입력
 
 ### [ 맛집 수정 화면 ]
 <img width="960" alt="맛집 수정" src="https://user-images.githubusercontent.com/79395147/211155394-1d034f6e-b73d-4765-85c9-1fb689bdf00d.png">
+
 - 이미 등록되어 있는 맛집의 정보들 중 원하는 부분을 선택해서 수정 가능
 
 ### [ 대표메뉴 등록화면 ]
 <img width="960" alt="대표 메뉴 등록 " src="https://user-images.githubusercontent.com/79395147/211155388-51b7ec7b-8f14-4688-a5b3-bba4fcc524d2.png">
+
 - 대표메뉴의 이름, 가격, 알러지 와 비건 여부 및 사진을 등록
 
 ### [ 대표메뉴 추가 및 삭제 ]
 <img width="941" alt="대표 메뉴 수정" src="https://user-images.githubusercontent.com/79395147/211155386-f2e08532-604d-430c-9d98-d3187e6a4be0.png">
+
 - 대표메뉴 추가하기로 재등록 가능
 - 등록한 대표메뉴 삭제 가능
 
 ### [ 맛집 리뷰 등록화면 ]
 <img width="960" alt="리뷰 등록" src="https://user-images.githubusercontent.com/79395147/211155379-f5c4face-1702-4893-a9a2-b879534d07df.png">
+
 - 0점부터 5점 중 원하는 점수를 줄 수 있음
 - 맛, 가성비, 서비스, 위생, 분위기 중 리뷰 작성자가 마음에 든 부분을 선택 가능
 - 재방문 의사 선택이 가능
