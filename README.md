@@ -1,8 +1,25 @@
-오픈SW플랫폼 맛집추천 웹 어플리케이션 팀 프로젝트 [어서오소 팀]
-#  SharEat 
-: Web pages to share your favorite restaurant with others <br>
+/*38426-01 open software platform team project*/
 
-## 1. Introduction of pages
+# 🥘 SharEat 
+#### Web pages to share your favorite restaurant with others <br>
+
+## 1. Development environment
+
+#### FrontEnd 
+<div>
+  <img src="https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html&logoColor=white"/>
+  <img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Javascript-ffb13b?style=flat-square&logo=javascript&logoColor=white"/>
+ </div> 
+ 
+#### BackEnd 
+<div>
+  <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=Flask&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white"/>
+</div>
+
+## 2. Introduction of pages
 ### [ 메인 화면 ]
 
 <img width="960" alt="메인홈" src="https://user-images.githubusercontent.com/79395147/211154816-5a7333a2-74a4-4127-89cc-d47b613d6a8e.png">
@@ -102,9 +119,6 @@
 - 홈 화면에서와 마찬가지로 가게의 이름, 카테고리, 별점을 메인에서 확인 가능
 - 맛집의 사진을 클릭하면 해당 맛집의 상세 페이지로 바로 이동 가능
 
-## 2. Development environment
-- FrontEnd : HTML / CSS / JS
-- BackEnd : Python / Flask / Firebase
 
 ## 3. Configuration of database
 <img width="831" alt="db1" src="https://user-images.githubusercontent.com/79395147/211157341-568d2d58-e576-419e-a8a2-3a2d42d9d883.png">
